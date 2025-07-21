@@ -4,6 +4,18 @@
 
 ---
 
+## Table of Contents
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Directory Structure](#directory-structure)
+- [Installation](#installation)
+- [Data Format](#data-format)
+- [License](#license)
+- [Contribution](#contribution)
+
+---
+
 ## Overview
 
 **Shaan-e-Zaban** is a minimalistic, culturally authentic Urdu language learning app built by a native speaker—designed to fill the long-standing gap in structured, accessible, and native-focused Urdu tools.
