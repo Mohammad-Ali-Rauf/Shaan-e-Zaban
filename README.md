@@ -10,6 +10,9 @@
 
 Unlike AI-heavy platforms or gamified distractions, this project prioritizes **clarity**, **real content**, and **respect for the language**.
 
+⚠️ We do not use Roman Urdu. Shaan-e-Zaban teaches Urdu in its native Nastaliq script, not Latinized substitutions. Just like **Mandarin**, **Russian**, or **Arabic** apps don’t abandon their writing systems, **Urdu** deserves to be taught in its own beautiful script.
+Roman Urdu is inconsistent, unstandardized, and unable to convey the cultural and visual beauty of Urdu — we don’t compromise.
+
 This is an **MVP (Minimum Viable Product)** release — **offline support will be added in future versions**, but the current build is designed for online use to streamline development and deployment.
 
 ---
