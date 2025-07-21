@@ -71,7 +71,7 @@ shaan-e-zaban/
 ```bash
 cd backend
 go run main.go
-````
+```
 
 ### Frontend (Next.js)
 
@@ -97,7 +97,6 @@ Once both services are running, open your browser at `http://localhost:3000`.
     "english": "How are you?",
     "audio": "audio/001.mp3"
   },
-  ...
 ]
 ```
 
