@@ -95,8 +95,10 @@ Once both services are running, open your browser at `http://localhost:3000`.
     "id": 1,
     "urdu": "آپ کیسے ہیں؟",
     "english": "How are you?",
+    "tags": ["greeting", "formal", "masculine"],
+    "level": "A1",
     "audio": "audio/001.mp3"
-  },
+  }
 ]
 ```
 
