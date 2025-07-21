@@ -45,7 +45,7 @@ This is an **MVP (Minimum Viable Product)** release — **offline support will b
 
 ## Technology Stack
 
-* **Frontend**: Next.js (React 18, App Router, Tailwind CSS)
+* **Frontend**: Next.js (React 19, App Router, Tailwind CSS)
 * **Backend**: Go (Golang)
 * **Data Source**: Tatoeba sentence pairs, LinguaLibre audio
 * **Storage**: JSON files or SQLite (for user progress and sentence indexing)
