@@ -141,6 +141,8 @@ MIT License
 
 ## Contribution
 
+> See full guide in the `CONTRIBUTING.md` file.
+
 Contributions are welcome! You can help by:
 
 * Improving Urdu-English sentence pairs

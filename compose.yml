@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: backend_shaan-e-zaban
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: go run main.go
+
+  frontend:
+    container_name: frontend_shaan-e-zaban
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: yarn start
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+
+  json-server:
+    container_name: json-server_shaan-e-zaban
+    image: typicode/json-server
+    ports:
+      - "4000:80"
+    volumes:
+      - ./backend/data:/data
+    command: --watch /data/urdu_sentences.json --port 80
