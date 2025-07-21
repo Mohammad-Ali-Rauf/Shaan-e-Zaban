@@ -1,5 +1,10 @@
 # Shaan-e-Zaban (شانِ زبان)
 
+![MIT License](https://img.shields.io/badge/license-MIT-green)
+![Next.js](https://img.shields.io/badge/frontend-Next.js-blue)
+![Go](https://img.shields.io/badge/backend-Go-orange)
+![Status](https://img.shields.io/badge/status-MVP-lightgrey)
+
 **An open-source Urdu language learning platform built with simplicity, precision, and deep respect for the richness of the language.**
 
 ---
@@ -106,7 +111,7 @@ Once both services are running, open your browser at `http://localhost:3000`.
 
 ## Data Format
 
-**Example: urdu\_sentences.json**
+**Example: `urdu_sentences.json`**
 
 ```json
 [
