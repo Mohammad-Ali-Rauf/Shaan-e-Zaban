@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  slug        String    @unique
+  chapters    Chapter[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Chapter {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String?
+  course      Course   @relation(fields: [courseId], references: [id])
+  courseId    Int
+  lessons     Lesson[]
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lesson {
+  id            Int            @id @default(autoincrement())
+  title         String
+  slug          String         @unique
+  description   String?
+  chapter       Chapter        @relation(fields: [chapterId], references: [id])
+  chapterId     Int
+  learningUnits LearningUnit[]
+  order         Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model LearningUnit {
+  id           Int            @id @default(autoincrement())
+  type         LearningType
+  title        String?
+  urduText     String?
+  englishText  String?
+  audioUrl     String?
+  tags         String[]
+  level        Level
+  lesson       Lesson         @relation(fields: [lessonId], references: [id])
+  lessonId     Int
+  userProgress UserProgress[]
+  order        Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model User {
+  id        String         @id @default(uuid())
+  email     String         @unique
+  name      String?
+  progress  UserProgress[]
+  createdAt DateTime       @default(now())
+}
+
+model UserProgress {
+  id             Int          @id @default(autoincrement())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id])
+  learningUnit   LearningUnit @relation(fields: [learningUnitId], references: [id])
+  learningUnitId Int
+  completed      Boolean      @default(false)
+  score          Int?
+  updatedAt      DateTime     @updatedAt
+}
+
+enum Level {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum LearningType {
+  WORD
+  PHRASE
+  SENTENCE
+  DIALOGUE
+  GRAMMAR
+  TRANSLATION
+  MEDIA
+}

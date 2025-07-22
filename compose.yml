@@ -1,55 +1,23 @@
 services:
-  backend:
-    container_name: backend_sez
+  application:
+    container_name: sez_app
     build:
-      context: ./backend
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./backend:/app
-    working_dir: /app
-    command: go run main.go
-    networks:
-      - shaan-e-zaban
-
-  frontend:
-    container_name: frontend_sez
-    build:
-      context: ./frontend
+      context: ./sez
     depends_on:
-      - backend
-      - json-server
+      - db
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app
+      - ./sez:/app
     working_dir: /app
     command: yarn dev
     env_file:
-      - .env.local
-    networks:
-      - shaan-e-zaban
-
-  json-server:
-    container_name: json-server_sez
-    image: clue/json-server
-    depends_on:
-      - backend
-    ports:
-      - "4000:80"
-    volumes:
-      - ./backend/content:/content
-    command: >
-      --watch /content/curriculum/${LEVEL}/${CEFR}/sentences.json
-    environment:
-      - LEVEL=Beginner
-      - CEFR=A1
+      - .env
     networks:
       - shaan-e-zaban
 
   db:
     image: postgres:17
-    restart: always
     env_file:
       - .env
     volumes:
@@ -61,6 +29,7 @@ services:
 
 networks:
   shaan-e-zaban:
+
 
 volumes:
   pgdata:
