@@ -123,6 +123,7 @@ Visit: `http://localhost:3000` to access the platform locally.
   {
     "id": 1,
     "title": "میرا پہلا دن",
+    "slug": "mera-pehla-din",
     "level": "beginner",
     "sentences": [
       {
@@ -134,7 +135,7 @@ Visit: `http://localhost:3000` to access the platform locally.
         "english": "I was very happy because I wanted to make new friends."
       }
     ]
-  }
+  },
 ]
 ```
 

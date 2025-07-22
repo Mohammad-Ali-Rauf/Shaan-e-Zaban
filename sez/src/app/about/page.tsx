@@ -4,30 +4,31 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold">About Shaan-e-Zaban</h1>
 
       <p className="text-lg leading-relaxed">
-        <strong>Shaan-e-Zaban (شانِ زبان)</strong> is an open-source Urdu language learning platform — built with cultural respect, linguistic accuracy, and a deep love for the script that defines Urdu.
+        <strong>Shaan-e-Zaban (شانِ زبان)</strong> is an open-source Urdu language learning platform rooted in cultural authenticity, linguistic respect, and unwavering dedication to the beauty of the Urdu script.
       </p>
 
       <p className="text-md text-gray-700">
-        Most platforms treat Urdu as a sidekick to Hindi, ignore its beautiful script, or rely on half-baked AI tricks and gamified nonsense. Not here.
+        Most language tools either lump Urdu in with Hindi, ignore its distinct script, or gamify it into oblivion. We take a different path — one grounded in care, clarity, and cultural pride.
       </p>
 
       <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600">
-        "If we can teach Arabic, Russian, or Mandarin in their scripts, why not Urdu?"
+        “If Arabic, Russian, and Mandarin can be taught in their native scripts, why not Urdu?”
       </blockquote>
 
       <p className="text-md text-gray-800">
-        Urdu deserves dignity. That means:
+        Urdu deserves more than shortcuts. That’s why Shaan-e-Zaban is built on principles that honor the language:
       </p>
 
       <ul className="list-disc list-inside text-gray-700 space-y-2">
-        <li>✅ Native Nastaliq script, no Roman Urdu</li>
-        <li>✅ Hand-curated sentences, not AI junk</li>
-        <li>✅ Open data from <a href="https://tatoeba.org" className="underline text-blue-600">Tatoeba</a> & <a href="https://lingualibre.org" className="underline text-blue-600">LinguaLibre</a></li>
-        <li>✅ Built by a native Urdu speaker 🇵🇰</li>
+        <li>✅ Native Nastaliq script — no Roman Urdu, ever</li>
+        <li>✅ Carefully curated stories</li>
+        <li>
+          ✅ Authentic pronunciation — recorded by me or other native speakers
+        </li>
       </ul>
 
       <p className="text-md text-gray-700">
-        This is just the beginning. Join the journey. Spread the word. Preserve the script.
+        This is more than a language project — it’s a commitment to preserving the soul of Urdu. Whether you’re a beginner or reconnecting with your roots, you’re welcome here.
       </p>
 
       <p className="font-urdu text-right text-2xl mt-6">
