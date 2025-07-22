@@ -1,57 +1,81 @@
 [
   {
     "id": 1,
-    "title": "میرا پہلا دن",
-    "slug": "mera-pehla-din",
+    "title": "نیا بستہ",
+    "slug": "naya-basta",
     "level": "beginner",
     "sentences": [
       {
-        "urdu": "آج میرا اسکول میں پہلا دن تھا۔",
-        "english": "Today was my first day at school."
+        "urdu": "نایاب بہت خوش تھی۔",
+        "english": "Nayab was very happy."
       },
       {
-        "urdu": "میں بہت خوش تھا کیونکہ مجھے نئے دوست بنانے تھے۔",
-        "english": "I was very happy because I wanted to make new friends."
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "اتوار کی صبح",
-    "slug": "itwaar-ki-subah",
-    "level": "beginner",
-    "sentences": [
-      {
-        "urdu": "اتوار کی صبح میں دیر سے اٹھا۔",
-        "english": "I woke up late on Sunday morning."
+        "urdu": "آج اس کا اسکول کھلنے کا پہلا دن تھا۔",
+        "english": "Today was the first day of her school reopening."
       },
       {
-        "urdu": "امی نے میرے لیے ناشتہ بنایا۔",
-        "english": "Mom made breakfast for me."
+        "urdu": "پچھلے ہفتے ابو نے اس کے لیے ایک نیا بستہ خریدا تھا۔",
+        "english": "Last week, her father bought her a new schoolbag."
       },
       {
-        "urdu": "پھر ہم سب نے مل کر فلم دیکھی۔",
-        "english": "Then we all watched a movie together."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "میرا پالتو بلی",
-    "slug": "mera-paltu-billi",
-    "level": "beginner",
-    "sentences": [
-      {
-        "urdu": "میری ایک بلی ہے جس کا نام مِنو ہے۔",
-        "english": "I have a cat named Mino."
+        "urdu": "وہ گلابی رنگ کا تھا اور اس پر خرگوش کی تصویر بنی ہوئی تھی۔",
+        "english": "It was pink and had a picture of a rabbit on it."
       },
       {
-        "urdu": "وہ سارا دن سوتی رہتی ہے۔",
-        "english": "She sleeps all day."
+        "urdu": "نایاب نے کئی دن سے بستہ کھولا نہیں تھا۔",
+        "english": "Nayab hadn't opened the bag for days."
       },
       {
-        "urdu": "رات کو وہ میرے ساتھ کھیلتی ہے۔",
-        "english": "At night, she plays with me."
+        "urdu": "امی کہتی تھیں کہ نیا سامان اسکول کے دن پر ہی کھولنا ہوتا ہے۔",
+        "english": "Her mom said new things should be opened only on the first day of school."
+      },
+      {
+        "urdu": "صبح ہوتے ہی وہ خود جاگ گئی۔",
+        "english": "She woke up on her own early in the morning."
+      },
+      {
+        "urdu": "امی نے ناشتہ بنایا: انڈا، پراٹھا اور دودھ۔",
+        "english": "Her mom made breakfast: egg, paratha, and milk."
+      },
+      {
+        "urdu": "نایاب نے صاف یونیفارم پہنا اور دو چوٹیاں بنوائیں۔",
+        "english": "Nayab wore a clean uniform and got two braids made."
+      },
+      {
+        "urdu": "جب اس نے نیا بستہ کندھے پر ڈالا، تو وہ مسکرا اٹھی۔",
+        "english": "When she put the new bag on her shoulder, she smiled."
+      },
+      {
+        "urdu": "اسکول کی وین وقت پر آئی۔",
+        "english": "The school van arrived on time."
+      },
+      {
+        "urdu": "ابو نے نایاب کا ماتھا چوما اور امی نے دعا دی۔",
+        "english": "Her father kissed her forehead and her mom prayed for her."
+      },
+      {
+        "urdu": "راستے میں وہ بستے کو بار بار دیکھتی رہی۔",
+        "english": "On the way, she kept looking at her bag again and again."
+      },
+      {
+        "urdu": "اسکول پہنچ کر وہ اپنی کلاس میں گئی۔",
+        "english": "After reaching school, she went to her class."
+      },
+      {
+        "urdu": "وہاں سب بچوں نے نیا نیا سامان نکالا۔",
+        "english": "All the children there took out their new stuff."
+      },
+      {
+        "urdu": "نایاب نے بھی بستہ کھولا، کاپیاں، پنسل، ربڑ سب کچھ ترتیب سے رکھا۔",
+        "english": "Nayab opened her bag too and arranged her notebooks, pencil, and eraser neatly."
+      },
+      {
+        "urdu": "استاد نے آ کر سب کو خوش آمدید کہا۔",
+        "english": "The teacher arrived and welcomed everyone."
+      },
+      {
+        "urdu": "پہلا دن خوبصورت تھا اور نایاب کو بہت اچھا لگا۔",
+        "english": "The first day was wonderful and Nayab really enjoyed it."
       }
     ]
   }

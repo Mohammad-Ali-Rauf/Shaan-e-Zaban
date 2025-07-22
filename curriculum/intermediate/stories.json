@@ -1,57 +1,69 @@
 [
   {
     "id": 1,
-    "title": "میرا پہلا دن",
-    "slug": "mera-pehla-din",
+    "title": "گمشدہ کھلونا",
+    "slug": "gumshuda-khilona",
     "level": "intermediate",
     "sentences": [
       {
-        "urdu": "آج میرا اسکول میں پہلا دن تھا۔",
-        "english": "Today was my first day at school."
+        "urdu": "عمیر کا سب سے پسندیدہ کھلونا ایک نیلا چھوٹا سا جہاز تھا جسے وہ ہر وقت اپنے ساتھ رکھتا تھا۔",
+        "english": "Umair's favorite toy was a small blue airplane, which he always kept with him."
       },
       {
-        "urdu": "میں بہت خوش تھا کیونکہ مجھے نئے دوست بنانے تھے۔",
-        "english": "I was very happy because I wanted to make new friends."
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "بارش کا دن",
-    "slug": "baarish-ka-din",
-    "level": "intermediate",
-    "sentences": [
-      {
-        "urdu": "صبح سے ہی بادل چھائے ہوئے تھے۔",
-        "english": "The sky was cloudy since morning."
+        "urdu": "چاہے وہ دادی کے گھر جاتا یا اسکول کے بعد پارک، وہ کھلونا اس کے ہاتھ میں ضرور ہوتا۔",
+        "english": "Whether he went to grandma's house or the park after school, the toy was always in his hand."
       },
       {
-        "urdu": "دوپہر میں تیز بارش شروع ہو گئی۔",
-        "english": "Heavy rain began in the afternoon."
+        "urdu": "اس کے لیے وہ جہاز صرف کھلونا نہیں بلکہ ایک دوست، ایک ساتھی تھا۔",
+        "english": "To him, that plane wasn't just a toy but a friend, a companion."
       },
       {
-        "urdu": "میں نے چھتری لی اور دوستوں کے ساتھ سیر کرنے نکلا۔",
-        "english": "I grabbed an umbrella and went out for a walk with my friends."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "کتابوں کا میلہ",
-    "slug": "kitabon-ka-mela",
-    "level": "intermediate",
-    "sentences": [
-      {
-        "urdu": "ہم اسکول سے کتابوں کے میلے پر گئے۔",
-        "english": "We went to the book fair from school."
+        "urdu": "ایک دن وہ ابو کے ساتھ پارک گیا جہاں بچوں کی خوشیوں سے گونجتی آوازیں ہر طرف سنائی دے رہی تھیں۔",
+        "english": "One day he went to the park with his dad, where joyful voices of children echoed all around."
       },
       {
-        "urdu": "وہاں ہر قسم کی کتابیں موجود تھیں۔",
-        "english": "There were all kinds of books available there."
+        "urdu": "عمیر نے جھولے جھولے، ریت میں قلعے بنائے اور بہت مزے کیے، لیکن واپسی پر اس کے ہاتھ خالی تھے۔",
+        "english": "Umair played on the swings, built sandcastles, and had great fun, but when they returned, his hands were empty."
       },
       {
-        "urdu": "میں نے اردو ادب کی دو کتابیں خریدیں۔",
-        "english": "I bought two books of Urdu literature."
+        "urdu": "گھر پہنچ کر جب اس نے بیگ کھولا تو نیلا جہاز کہیں نظر نہ آیا۔",
+        "english": "At home, when he opened his bag, the blue airplane was nowhere to be seen."
+      },
+      {
+        "urdu": "ایک دم اس کا چہرہ اتر گیا، اور آنکھوں میں بے اختیار آنسو آ گئے۔",
+        "english": "Suddenly, his face fell, and tears welled up in his eyes."
+      },
+      {
+        "urdu": "امی نے اسے سینے سے لگایا اور نرمی سے پوچھا کہ کیا ہوا۔",
+        "english": "His mother hugged him and gently asked what had happened."
+      },
+      {
+        "urdu": "جب عمیر نے بتایا کہ کھلونا گم ہو گیا ہے تو امی نے تسلی دی اور وعدہ کیا کہ صبح پارک چلیں گے۔",
+        "english": "When Umair told her that the toy was lost, she comforted him and promised they’d go to the park in the morning."
+      },
+      {
+        "urdu": "اگلے دن وہ جلدی جاگ گیا، بغیر ناشتہ کیے جوتے پہنے اور امی کا ہاتھ تھامے باہر نکل گیا۔",
+        "english": "The next morning, he woke up early, skipped breakfast, put on his shoes, and left holding his mother’s hand."
+      },
+      {
+        "urdu": "پارک پہنچ کر وہ پاگلوں کی طرح ہر جھاڑی، بینچ اور جھولے کے نیچے جھانکنے لگا۔",
+        "english": "At the park, he frantically looked under every bush, bench, and swing."
+      },
+      {
+        "urdu": "کچھ دیر بعد اسے ایک درخت کے سائے میں مٹی سے بھرا ہوا اپنا نیلا جہاز ملا۔",
+        "english": "After a while, he found his blue airplane, covered in dirt, under the shadow of a tree."
+      },
+      {
+        "urdu": "اس نے کھلونا اٹھایا، کپڑے سے صاف کیا اور زور سے مسکرا دیا۔",
+        "english": "He picked it up, wiped it with his shirt, and smiled brightly."
+      },
+      {
+        "urdu": "اس لمحے اس نے محسوس کیا کہ کچھ چیزوں کی قدر صرف کھو کر ہی ہوتی ہے۔",
+        "english": "In that moment, he realized that some things are only valued after they're lost."
+      },
+      {
+        "urdu": "گھر واپس آتے ہوئے وہ خاموش تھا، لیکن اس کے دل میں ایک خاص سکون تھا۔",
+        "english": "On the way home, he was quiet, but there was a special peace in his heart."
       }
     ]
   }

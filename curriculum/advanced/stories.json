@@ -1,61 +1,65 @@
 [
   {
     "id": 1,
-    "title": "یادوں کی محفل",
-    "slug": "yaadon-ki-mehfil",
+    "title": "ادھورے خط",
+    "slug": "adhooray-khat",
     "level": "advanced",
     "sentences": [
       {
-        "urdu": "رات کے سناٹے میں بیٹھ کر ہم پرانی یادوں کو تازہ کر رہے تھے۔",
-        "english": "We were reminiscing old memories in the silence of the night."
+        "urdu": "کتنے ہی خط درازوں میں ایسے پڑے ہیں، جن پر نہ مکمل پتے ہیں، نہ مکمل جذبات۔",
+        "english": "So many letters lie in drawers, bearing neither complete addresses nor complete emotions."
       },
       {
-        "urdu": "ہر بات ایک تصویر بن کر ذہن میں ابھرتی گئی۔",
-        "english": "Every conversation emerged like a picture in the mind."
+        "urdu": "کبھی کوئی لفظ لکھتے ہوئے رُک گئے، کبھی جذبات کا بوجھ قلم سے نہ اٹھ سکا۔",
+        "english": "Sometimes the hand halted mid-word, sometimes the weight of emotions was too much for the pen to bear."
       },
       {
-        "urdu": "وقت جیسے پلک جھپکتے گزر گیا۔",
-        "english": "Time passed in the blink of an eye."
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "گاؤں کی صبح",
-    "slug": "gaon-ki-subah",
-    "level": "advanced",
-    "sentences": [
-      {
-        "urdu": "مرغ کی بانگ کے ساتھ ہی گاؤں جاگ اٹھا۔",
-        "english": "With the rooster’s crow, the village woke up."
+        "urdu": "کاغذ پر بہتے ہوئے سیاہی کے دھبے، جیسے آنکھوں سے گرنے والے آنسوؤں کے نشان ہوں۔",
+        "english": "Ink stains spread on the paper like traces of tears falling from the eyes."
       },
       {
-        "urdu": "دھند سے لپٹا سورج آہستہ آہستہ نکلنے لگا۔",
-        "english": "The sun, wrapped in fog, slowly began to rise."
+        "urdu": "لفافے بند ہوئے بغیر، مہینوں میز پر رکھے رہے، جیسے ماضی کے دروازے کبھی کھلنے کا انتظار کر رہے ہوں۔",
+        "english": "Unsealed envelopes sat on the desk for months, as if doors of the past were waiting to open someday."
       },
       {
-        "urdu": "کھیتوں سے آتی تازہ مٹی کی خوشبو دل کو بھا گئی۔",
-        "english": "The scent of fresh soil from the fields filled the heart with joy."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "خواب اور حقیقت",
-    "slug": "khawab-aur-haqiqat",
-    "level": "advanced",
-    "sentences": [
-      {
-        "urdu": "ہر شخص کے دل میں کچھ خواب ہوتے ہیں۔",
-        "english": "Every person holds a few dreams in their heart."
+        "urdu": "محبتیں جو کبھی کہی نہ گئیں، شکوے جو کبھی سنے نہ گئے — وہ سب انہی کاغذوں میں دفن ہو چکے ہیں۔",
+        "english": "Loves never confessed, complaints never heard — all now buried within those sheets."
       },
       {
-        "urdu": "لیکن خوابوں کو حقیقت میں بدلنا آسان نہیں۔",
-        "english": "But turning dreams into reality isn’t easy."
+        "urdu": "خطوں کے لفظوں میں وہ خامشی بولتی ہے، جو آواز میں کبھی بیان نہ ہو سکی۔",
+        "english": "Within the words of those letters speaks the silence that could never be voiced."
       },
       {
-        "urdu": "عزم، محنت، اور صبر ہی کامیابی کی کنجی ہیں۔",
-        "english": "Determination, hard work, and patience are the keys to success."
+        "urdu": "کچھ خط ایسے بھی تھے جو صرف موسموں کو مخاطب کرتے، مگر اصل مخاطب کوئی خاص چہرہ ہوتا۔",
+        "english": "Some letters seemed to address the seasons, yet deep inside, they spoke to a certain face."
+      },
+      {
+        "urdu": "کبھی بہار کا ذکر کرتے ہوئے خزاں کا درد چھپا ہوتا، کبھی چائے کی خوشبو میں جدائی کی پرچھائیاں۔",
+        "english": "Sometimes a mention of spring hid the ache of autumn, sometimes the scent of tea carried shadows of separation."
+      },
+      {
+        "urdu": "ہر سطر ایک احساس تھا، ہر وقفہ ایک سانس کی طرح تھما ہوا۔",
+        "english": "Every line was a feeling, every pause suspended like a breath held back."
+      },
+      {
+        "urdu": "وقت گزر گیا، مگر ان ادھورے خطوں نے جذبات کو وقت سے آزاد کر دیا، ایک ایسی قید میں، جہاں لفظ مر نہیں سکتے۔",
+        "english": "Time passed, but those unfinished letters freed emotions from time itself, trapping them where words cannot die."
+      },
+      {
+        "urdu": "کبھی کبھی رات کے پچھلے پہر میں، میں وہ خط نکال کر پڑھتا ہوں، جیسے دل کی پرانی دھڑکنوں کو سننے کی کوشش ہو۔",
+        "english": "Sometimes in the late hours of the night, I pull out those letters, as if trying to listen to the heart's old rhythms."
+      },
+      {
+        "urdu": "لفظوں کی گونج سے یادیں جاگتی ہیں، اور بیتے لمحے پھر سے سانس لینے لگتے ہیں۔",
+        "english": "Memories awaken with the echo of words, and moments gone begin to breathe again."
+      },
+      {
+        "urdu": "شاید ایک دن کوئی انہیں پڑھے، اور ہر ادھورے جملے میں ایک مکمل کہانی تلاش کرے۔",
+        "english": "Maybe someday, someone will read them and find a complete story within every unfinished sentence."
+      },
+      {
+        "urdu": "اور شاید اُسی دن، میرے خاموش خط بھی بول پڑیں گے۔",
+        "english": "And maybe on that day, my silent letters will finally speak."
       }
     ]
   }
