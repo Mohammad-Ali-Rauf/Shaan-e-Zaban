@@ -79,6 +79,7 @@ model UserProgress {
   completed      Boolean      @default(false)
   score          Int?
   updatedAt      DateTime     @updatedAt
+  @@unique([userId, learningUnitId])
 }
 
 enum Level {

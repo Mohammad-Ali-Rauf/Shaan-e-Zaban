@@ -2,14 +2,25 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
+import ProgressTracker from '@/components/ProgressTracker'
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
 interface Props {
   params: { course: string, chapter: string, lesson: string }
   searchParams?: { unit?: string }
 }
 
-export default async function LessonPage({ params, searchParams }: Props) {
-  const { course, chapter, lesson } = params
+export default async function LessonPage(props: Props) {
+  const { params, searchParams } = props
+  const course = params.course
+  const chapter = params.chapter
+  const lesson = params.lesson
   const unitIndex = parseInt(searchParams?.unit || '0', 10)
+
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/auth/signin");
 
   const lessonData = await prisma.lesson.findUnique({
     where: { slug: lesson },
@@ -35,12 +46,26 @@ export default async function LessonPage({ params, searchParams }: Props) {
 
   if (!unit) return redirect(`/learn/${course}/${chapter}/${lesson}?unit=0`)
 
+  async function markUnitComplete() {
+    try {
+      await fetch('/api/progress/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ learningUnitId: unit.id }),
+      })
+    } catch (err) {
+      console.error('Failed to update progress:', err)
+    }
+  }
+
+
   return (
     <div className="max-w-2xl mx-auto py-10 space-y-6">
+      <ProgressTracker learningUnitId={unit.id} />
       <h1 className="text-3xl font-bold mb-4">{lessonData.title}</h1>
 
       <div className="border p-4 rounded shadow space-y-3">
-        <div className="text-2xl font-nastaliq">{unit.urduText}</div>
+        <div className="text-2xl urdu">{unit.urduText}</div>
         <div className="italic text-gray-600">{unit.englishText}</div>
         {unit.audioUrl && (
           <audio controls className="mt-2">

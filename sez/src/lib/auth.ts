@@ -1,9 +1,8 @@
-// lib/auth.ts
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { AuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "./prisma";
-import bcrypt from "bcrypt";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { AuthOptions } from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+import { prisma } from "@/lib/prisma"
+import bcrypt from "bcryptjs"
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -18,18 +17,18 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) return null
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
-        });
+        })
 
-        if (!user || !user.password) return null;
+        if (!user || !user.password) return null
 
-        const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) return null;
+        const isValid = await bcrypt.compare(credentials.password, user.password)
+        if (!isValid) return null
 
-        return user;
+        return user
       },
     }),
   ],
@@ -37,4 +36,4 @@ export const authOptions: AuthOptions = {
     signIn: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+}
