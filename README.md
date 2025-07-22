@@ -1,163 +1,172 @@
-# Shaan-e-Zaban (شانِ زبان)
+# **Shaan-e-Zaban (شانِ زبان)**
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 ![Next.js](https://img.shields.io/badge/frontend-Next.js-blue)
-![Status](https://img.shields.io/badge/status-MVP-lightgrey)
+![Status](https://img.shields.io/badge/status-Active-lightgrey)
 
-**An open-source Urdu language learning platform built with simplicity, precision, and deep respect for the richness of the language.**
-
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Technology Stack](#technology-stack)
-- [Directory Structure](#directory-structure)
-- [Installation](#installation)
-- [Data Format](#data-format)
-- [License](#license)
-- [Contribution](#contribution)
+**Shaan-e-Zaban** is an open-source Urdu language learning platform focused on delivering culturally rooted, script-faithful, and context-driven instruction through immersive short stories.
 
 ---
 
-## Overview
+## 📚 Table of Contents
 
-**Shaan-e-Zaban** is a minimalistic, culturally authentic Urdu language learning app built by a native speaker — designed to fill the long-standing gap in structured, accessible, and Urdu-focused tools.
-
-Unlike AI-heavy platforms or gamified distractions, this project prioritizes **clarity**, **real content**, and **respect for the language**.
-
-⚠️ We do not use Roman Urdu. Shaan-e-Zaban teaches Urdu in its native **Nastaliq script**, not Latinized substitutions. Just like Mandarin, Russian, or Arabic apps don’t abandon their writing systems, **Urdu deserves to be taught in its own beautiful script**.
-
-Roman Urdu is inconsistent, unstandardized, and unable to convey the cultural and visual beauty of Urdu — we don’t compromise.
-
-> 🛠️ This is an MVP (Minimum Viable Product) release. Offline support will be added in future versions. The current build is designed for **online-first usage** to streamline development and deployment.
-
----
-
-### Why It Matters
-
-Urdu is the 10th most spoken language on Earth, yet has one of the weakest digital learning ecosystems.
-
-**Shaan-e-Zaban is the FIRST-EVER application to teach the standard version of Urdu in a systematic way — and to do so in its original writing script.**
+* [Overview](#overview)
+* [Key Features](#key-features)
+* [Technology Stack](#technology-stack)
+* [Directory Structure](#directory-structure)
+* [Installation](#installation)
+* [Data Format](#data-format)
+* [License](#license)
+* [Contribution](#contribution)
 
 ---
 
-## Key Features
+## 🔍 Overview
 
-- **Built Specifically for Urdu**: Unlike most platforms that group Urdu under Hindi, Shaan-e-Zaban is dedicated to Urdu learners — with attention to linguistic, script, and cultural integrity.
+**Shaan-e-Zaban** is a story-based Urdu language learning platform designed to preserve the linguistic, literary, and cultural heritage of Urdu through structured storytelling. The platform emphasizes **native script (Nastaliq)** instruction, avoiding Romanized or simplified transliterations, in order to maintain the language’s integrity and richness.
 
-- **Native Speaker Audio**: All content is paired with human pronunciation, sourced from open linguistic databases like [Tatoeba](https://tatoeba.org) and [LinguaLibre](https://lingualibre.org).
-
-- **Tag-Based Sentence System**: Sentences are categorized by difficulty level, grammatical tone, and topic — enabling smart filtering and modular learning paths.
-
-- **Open Source**: Fully MIT-licensed. Transparent, customizable, and built to be extended by the community.
-
-- **Modern Web Stack**: Built using Next.js for a fast, flexible, and scalable frontend/backend architecture.
+The application introduces learners to Urdu using level-based short stories written in formal, everyday, and conversational Urdu — with aligned translations and audio pronunciation support.
 
 ---
 
-## Technology Stack
+## ✨ Key Features
 
-- **Frontend & Backend**: Next.js (React 19, App Router, Tailwind CSS)
-- **Data Source**: Tatoeba sentence pairs, LinguaLibre audio
-- **Storage**: PostgreSQL (via Prisma ORM)
-- **Deployment**: Currently online-first; offline support planned
+* **Story-Based Curriculum**
+  Language is taught through progressive short stories categorized into Beginner, Intermediate, and Advanced levels. Each story introduces contextual vocabulary, sentence structure, and grammar elements.
+
+* **Native Urdu Script (Nastaliq)**
+  All content is delivered in original Urdu script. Roman Urdu or Latinized substitutions are deliberately avoided.
+
+* **Human Pronunciation Audio**
+  Audio is sourced from open pronunciation databases like [Tatoeba](https://tatoeba.org) and [LinguaLibre](https://lingualibre.org), ensuring natural and culturally accurate pronunciation.
+
+* **Tag-Based Filtering**
+  Stories are tagged with grammar topics, themes, and difficulty levels, enabling learners to navigate and focus their learning effectively.
+
+* **Fully Open Source**
+  Released under the MIT License, allowing full transparency and community contribution.
+
+* **Modern Stack Architecture**
+  Built with Next.js, Tailwind CSS, and Prisma ORM, ensuring a responsive, modular, and extensible codebase.
 
 ---
 
-## Directory Structure
+## ⚙️ Technology Stack
 
-```
+* **Frontend/Backend**: Next.js (App Router, React 19)
+* **Styling**: Tailwind CSS
+* **ORM & Database**: Prisma + PostgreSQL
+* **Authentication**: NextAuth
+* **Audio Integration**: Static assets (MP3) from public pronunciation databases
+* **Deployment**: Online-first (offline support planned)
 
+---
+
+## 📁 Directory Structure
+
+```bash
 shaan-e-zaban/
 ├── compose.yml
 ├── CONTRIBUTING.md
 ├── curriculum/
-│   ├── Beginner/A1/sentences.json
-│   ├── Beginner/A2/sentences.json
-│   ├── Intermediate/B1/sentences.json
-│   ├── Intermediate/B2/sentences.json
-│   ├── Advanced/C1/sentences.json
-│   └── Advanced/C2/sentences.json
+│   ├── beginner/stories.json
+│   ├── intermediate/stories.json
+│   └── advanced/stories.json
 ├── LICENSE
 ├── README.md
 └── sez/
-├── public/audio/
-├── prisma/
-│   ├── schema.prisma
-│   └── seed.ts
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   └── learn/\[course]/\[chapter]/\[lesson]/page.tsx
-│   └── lib/
-│       ├── db.ts
-│       └── prisma.ts
-├── next.config.ts
-├── tsconfig.json
-├── yarn.lock
-└── package.json
-
+    ├── public/audio/
+    ├── prisma/
+    │   ├── schema.prisma
+    │   └── seed.ts
+    ├── src/
+    │   ├── app/
+    │   │   ├── learn/[level]/[story]/page.tsx
+    │   │   ├── api/
+    │   │   ├── auth/
+    │   │   ├── curriculum/page.tsx
+    │   │   └── dashboard/page.tsx
+    │   ├── components/
+    │   └── lib/
+    ├── next.config.ts
+    ├── tsconfig.json
+    └── yarn.lock
 ```
 
 ---
 
-## Installation
+## 🚀 Installation
 
 ### Prerequisites
 
-- Node.js 20+
-- Yarn (or npm / bun)
+* Node.js 20+
+* Yarn (or npm / bun)
+
+### Steps
 
 ```bash
 cd sez
 yarn install
 yarn dev
-````
+```
 
-Then open your browser at:
-👉 `http://localhost:3000`
+Visit: `http://localhost:3000` to access the platform locally.
 
 ---
 
-## Data Format
+## 📄 Data Format
 
-**Example file: `curriculum/Beginner/A1/sentences.json`**
+### Example: `curriculum/beginner/stories.json`
 
 ```json
 [
   {
     "id": 1,
-    "urdu": "السلام علیکم",
-    "english": "Peace be upon you",
-    "tags": ["greeting", "formal"],
-    "level": "A1",
-    "audio": "audio/001.mp3"
+    "title": "میرا پہلا دن",
+    "level": "beginner",
+    "sentences": [
+      {
+        "urdu": "آج میرا اسکول میں پہلا دن تھا۔",
+        "english": "Today was my first day at school."
+      },
+      {
+        "urdu": "میں بہت خوش تھا کیونکہ مجھے نئے دوست بنانے تھے۔",
+        "english": "I was very happy because I wanted to make new friends."
+      }
+    ]
   }
 ]
 ```
 
+Each story consists of:
+
+* A unique identifier and title
+* Urdu content split by sentence
+* English translation for each sentence
+* Audio paths for pronunciation
+* Associated tags for filtering and categorization
+
 ---
 
-## License
+## 📜 License
 
-MIT License
+**MIT License**
 © 2025 Mohammad Ali
 
-> Full license in the [`LICENSE`](./LICENSE) file.
+See [`LICENSE`](./LICENSE) for full details.
 
 ---
 
-## Contributions
+## 🤝 Contribution
 
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for full guide.
+Contributions are welcome. Please refer to the [`CONTRIBUTING.md`](./CONTRIBUTING.md) guide for details.
 
-You can help by:
+You can contribute by:
 
-* Recording native Urdu audio
-* Enhancing the UI/UX
-* Optimizing performance
-* Adding grammar explanations or quiz features
+* Writing original Urdu stories
+* Recording high-quality Urdu audio
+* Improving UI/UX or accessibility
+* Suggesting features or enhancements
+* Reviewing and testing existing content
 
-Feel free to open a pull request or suggest features via issues.
+Pull requests and discussions are encouraged.

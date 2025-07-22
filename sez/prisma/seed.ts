@@ -1,116 +1,79 @@
-import { PrismaClient, LearningType, Level } from '@/generated/prisma';
+import { PrismaClient, StoryLevel } from '@/generated/prisma';
 import fs from 'fs';
 import path from 'path';
 
 const prisma = new PrismaClient();
 
-const LEVEL_MAP: Record<string, Level> = {
-  A1: 'A1',
-  A2: 'A2',
-  B1: 'B1',
-  B2: 'B2',
-  C1: 'C1',
-  C2: 'C2',
+const LEVEL_MAP: Record<string, StoryLevel> = {
+  beginner: 'BEGINNER',
+  intermediate: 'INTERMEDIATE',
+  advanced: 'ADVANCED',
 };
 
 async function seed() {
   const curriculumPath = path.join(__dirname, '../../curriculum');
+
+  // Clear existing data
+  await prisma.userProgress.deleteMany();
+  await prisma.sentence.deleteMany();
+  await prisma.story.deleteMany();
+
   const levels = fs.readdirSync(curriculumPath);
 
-  await prisma.userProgress.deleteMany();
-  await prisma.learningUnit.deleteMany();
-  await prisma.lesson.deleteMany();
-  await prisma.chapter.deleteMany();
-  await prisma.course.deleteMany();
+  for (const levelDir of levels) {
+    const jsonPath = path.join(curriculumPath, levelDir, 'stories.json');
 
-  for (const courseTitle of levels) {
-    const courseSlug = courseTitle.toLowerCase();
+    if (!fs.existsSync(jsonPath)) {
+      console.warn(`⚠️ Skipping: ${jsonPath} not found`);
+      continue;
+    }
 
-    const course = await prisma.course.create({
-      data: {
-        title: courseTitle,
-        slug: courseSlug,
-        description: `${courseTitle} Urdu course`,
-      },
-    });
+    let rawStories: any[] = [];
 
-    const coursePath = path.join(curriculumPath, courseTitle);
-    const chapters = fs.readdirSync(coursePath);
+    try {
+      const fileContent = fs.readFileSync(jsonPath, 'utf-8');
+      const parsed = JSON.parse(fileContent);
 
-    for (const chapterSlug of chapters) {
-      const fullChapterSlug = `${courseSlug}-${chapterSlug.toLowerCase()}`;
-      const chapter = await prisma.chapter.create({
-        data: {
-          title: chapterSlug,
-          slug: fullChapterSlug,
-          description: `${chapterSlug} level chapter`,
-          courseId: course.id,
-          order: chapters.indexOf(chapterSlug),
+      rawStories = Array.isArray(parsed) ? parsed : Object.values(parsed);
+    } catch (err) {
+      console.error(`Invalid or non-array JSON in ${jsonPath}`);
+      continue;
+    }
+
+    const storyLevel = LEVEL_MAP[levelDir.toLowerCase()] ?? 'BEGINNER';
+
+    for (const story of rawStories) {
+      const createdStory = await prisma.story.upsert({
+        where: { slug: story.slug },
+        update: {
+          title: story.title,
+          level: storyLevel,
+        },
+        create: {
+          slug: story.slug,
+          title: story.title,
+          level: storyLevel,
+          sentences: {
+            create: story.sentences.map((s: any, i: number) => ({
+              urdu: s.urdu,
+              english: s.english,
+              audioUrl: s.audioUrl,
+              order: i,
+            })),
+          },
         },
       });
 
-      const jsonPath = path.join(coursePath, chapterSlug, 'sentences.json');
-      if (!fs.existsSync(jsonPath)) {
-        console.warn(`Skipping: ${jsonPath} not found`);
-        continue;
-      }
-
-      const raw = fs.readFileSync(jsonPath, 'utf-8');
-      let parsed: any[] = [];
-
-      const UNITS_PER_LESSON = 5;
-
-      try {
-        const json = JSON.parse(raw);
-        parsed = Array.isArray(json) ? json : Object.values(json);
-      } catch (e) {
-        console.error(`Invalid JSON in ${jsonPath}`);
-        return;
-      }
-
-      const chunked = Array.from({ length: Math.ceil(parsed.length / UNITS_PER_LESSON) }, (_, i) =>
-        parsed.slice(i * UNITS_PER_LESSON, (i + 1) * UNITS_PER_LESSON)
-      );
-
-      for (const [i, unitChunk] of chunked.entries()) {
-        const lessonSlug = `${courseSlug}-${chapterSlug.toLowerCase()}-lesson-${i + 1}`;
-
-        const lesson = await prisma.lesson.create({
-          data: {
-            title: `Lesson ${i + 1}`,
-            slug: lessonSlug,
-            chapterId: chapter.id,
-            order: i,
-          },
-        });
-
-        for (const [index, unit] of unitChunk.entries()) {
-          await prisma.learningUnit.create({
-            data: {
-              type: LearningType.SENTENCE,
-              title: unit?.title?.toString() || `Unit ${index + 1}`,
-              urduText: unit.urdu || '',
-              englishText: unit.english || '',
-              audioUrl: unit.audio || null,
-              tags: Array.isArray(unit.tags) ? unit.tags : [],
-              level: LEVEL_MAP[courseTitle.toUpperCase()] ?? Level.A1,
-              lessonId: lesson.id,
-              order: index,
-            },
-          });
-        }
-
-        console.log(`📘 Seeded lesson-${i + 1} with ${unitChunk.length} units`);
-      }
+      console.log(`✅ Seeded story: ${story.title} (${story.sentences.length} sentences)`);
     }
   }
 
-  console.log('\nSeeding complete!');
+  console.log('\n🌱 Seeding complete!');
 }
 
 seed()
   .catch((e) => {
-    console.error('Seed failed:', e);
+    console.error('🚨 Seed failed:', e);
     process.exit(1);
   })
   .finally(() => prisma.$disconnect());

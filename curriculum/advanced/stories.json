@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "یادوں کی محفل",
+    "slug": "yaadon-ki-mehfil",
+    "level": "advanced",
+    "sentences": [
+      {
+        "urdu": "رات کے سناٹے میں بیٹھ کر ہم پرانی یادوں کو تازہ کر رہے تھے۔",
+        "english": "We were reminiscing old memories in the silence of the night."
+      },
+      {
+        "urdu": "ہر بات ایک تصویر بن کر ذہن میں ابھرتی گئی۔",
+        "english": "Every conversation emerged like a picture in the mind."
+      },
+      {
+        "urdu": "وقت جیسے پلک جھپکتے گزر گیا۔",
+        "english": "Time passed in the blink of an eye."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "گاؤں کی صبح",
+    "slug": "gaon-ki-subah",
+    "level": "advanced",
+    "sentences": [
+      {
+        "urdu": "مرغ کی بانگ کے ساتھ ہی گاؤں جاگ اٹھا۔",
+        "english": "With the rooster’s crow, the village woke up."
+      },
+      {
+        "urdu": "دھند سے لپٹا سورج آہستہ آہستہ نکلنے لگا۔",
+        "english": "The sun, wrapped in fog, slowly began to rise."
+      },
+      {
+        "urdu": "کھیتوں سے آتی تازہ مٹی کی خوشبو دل کو بھا گئی۔",
+        "english": "The scent of fresh soil from the fields filled the heart with joy."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "خواب اور حقیقت",
+    "slug": "khawab-aur-haqiqat",
+    "level": "advanced",
+    "sentences": [
+      {
+        "urdu": "ہر شخص کے دل میں کچھ خواب ہوتے ہیں۔",
+        "english": "Every person holds a few dreams in their heart."
+      },
+      {
+        "urdu": "لیکن خوابوں کو حقیقت میں بدلنا آسان نہیں۔",
+        "english": "But turning dreams into reality isn’t easy."
+      },
+      {
+        "urdu": "عزم، محنت، اور صبر ہی کامیابی کی کنجی ہیں۔",
+        "english": "Determination, hard work, and patience are the keys to success."
+      }
+    ]
+  }
+]

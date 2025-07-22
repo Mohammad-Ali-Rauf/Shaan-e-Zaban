@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "میرا پہلا دن",
+    "slug": "mera-pehla-din",
+    "level": "beginner",
+    "sentences": [
+      {
+        "urdu": "آج میرا اسکول میں پہلا دن تھا۔",
+        "english": "Today was my first day at school."
+      },
+      {
+        "urdu": "میں بہت خوش تھا کیونکہ مجھے نئے دوست بنانے تھے۔",
+        "english": "I was very happy because I wanted to make new friends."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "اتوار کی صبح",
+    "slug": "itwaar-ki-subah",
+    "level": "beginner",
+    "sentences": [
+      {
+        "urdu": "اتوار کی صبح میں دیر سے اٹھا۔",
+        "english": "I woke up late on Sunday morning."
+      },
+      {
+        "urdu": "امی نے میرے لیے ناشتہ بنایا۔",
+        "english": "Mom made breakfast for me."
+      },
+      {
+        "urdu": "پھر ہم سب نے مل کر فلم دیکھی۔",
+        "english": "Then we all watched a movie together."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "میرا پالتو بلی",
+    "slug": "mera-paltu-billi",
+    "level": "beginner",
+    "sentences": [
+      {
+        "urdu": "میری ایک بلی ہے جس کا نام مِنو ہے۔",
+        "english": "I have a cat named Mino."
+      },
+      {
+        "urdu": "وہ سارا دن سوتی رہتی ہے۔",
+        "english": "She sleeps all day."
+      },
+      {
+        "urdu": "رات کو وہ میرے ساتھ کھیلتی ہے۔",
+        "english": "At night, she plays with me."
+      }
+    ]
+  }
+]

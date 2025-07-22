@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "میرا پہلا دن",
+    "slug": "mera-pehla-din",
+    "level": "intermediate",
+    "sentences": [
+      {
+        "urdu": "آج میرا اسکول میں پہلا دن تھا۔",
+        "english": "Today was my first day at school."
+      },
+      {
+        "urdu": "میں بہت خوش تھا کیونکہ مجھے نئے دوست بنانے تھے۔",
+        "english": "I was very happy because I wanted to make new friends."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "بارش کا دن",
+    "slug": "baarish-ka-din",
+    "level": "intermediate",
+    "sentences": [
+      {
+        "urdu": "صبح سے ہی بادل چھائے ہوئے تھے۔",
+        "english": "The sky was cloudy since morning."
+      },
+      {
+        "urdu": "دوپہر میں تیز بارش شروع ہو گئی۔",
+        "english": "Heavy rain began in the afternoon."
+      },
+      {
+        "urdu": "میں نے چھتری لی اور دوستوں کے ساتھ سیر کرنے نکلا۔",
+        "english": "I grabbed an umbrella and went out for a walk with my friends."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "کتابوں کا میلہ",
+    "slug": "kitabon-ka-mela",
+    "level": "intermediate",
+    "sentences": [
+      {
+        "urdu": "ہم اسکول سے کتابوں کے میلے پر گئے۔",
+        "english": "We went to the book fair from school."
+      },
+      {
+        "urdu": "وہاں ہر قسم کی کتابیں موجود تھیں۔",
+        "english": "There were all kinds of books available there."
+      },
+      {
+        "urdu": "میں نے اردو ادب کی دو کتابیں خریدیں۔",
+        "english": "I bought two books of Urdu literature."
+      }
+    ]
+  }
+]

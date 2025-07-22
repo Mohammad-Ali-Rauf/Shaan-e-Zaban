@@ -13,17 +13,7 @@ export default async function DashboardPage() {
     include: {
       progress: {
         include: {
-          learningUnit: {
-            include: {
-              lesson: {
-                include: {
-                  chapter: {
-                    include: { course: true },
-                  },
-                },
-              },
-            },
-          },
+          story: true
         },
       },
     },

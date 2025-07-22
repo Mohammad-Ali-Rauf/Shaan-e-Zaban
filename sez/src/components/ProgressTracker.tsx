@@ -2,11 +2,19 @@
 
 import { useEffect } from 'react'
 
-export default function ProgressTracker({ learningUnitId }: { learningUnitId: number }) {
+export default function ProgressTracker({
+  storyId,
+  isLastSentence,
+}: {
+  storyId: number
+  isLastSentence: boolean
+}) {
   useEffect(() => {
+    if (!isLastSentence) return
+
     const updateProgress = async () => {
       try {
-        await fetch(`/api/progress/${learningUnitId}`, {
+        await fetch(`/api/progress/${storyId}`, {
           method: 'POST',
         })
       } catch (err) {
@@ -15,7 +23,7 @@ export default function ProgressTracker({ learningUnitId }: { learningUnitId: nu
     }
 
     updateProgress()
-  }, [learningUnitId])
+  }, [storyId, isLastSentence])
 
   return null
 }

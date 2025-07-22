@@ -8,57 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Course {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String?
-  slug        String    @unique
-  chapters    Chapter[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
-
-model Chapter {
-  id          Int      @id @default(autoincrement())
-  title       String
-  slug        String   @unique
-  description String?
-  course      Course   @relation(fields: [courseId], references: [id])
-  courseId    Int
-  lessons     Lesson[]
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Lesson {
-  id            Int            @id @default(autoincrement())
-  title         String
-  slug          String         @unique
-  description   String?
-  chapter       Chapter        @relation(fields: [chapterId], references: [id])
-  chapterId     Int
-  learningUnits LearningUnit[]
-  order         Int            @default(0)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-}
-
-model LearningUnit {
+model Story {
   id           Int            @id @default(autoincrement())
-  type         LearningType
-  title        String?
-  urduText     String?
-  englishText  String?
-  audioUrl     String?
-  tags         String[]
-  level        Level
-  lesson       Lesson         @relation(fields: [lessonId], references: [id])
-  lessonId     Int
-  userProgress UserProgress[]
-  order        Int            @default(0)
+  title        String
+  slug         String @unique
+  level        StoryLevel
+  sentences    Sentence[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+  UserProgress UserProgress[]
+}
+
+model Sentence {
+  id        Int      @id @default(autoincrement())
+  urdu      String
+  english   String
+  audioUrl  String? // Optional per-sentence audio
+  order     Int      @default(0)
+  story     Story    @relation(fields: [storyId], references: [id])
+  storyId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model User {
@@ -71,32 +41,21 @@ model User {
 }
 
 model UserProgress {
-  id             Int          @id @default(autoincrement())
-  userId         String
-  user           User         @relation(fields: [userId], references: [id])
-  learningUnit   LearningUnit @relation(fields: [learningUnitId], references: [id])
-  learningUnitId Int
-  completed      Boolean      @default(false)
-  score          Int?
-  updatedAt      DateTime     @updatedAt
-  @@unique([userId, learningUnitId])
+  id        Int      @id @default(autoincrement())
+  userId    String
+  storyId   Int
+  completed Boolean  @default(false)
+  score     Int?
+  updatedAt DateTime @updatedAt
+
+  user  User  @relation(fields: [userId], references: [id])
+  story Story @relation(fields: [storyId], references: [id])
+
+  @@unique([userId, storyId])
 }
 
-enum Level {
-  A1
-  A2
-  B1
-  B2
-  C1
-  C2
-}
-
-enum LearningType {
-  WORD
-  PHRASE
-  SENTENCE
-  DIALOGUE
-  GRAMMAR
-  TRANSLATION
-  MEDIA
+enum StoryLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
 }
