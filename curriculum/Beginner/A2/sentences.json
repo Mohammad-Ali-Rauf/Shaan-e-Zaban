@@ -1,202 +1,82 @@
 [
   {
-    "id": 26,
-    "urdu": "میری اردو بہتر ہو رہی ہے۔",
-    "english": "My Urdu is improving.",
-    "tags": ["learning", "self"],
+    "id": 1,
+    "urdu": "آج موسم اچھا ہے",
+    "english": "The weather is nice today",
+    "tags": ["daily", "weather", "statement"],
     "level": "A2",
-    "audio": "audio/026.mp3"
+    "audio": ""
   },
   {
-    "id": 27,
-    "urdu": "آپ بہت اچھی اردو بولتے ہیں۔",
-    "english": "You speak very good Urdu.",
-    "tags": ["compliment", "language"],
+    "id": 2,
+    "urdu": "کیا آپ کو چائے پسند ہے؟",
+    "english": "Do you like tea?",
+    "tags": ["question", "daily", "preference"],
     "level": "A2",
-    "audio": "audio/027.mp3"
+    "audio": ""
   },
   {
-    "id": 28,
-    "urdu": "مجھے ایک کپ چائے چاہیے۔",
-    "english": "I would like a cup of tea.",
-    "tags": ["request", "daily life"],
+    "id": 3,
+    "urdu": "مجھے پانی چاہیے",
+    "english": "I need water",
+    "tags": ["need", "daily", "statement"],
     "level": "A2",
-    "audio": "audio/028.mp3"
+    "audio": ""
   },
   {
-    "id": 29,
-    "urdu": "کیا آپ میری مدد کر سکتے ہیں؟",
-    "english": "Can you help me?",
-    "tags": ["help", "question"],
+    "id": 4,
+    "urdu": "کیا آپ انگریزی بول سکتے ہیں؟",
+    "english": "Can you speak English?",
+    "tags": ["language", "question", "communication"],
     "level": "A2",
-    "audio": "audio/029.mp3"
+    "audio": ""
   },
   {
-    "id": 30,
-    "urdu": "میں اردو لکھنا بھی سیکھ رہا ہوں۔",
-    "english": "I am also learning to write Urdu.",
-    "tags": ["language", "writing"],
+    "id": 5,
+    "urdu": "مجھے اردو سیکھنی ہے",
+    "english": "I want to learn Urdu",
+    "tags": ["intent", "language", "goal"],
     "level": "A2",
-    "audio": "audio/030.mp3"
+    "audio": ""
   },
   {
-    "id": 31,
-    "urdu": "آپ کا جملہ تھوڑا تیز تھا۔",
-    "english": "Your sentence was a bit fast.",
-    "tags": ["learning", "speed"],
+    "id": 6,
+    "urdu": "میں اسکول جا رہا ہوں",
+    "english": "I am going to school",
+    "tags": ["daily", "routine", "present-continuous"],
     "level": "A2",
-    "audio": "audio/031.mp3"
+    "audio": ""
   },
   {
-    "id": 32,
-    "urdu": "مجھے آج کا سبق بہت پسند آیا۔",
-    "english": "I really liked today’s lesson.",
-    "tags": ["feedback", "classroom"],
+    "id": 7,
+    "urdu": "کتنے بجے ہیں؟",
+    "english": "What time is it?",
+    "tags": ["question", "time"],
     "level": "A2",
-    "audio": "audio/032.mp3"
+    "audio": ""
   },
   {
-    "id": 33,
-    "urdu": "میں روزانہ اردو پڑھتا ہوں۔",
-    "english": "I read Urdu daily.",
-    "tags": ["routine", "learning"],
+    "id": 8,
+    "urdu": "یہ کتاب کس کی ہے؟",
+    "english": "Whose book is this?",
+    "tags": ["question", "possessive"],
     "level": "A2",
-    "audio": "audio/033.mp3"
+    "audio": ""
   },
   {
-    "id": 34,
-    "urdu": "یہ لفظ میرے لیے نیا ہے۔",
-    "english": "This word is new for me.",
-    "tags": ["vocabulary", "learning"],
+    "id": 9,
+    "urdu": "مجھے سمجھ نہیں آیا",
+    "english": "I didn’t understand",
+    "tags": ["confusion", "negative", "communication"],
     "level": "A2",
-    "audio": "audio/034.mp3"
+    "audio": ""
   },
   {
-    "id": 35,
-    "urdu": "کیا آپ اسے آہستہ بول سکتے ہیں؟",
-    "english": "Can you say it slowly?",
-    "tags": ["classroom", "learning"],
+    "id": 10,
+    "urdu": "براہِ کرم آہستہ بولیں",
+    "english": "Please speak slowly",
+    "tags": ["polite", "request", "communication"],
     "level": "A2",
-    "audio": "audio/035.mp3"
-  },
-  {
-    "id": 36,
-    "urdu": "مجھے اردو گانے سننا پسند ہے۔",
-    "english": "I enjoy listening to Urdu songs.",
-    "tags": ["interest", "culture"],
-    "level": "A2",
-    "audio": "audio/036.mp3"
-  },
-  {
-    "id": 37,
-    "urdu": "اردو ایک خوبصورت زبان ہے۔",
-    "english": "Urdu is a beautiful language.",
-    "tags": ["statement", "culture"],
-    "level": "A2",
-    "audio": "audio/037.mp3"
-  },
-  {
-    "id": 38,
-    "urdu": "میں نے یہ لفظ پہلی بار سنا ہے۔",
-    "english": "I’ve heard this word for the first time.",
-    "tags": ["vocabulary", "new"],
-    "level": "A2",
-    "audio": "audio/038.mp3"
-  },
-  {
-    "id": 39,
-    "urdu": "کیا ہم اردو میں بات کر سکتے ہیں؟",
-    "english": "Can we speak in Urdu?",
-    "tags": ["language", "conversation"],
-    "level": "A2",
-    "audio": "audio/039.mp3"
-  },
-  {
-    "id": 40,
-    "urdu": "براہِ مہربانی سوال دہرائیں۔",
-    "english": "Please repeat the question.",
-    "tags": ["classroom", "polite"],
-    "level": "A2",
-    "audio": "audio/040.mp3"
-  },
-  {
-    "id": 41,
-    "urdu": "میں روزمرہ جملے یاد کر رہا ہوں۔",
-    "english": "I’m memorizing daily phrases.",
-    "tags": ["learning", "routine"],
-    "level": "A2",
-    "audio": "audio/041.mp3"
-  },
-  {
-    "id": 42,
-    "urdu": "مجھے اردو لکھنے میں مشکل ہوتی ہے۔",
-    "english": "I find it hard to write Urdu.",
-    "tags": ["writing", "learning"],
-    "level": "A2",
-    "audio": "audio/042.mp3"
-  },
-  {
-    "id": 43,
-    "urdu": "آپ نے بہت اچھا سوال پوچھا۔",
-    "english": "You asked a very good question.",
-    "tags": ["feedback", "classroom"],
-    "level": "A2",
-    "audio": "audio/043.mp3"
-  },
-  {
-    "id": 44,
-    "urdu": "کیا آپ اس کا مطلب سمجھا سکتے ہیں؟",
-    "english": "Can you explain its meaning?",
-    "tags": ["question", "vocabulary"],
-    "level": "A2",
-    "audio": "audio/044.mp3"
-  },
-  {
-    "id": 45,
-    "urdu": "کیا اردو آسان زبان ہے؟",
-    "english": "Is Urdu an easy language?",
-    "tags": ["question", "language"],
-    "level": "A2",
-    "audio": "audio/045.mp3"
-  },
-  {
-    "id": 46,
-    "urdu": "مجھے اردو کے محاورے پسند ہیں۔",
-    "english": "I like Urdu idioms.",
-    "tags": ["culture", "vocabulary"],
-    "level": "A2",
-    "audio": "audio/046.mp3"
-  },
-  {
-    "id": 47,
-    "urdu": "میں روزانہ نئی چیزیں سیکھتا ہوں۔",
-    "english": "I learn new things daily.",
-    "tags": ["learning", "daily life"],
-    "level": "A2",
-    "audio": "audio/047.mp3"
-  },
-  {
-    "id": 48,
-    "urdu": "آپ کا لہجہ بہت واضح ہے۔",
-    "english": "Your accent is very clear.",
-    "tags": ["feedback", "compliment"],
-    "level": "A2",
-    "audio": "audio/048.mp3"
-  },
-  {
-    "id": 49,
-    "urdu": "کیا آپ مجھے مشورہ دے سکتے ہیں؟",
-    "english": "Can you give me some advice?",
-    "tags": ["question", "help"],
-    "level": "A2",
-    "audio": "audio/049.mp3"
-  },
-  {
-    "id": 50,
-    "urdu": "میں روزانہ مشق کر رہا ہوں۔",
-    "english": "I am practicing daily.",
-    "tags": ["learning", "routine"],
-    "level": "A2",
-    "audio": "audio/050.mp3"
+    "audio": ""
   }
 ]

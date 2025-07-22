@@ -1,12 +1,82 @@
-{
-  "sentences": [
-    {
-      "id": 1,
-      "urdu": "آپ کیسے ہیں؟",
-      "english": "How are you?",
-      "tags": ["greeting", "formal", "masculine"],
-      "level": "A1",
-      "audio": "001.mp3"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "urdu": "مجھے کتابیں پڑھنا پسند ہے",
+    "english": "I like reading books",
+    "tags": ["habit", "preference", "daily"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 2,
+    "urdu": "کل میں نے ایک فلم دیکھی",
+    "english": "I watched a movie yesterday",
+    "tags": ["past", "daily", "statement"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 3,
+    "urdu": "اگر بارش ہوئی تو ہم نہیں جائیں گے",
+    "english": "If it rains, we won't go",
+    "tags": ["conditional", "weather", "future"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 4,
+    "urdu": "کیا آپ نے نیا ریسٹورنٹ آزمایا ہے؟",
+    "english": "Have you tried the new restaurant?",
+    "tags": ["question", "present-perfect", "food"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 5,
+    "urdu": "مجھے گاڑی چلانا سیکھنا ہے",
+    "english": "I need to learn how to drive",
+    "tags": ["need", "goal", "daily"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 6,
+    "urdu": "میری رائے میں، یہ بہتر فیصلہ تھا",
+    "english": "In my opinion, it was a better decision",
+    "tags": ["opinion", "past", "logic"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 7,
+    "urdu": "مجھے کام ختم کرنے میں دو گھنٹے لگے",
+    "english": "It took me two hours to finish the work",
+    "tags": ["time", "past", "work"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 8,
+    "urdu": "میں نے کبھی پہاڑ نہیں دیکھے",
+    "english": "I have never seen mountains",
+    "tags": ["present-perfect", "experience", "travel"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 9,
+    "urdu": "کیا تم میرے ساتھ بازار چلو گے؟",
+    "english": "Will you go to the market with me?",
+    "tags": ["question", "future", "invitation"],
+    "level": "B1",
+    "audio": ""
+  },
+  {
+    "id": 10,
+    "urdu": "وہ اکثر رات دیر تک کام کرتا ہے",
+    "english": "He often works late at night",
+    "tags": ["frequency", "routine", "statement"],
+    "level": "B1",
+    "audio": ""
+  }
+]

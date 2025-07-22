@@ -1,12 +1,82 @@
-{
-  "sentences": [
-    {
-      "id": 1,
-      "urdu": "آپ کیسے ہیں؟",
-      "english": "How are you?",
-      "tags": ["greeting", "formal", "masculine"],
-      "level": "A1",
-      "audio": "001.mp3"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "urdu": "میرے خیال میں سماجی انصاف کے بغیر ترقی ممکن نہیں",
+    "english": "In my opinion, progress is impossible without social justice",
+    "tags": ["opinion", "society", "abstract"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 2,
+    "urdu": "ہمیں جذبات کے بجائے منطق سے کام لینا چاہیے",
+    "english": "We should act based on logic rather than emotions",
+    "tags": ["advice", "logic", "contrast"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 3,
+    "urdu": "ان کے دلائل میں تضاد پایا جاتا ہے",
+    "english": "There is inconsistency in their arguments",
+    "tags": ["criticism", "debate", "logic"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 4,
+    "urdu": "یہ مسئلہ محض اتفاق نہیں بلکہ ایک رجحان ہے",
+    "english": "This issue is not a coincidence but a trend",
+    "tags": ["trend", "pattern", "observation"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 5,
+    "urdu": "ہمیں اپنے تعصبات پر قابو پانا ہوگا",
+    "english": "We must overcome our biases",
+    "tags": ["bias", "self-awareness", "maturity"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 6,
+    "urdu": "ان کی رائے میرے نقطہ نظر سے مختلف ہے",
+    "english": "Their opinion differs from my point of view",
+    "tags": ["opinion", "contrast", "expression"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 7,
+    "urdu": "زبان صرف اظہار کا ذریعہ نہیں بلکہ شناخت کا حصہ ہے",
+    "english": "Language is not just a means of expression, but a part of identity",
+    "tags": ["language", "identity", "culture"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 8,
+    "urdu": "ہر فرد کی سوچ کا پس منظر مختلف ہوتا ہے",
+    "english": "Each person's thinking has a different background",
+    "tags": ["psychology", "culture", "diversity"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 9,
+    "urdu": "ہمیں دیرپا حل کی تلاش کرنی چاہیے، وقتی نہیں",
+    "english": "We should seek long-term solutions, not temporary ones",
+    "tags": ["planning", "problem-solving", "strategy"],
+    "level": "C1",
+    "audio": ""
+  },
+  {
+    "id": 10,
+    "urdu": "مجھے اس بات کا ادراک ہے کہ ہر نقطہ نظر کی اہمیت ہے",
+    "english": "I realize that every perspective has value",
+    "tags": ["awareness", "empathy", "understanding"],
+    "level": "C1",
+    "audio": ""
+  }
+]

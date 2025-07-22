@@ -1,12 +1,82 @@
-{
-  "sentences": [
-    {
-      "id": 1,
-      "urdu": "آپ کیسے ہیں؟",
-      "english": "How are you?",
-      "tags": ["greeting", "formal", "masculine"],
-      "level": "A1",
-      "audio": "001.mp3"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "urdu": "اگر میں تمہاری جگہ ہوتا تو معافی مانگ لیتا",
+    "english": "If I were you, I would have apologized",
+    "tags": ["conditional", "hypothetical", "advice"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 2,
+    "urdu": "ہمیں وقت ضائع نہیں کرنا چاہیے",
+    "english": "We shouldn't waste time",
+    "tags": ["advice", "should", "time"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 3,
+    "urdu": "مجھے یقین ہے کہ وہ اپنی بات پر قائم رہے گا",
+    "english": "I'm sure he will stick to his word",
+    "tags": ["future", "confidence", "opinion"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 4,
+    "urdu": "اگرچہ وہ بیمار تھا، پھر بھی وہ کام پر گیا",
+    "english": "Although he was sick, he still went to work",
+    "tags": ["contrast", "past", "dedication"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 5,
+    "urdu": "ہم نے فیصلہ مشاورت کے بعد کیا",
+    "english": "We made the decision after discussion",
+    "tags": ["decision", "past", "process"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 6,
+    "urdu": "کیا آپ وضاحت کر سکتے ہیں کہ ایسا کیوں ہوا؟",
+    "english": "Can you explain why that happened?",
+    "tags": ["question", "explanation", "past"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 7,
+    "urdu": "اس کا برتاؤ پیشہ ورانہ نہیں تھا",
+    "english": "His behavior wasn't professional",
+    "tags": ["criticism", "behavior", "statement"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 8,
+    "urdu": "میں نے کبھی اتنی خوبصورت جگہ نہیں دیکھی",
+    "english": "I have never seen such a beautiful place",
+    "tags": ["present-perfect", "travel", "experience"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 9,
+    "urdu": "ہمیں اپنی ترجیحات کا تعین کرنا ہوگا",
+    "english": "We need to set our priorities",
+    "tags": ["need", "planning", "life"],
+    "level": "B2",
+    "audio": ""
+  },
+  {
+    "id": 10,
+    "urdu": "اگر تم سنجیدہ ہو تو مجھے ثبوت دو",
+    "english": "If you're serious, then prove it to me",
+    "tags": ["conditional", "challenge", "dialogue"],
+    "level": "B2",
+    "audio": ""
+  }
+]

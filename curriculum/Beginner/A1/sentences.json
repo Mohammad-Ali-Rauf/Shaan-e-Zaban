@@ -11,192 +11,72 @@
     "id": 2,
     "urdu": "آپ کا کیا حال ہے؟",
     "english": "How are you?",
-    "tags": ["greeting", "formal"],
+    "tags": ["greeting", "question"],
     "level": "A1",
-    "audio": "audio/002.mp3"
+    "audio": ""
   },
   {
     "id": 3,
-    "urdu": "میں ٹھیک ہوں، شکریہ۔",
-    "english": "I am fine, thank you.",
-    "tags": ["response", "polite"],
+    "urdu": "میں ٹھیک ہوں",
+    "english": "I am fine",
+    "tags": ["reply", "daily"],
     "level": "A1",
-    "audio": "audio/003.mp3"
+    "audio": ""
   },
   {
     "id": 4,
     "urdu": "آپ کا نام کیا ہے؟",
     "english": "What is your name?",
-    "tags": ["question", "formal"],
+    "tags": ["question", "intro"],
     "level": "A1",
-    "audio": "audio/004.mp3"
+    "audio": ""
   },
   {
     "id": 5,
-    "urdu": "میرا نام علی ہے۔",
-    "english": "My name is Ali.",
-    "tags": ["response", "identity"],
+    "urdu": "میرا نام علی ہے",
+    "english": "My name is Ali",
+    "tags": ["intro", "statement"],
     "level": "A1",
-    "audio": "audio/005.mp3"
+    "audio": ""
   },
   {
     "id": 6,
-    "urdu": "آپ کہاں سے ہیں؟",
-    "english": "Where are you from?",
-    "tags": ["question", "location"],
+    "urdu": "جی ہاں",
+    "english": "Yes",
+    "tags": ["response", "affirmative"],
     "level": "A1",
-    "audio": "audio/006.mp3"
+    "audio": ""
   },
   {
     "id": 7,
-    "urdu": "میں پاکستان سے ہوں۔",
-    "english": "I am from Pakistan.",
-    "tags": ["response", "location"],
+    "urdu": "نہیں",
+    "english": "No",
+    "tags": ["response", "negative"],
     "level": "A1",
-    "audio": "audio/007.mp3"
+    "audio": ""
   },
   {
     "id": 8,
-    "urdu": "کیا آپ اردو بولتے ہیں؟",
-    "english": "Do you speak Urdu?",
-    "tags": ["question", "language"],
+    "urdu": "براہِ کرم",
+    "english": "Please",
+    "tags": ["polite", "phrase"],
     "level": "A1",
-    "audio": "audio/008.mp3"
+    "audio": ""
   },
   {
     "id": 9,
-    "urdu": "جی ہاں، تھوڑی بہت۔",
-    "english": "Yes, a little bit.",
-    "tags": ["affirmation", "modest"],
+    "urdu": "شکریہ",
+    "english": "Thank you",
+    "tags": ["polite", "gratitude"],
     "level": "A1",
-    "audio": "audio/009.mp3"
+    "audio": ""
   },
   {
     "id": 10,
-    "urdu": "براہ کرم دہرائیں۔",
-    "english": "Please repeat.",
-    "tags": ["polite", "classroom"],
+    "urdu": "خدا حافظ",
+    "english": "Goodbye",
+    "tags": ["farewell", "greeting"],
     "level": "A1",
-    "audio": "audio/010.mp3"
-  },
-  {
-    "id": 11,
-    "urdu": "مجھے سمجھ نہیں آیا۔",
-    "english": "I didn’t understand.",
-    "tags": ["classroom", "learning"],
-    "level": "A1",
-    "audio": "audio/011.mp3"
-  },
-  {
-    "id": 12,
-    "urdu": "کیا آپ انگریزی بولتے ہیں؟",
-    "english": "Do you speak English?",
-    "tags": ["question", "language"],
-    "level": "A1",
-    "audio": "audio/012.mp3"
-  },
-  {
-    "id": 13,
-    "urdu": "میں اردو سیکھ رہا ہوں۔",
-    "english": "I am learning Urdu.",
-    "tags": ["statement", "language"],
-    "level": "A1",
-    "audio": "audio/013.mp3"
-  },
-  {
-    "id": 14,
-    "urdu": "یہ کیا ہے؟",
-    "english": "What is this?",
-    "tags": ["question", "object"],
-    "level": "A1",
-    "audio": "audio/014.mp3"
-  },
-  {
-    "id": 15,
-    "urdu": "یہ ایک کتاب ہے۔",
-    "english": "This is a book.",
-    "tags": ["response", "object"],
-    "level": "A1",
-    "audio": "audio/015.mp3"
-  },
-  {
-    "id": 16,
-    "urdu": "میں اسکول جاتا ہوں۔",
-    "english": "I go to school.",
-    "tags": ["daily routine"],
-    "level": "A1",
-    "audio": "audio/016.mp3"
-  },
-  {
-    "id": 17,
-    "urdu": "وہ طالب علم ہے۔",
-    "english": "He is a student.",
-    "tags": ["people", "identity"],
-    "level": "A1",
-    "audio": "audio/017.mp3"
-  },
-  {
-    "id": 18,
-    "urdu": "کیا یہ آپ کا قلم ہے؟",
-    "english": "Is this your pen?",
-    "tags": ["question", "object"],
-    "level": "A1",
-    "audio": "audio/018.mp3"
-  },
-  {
-    "id": 19,
-    "urdu": "نہیں، یہ میرا نہیں ہے۔",
-    "english": "No, this is not mine.",
-    "tags": ["denial", "ownership"],
-    "level": "A1",
-    "audio": "audio/019.mp3"
-  },
-  {
-    "id": 20,
-    "urdu": "مجھے پانی چاہیے۔",
-    "english": "I need water.",
-    "tags": ["need", "daily life"],
-    "level": "A1",
-    "audio": "audio/020.mp3"
-  },
-  {
-    "id": 21,
-    "urdu": "آپ کا شکریہ۔",
-    "english": "Thank you.",
-    "tags": ["polite"],
-    "level": "A1",
-    "audio": "audio/021.mp3"
-  },
-  {
-    "id": 22,
-    "urdu": "کوئی بات نہیں۔",
-    "english": "It’s okay.",
-    "tags": ["casual", "response"],
-    "level": "A1",
-    "audio": "audio/022.mp3"
-  },
-  {
-    "id": 23,
-    "urdu": "مجھے افسوس ہے۔",
-    "english": "I’m sorry.",
-    "tags": ["apology", "polite"],
-    "level": "A1",
-    "audio": "audio/023.mp3"
-  },
-  {
-    "id": 24,
-    "urdu": "کل ملاقات ہوگی۔",
-    "english": "See you tomorrow.",
-    "tags": ["farewell", "casual"],
-    "level": "A1",
-    "audio": "audio/024.mp3"
-  },
-  {
-    "id": 25,
-    "urdu": "خدا حافظ۔",
-    "english": "Goodbye.",
-    "tags": ["farewell", "formal"],
-    "level": "A1",
-    "audio": "audio/025.mp3"
+    "audio": ""
   }
 ]
