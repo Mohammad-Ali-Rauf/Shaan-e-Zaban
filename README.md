@@ -34,6 +34,14 @@ Roman Urdu is inconsistent, unstandardized, and unable to convey the cultural an
 
 ---
 
+### Why It Matters
+
+Urdu is the 10th most spoken language on Earth, yet has one of the weakest digital learning ecosystems.
+
+**Shaan-e-Zaban is the FIRST-EVER application to teach the standard version of Urdu in a systematic way — and to do so in its original writing script.**
+
+---
+
 ## Key Features
 
 - **Built Specifically for Urdu**: Unlike most platforms that group Urdu under Hindi, Shaan-e-Zaban is dedicated to Urdu learners — with attention to linguistic, script, and cultural integrity.
