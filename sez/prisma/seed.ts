@@ -45,6 +45,7 @@ async function seed() {
           slug: fullChapterSlug,
           description: `${chapterSlug} level chapter`,
           courseId: course.id,
+          order: chapters.indexOf(chapterSlug),
         },
       });
 
@@ -79,6 +80,7 @@ async function seed() {
             title: `Lesson ${i + 1}`,
             slug: lessonSlug,
             chapterId: chapter.id,
+            order: i,
           },
         });
 
@@ -91,7 +93,7 @@ async function seed() {
               englishText: unit.english || '',
               audioUrl: unit.audio || null,
               tags: Array.isArray(unit.tags) ? unit.tags : [],
-              level: LEVEL_MAP[chapterSlug.toUpperCase().replace(/\W/g, '')] ?? Level.A1,
+              level: LEVEL_MAP[courseTitle.toUpperCase()] ?? Level.A1,
               lessonId: lesson.id,
               order: index,
             },

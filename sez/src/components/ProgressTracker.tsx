@@ -6,10 +6,8 @@ export default function ProgressTracker({ learningUnitId }: { learningUnitId: nu
   useEffect(() => {
     const updateProgress = async () => {
       try {
-        await fetch('/api/progress/update', {
+        await fetch(`/api/progress/${learningUnitId}`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ learningUnitId }),
         })
       } catch (err) {
         console.error('Failed to update progress:', err)

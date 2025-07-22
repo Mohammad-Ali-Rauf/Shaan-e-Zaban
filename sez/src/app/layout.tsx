@@ -18,6 +18,7 @@ export default function RootLayout({
         <nav className="flex justify-between p-4 border-b items-center">
           <Link href="/" className="font-bold text-xl">📚 Shaan-e-Zaban</Link>
           <div className="flex gap-4 text-blue-600 text-sm">
+            <Link href="/dashboard" className="hover:underline">Dashboard</Link>
             <Link href="/curriculum" className="hover:underline">Curriculum</Link>
             <Link href="/about" className="hover:underline">About</Link>
             <Link href="/contribute" className="hover:underline">Contribute</Link>
