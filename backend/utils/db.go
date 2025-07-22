@@ -4,14 +4,26 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/joho/godotenv"
 )
 
 var DB *pgxpool.Pool
 
 func InitDB() {
-	dbUrl := "postgres://mein_khud:chaiwalekapassword@localhost:5432/shaan_e_zaban_db"
+	_ = godotenv.Load("../.env")
+
+	dbUser := os.Getenv("POSTGRES_USER")
+	dbPass := os.Getenv("POSTGRES_PASSWORD")
+	dbName := os.Getenv("POSTGRES_DB")
+
+	fmt.Println("User:", dbUser)
+	fmt.Println("Pass:", dbPass)
+	fmt.Println("DB:", dbName)
+
+	dbUrl := fmt.Sprintf("postgres://%s:%s@localhost:5432/%s?sslmode=disable", dbUser, dbPass, dbName)
 
 	var err error
 	DB, err = pgxpool.New(context.Background(), dbUrl)
@@ -21,6 +33,10 @@ func InitDB() {
 
 	// Test connection
 	err = DB.Ping(context.Background())
+	if err != nil {
+		log.Fatalf("Unable to ping DB: %v", err)
+	}
+
 	_, err = DB.Exec(context.Background(), `
 		CREATE TABLE IF NOT EXISTS users (
 			id SERIAL PRIMARY KEY,
@@ -30,10 +46,6 @@ func InitDB() {
 		);`)
 	if err != nil {
 		log.Fatalf("Unable to create users table: %v", err)
-	}
-
-	if err != nil {
-		log.Fatalf("Unable to ping DB: %v", err)
 	}
 
 	fmt.Println("Connected to PostgreSQL")

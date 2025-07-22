@@ -1,30 +1,36 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 
+	"github.com/Mohammad-Ali-Rauf/Shaan-e-Zaban/backend/middleware"
+	"github.com/Mohammad-Ali-Rauf/Shaan-e-Zaban/backend/routes"
 	"github.com/Mohammad-Ali-Rauf/Shaan-e-Zaban/backend/utils"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
 	utils.InitDB()
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// Set response header
-		w.Header().Set("Content-Type", "application/json")
 
-		// JSON response
-		resp := map[string]string{"message": "🔥 Shaan-e-Zaban backend is live!"}
-		if err := json.NewEncoder(w).Encode(resp); err != nil {
-			http.Error(w, "Something went wrong", http.StatusInternalServerError)
-			return
-		}
+	// Initialize the router
+	router := httprouter.New()
+
+	routes.RegisterUserRoutes(router)
+	// routes.RegisterStyleGuideRoutes(router)
+	// routes.RegisterGrammarRoutes(router)
+	// routes.RegisterSentenceRoutes(router)
+
+	// Root test endpoint
+	router.GET("/", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{"message": "🔥 Shaan-e-Zaban backend is live!"}`))
 	})
 
+	// Attach CORS middleware
+	handler := middleware.CorsMiddleware(router)
+
+	// Start the server
 	log.Println("🔥 Shaan-e-Zaban backend is live at http://localhost:8080")
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatalf("Server failed: %v", err)
-	}
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }

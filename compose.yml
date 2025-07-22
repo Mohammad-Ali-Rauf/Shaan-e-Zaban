@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: backend_shaan-e-zaban
+    container_name: backend_sez
     build:
       context: ./backend
     ports:
@@ -13,7 +13,7 @@ services:
       - shaan-e-zaban
 
   frontend:
-    container_name: frontend_shaan-e-zaban
+    container_name: frontend_sez
     build:
       context: ./frontend
     depends_on:
@@ -25,31 +25,33 @@ services:
       - ./frontend:/app
     working_dir: /app
     command: yarn dev
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend_shaan-e-zaban:8080
+    env_file:
+      - .env.local
     networks:
       - shaan-e-zaban
 
   json-server:
-    container_name: json-server_shaan-e-zaban
+    container_name: json-server_sez
     image: clue/json-server
     depends_on:
       - backend
     ports:
       - "4000:80"
     volumes:
-      - ./backend/data:/data
-    command: --watch /data/urdu_sentences.json
+      - ./backend/content:/content
+    command: >
+      --watch /content/curriculum/${LEVEL}/${CEFR}/sentences.json
+    environment:
+      - LEVEL=Beginner
+      - CEFR=A1
     networks:
       - shaan-e-zaban
 
   db:
-    image: postgres:16
+    image: postgres:17
     restart: always
-    environment:
-      POSTGRES_USER: mein_khud
-      POSTGRES_PASSWORD: chaiwalekapassword
-      POSTGRES_DB: shaan_e_zaban_db
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
