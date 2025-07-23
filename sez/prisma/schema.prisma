@@ -29,6 +29,18 @@ model Sentence {
   storyId   Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  words     Word[]
+}
+
+model Word {
+  id              Int      @id @default(autoincrement())
+  text            String
+  transliteration String?
+  meaning         String?
+
+  sentence        Sentence @relation(fields: [sentenceId], references: [id])
+  sentenceId      Int
 }
 
 model User {

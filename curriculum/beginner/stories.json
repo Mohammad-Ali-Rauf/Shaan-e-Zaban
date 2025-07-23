@@ -7,7 +7,29 @@
     "sentences": [
       {
         "urdu": "نایاب بہت خوش تھی۔",
-        "english": "Nayab was very happy."
+        "english": "Nayab was very happy.",
+        "words": [
+          {
+            "text": "نایاب",
+            "transliteration": "Nayab",
+            "meaning": "Name of the girl"
+          },
+          {
+            "text": "بہت",
+            "transliteration": "bohat",
+            "meaning": "very"
+          },
+          {
+            "text": "خوش",
+            "transliteration": "khush",
+            "meaning": "happy"
+          },
+          {
+            "text": "تھی۔",
+            "transliteration": "thi",
+            "meaning": "was (female)"
+          }
+        ]
       },
       {
         "urdu": "آج اس کا اسکول کھلنے کا پہلا دن تھا۔",

@@ -135,7 +135,7 @@ Visit: `http://localhost:3000` to access the platform locally.
         "english": "I was very happy because I wanted to make new friends."
       }
     ]
-  },
+  }
 ]
 ```
 
@@ -162,12 +162,11 @@ See [`LICENSE`](./LICENSE) for full details.
 
 Contributions are welcome. Please refer to the [`CONTRIBUTING.md`](./CONTRIBUTING.md) guide for details.
 
-You can contribute by:
-
-* Writing original Urdu stories
-* Recording high-quality Urdu audio
-* Improving UI/UX or accessibility
-* Suggesting features or enhancements
-* Reviewing and testing existing content
+💡 You can contribute by:
+- ✍️ Writing authentic short stories
+- 🎙 Recording pronunciation audio (Fusha-style or dialects)
+- 🛠 Improving design & accessibility
+- 🔎 Testing & finding bugs
+- 🌟 Suggesting dope features
 
 Pull requests and discussions are encouraged.

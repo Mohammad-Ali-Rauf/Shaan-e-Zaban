@@ -59,6 +59,15 @@ async function seed() {
               english: s.english,
               audioUrl: s.audioUrl,
               order: i,
+              words: s.words?.length
+                ? {
+                  create: s.words.map((w: any) => ({
+                    text: w.text,
+                    transliteration: w.transliteration,
+                    meaning: w.meaning,
+                  })),
+                }
+                : undefined
             })),
           },
         },

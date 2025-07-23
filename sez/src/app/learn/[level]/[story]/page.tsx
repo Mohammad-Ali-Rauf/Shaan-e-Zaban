@@ -5,6 +5,10 @@ import { authOptions } from '@/lib/auth';
 import ProgressTracker from '@/components/ProgressTracker';
 import Link from 'next/link';
 
+import ClientOnly from '@/components/ClientOnly'
+
+import Sentence from '@/components/Sentence'
+
 interface Props {
   params: { level: string; story: string };
   searchParams?: { sentence?: string };
@@ -24,6 +28,9 @@ export default async function StoryPage({ params, searchParams }: Props) {
     include: {
       sentences: {
         orderBy: { order: 'asc' },
+        include: {
+          words: true,
+        },
       },
     },
   });
@@ -49,7 +56,7 @@ export default async function StoryPage({ params, searchParams }: Props) {
       <h1 className="text-3xl font-bold mb-4">{storyData.title}</h1>
 
       <div className="border p-4 rounded shadow space-y-3">
-        <div className="text-2xl urdu">{sentence.urdu}</div>
+        <Sentence text={sentence.urdu} words={sentence.words} />
         <div className="italic text-gray-600">{sentence.english}</div>
         {sentence.audioUrl && (
           <audio controls className="mt-2">

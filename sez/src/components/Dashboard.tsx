@@ -111,6 +111,8 @@ export default function Dashboard({ user }: Props) {
           to get started!
         </p>
       )}
+
+      <Link href="/upload" className="text-blue-600 hover:underline">Upload Your Own Naunehal Page</Link>
     </main>
   )
 }
