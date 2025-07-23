@@ -5,3 +5,7 @@
   direction: rtl;
   text-align: right;
 }
+
+.input {
+  @apply w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring focus:border-blue-500;
+}

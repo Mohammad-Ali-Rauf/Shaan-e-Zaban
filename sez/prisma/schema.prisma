@@ -8,41 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Story {
-  id           Int            @id @default(autoincrement())
-  title        String
-  slug         String @unique
-  level        StoryLevel
-  sentences    Sentence[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  UserProgress UserProgress[]
-}
-
-model Sentence {
-  id        Int      @id @default(autoincrement())
-  urdu      String
-  english   String
-  audioUrl  String? // Optional per-sentence audio
-  order     Int      @default(0)
-  story     Story    @relation(fields: [storyId], references: [id])
-  storyId   Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  words     Word[]
-}
-
-model Word {
-  id              Int      @id @default(autoincrement())
-  text            String
-  transliteration String?
-  meaning         String?
-
-  sentence        Sentence @relation(fields: [sentenceId], references: [id])
-  sentenceId      Int
-}
-
 model User {
   id        String         @id @default(uuid())
   email     String         @unique
@@ -55,19 +20,12 @@ model User {
 model UserProgress {
   id        Int      @id @default(autoincrement())
   userId    String
-  storyId   Int
+  storySlug String   // Slug from Sanity, not from DB
   completed Boolean  @default(false)
   score     Int?
   updatedAt DateTime @updatedAt
 
   user  User  @relation(fields: [userId], references: [id])
-  story Story @relation(fields: [storyId], references: [id])
 
-  @@unique([userId, storyId])
-}
-
-enum StoryLevel {
-  BEGINNER
-  INTERMEDIATE
-  ADVANCED
+  @@unique([userId, storySlug])
 }

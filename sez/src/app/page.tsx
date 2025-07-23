@@ -1,8 +1,11 @@
-import Link from 'next/link'
+import Link from "next/link"
+import { getAllStories } from "@/lib/sanity"
 
-export default function HomePage() {
+export default async function HomePage() {
+  const stories = await getAllStories()
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+    <main className="min-h-screen flex flex-col items-center px-4 py-10 text-center">
       <h1 className="text-5xl md:text-6xl font-bold mb-10 font-nastaliq">
         شانِ زبان
       </h1>
@@ -12,20 +15,35 @@ export default function HomePage() {
       </p>
 
       <Link
-        href="/learn/beginner/a1/beginner-a1-lesson-1?unit=0"
+        href="/contribute"
         className="px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition"
       >
-        Start Learning
+        ✍️ Contribute Your Own Story
       </Link>
 
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-4">
-        {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+      <h2 className="text-3xl font-bold mt-16 mb-4">📚 Available Stories</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl mt-4">
+        {stories.map((story: any) => (
           <Link
-            key={level}
-            href={`/learn/beginner/${level.toLowerCase()}/beginner-${level.toLowerCase()}-lesson-1`}
-            className="border p-4 rounded hover:shadow-lg transition text-lg"
+            key={story._id}
+            href={`/learn/${story.level}/${story.slug.current}`}
+            className="border p-4 rounded-lg shadow hover:shadow-md transition text-left bg-white"
           >
-            📘 {level} Level
+            <h3 className="text-xl font-semibold mb-1">{story.title}</h3>
+            <p className="text-sm text-gray-500 capitalize">📖 {story.level}</p>
+            {story.tags?.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {story.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </Link>
         ))}
       </div>

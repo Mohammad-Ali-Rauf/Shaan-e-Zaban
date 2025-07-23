@@ -38,7 +38,7 @@ The application introduces learners to Urdu using level-based short stories writ
   All content is delivered in original Urdu script. Roman Urdu or Latinized substitutions are deliberately avoided.
 
 * **Human Pronunciation Audio**
-  Audio is sourced from open pronunciation databases like [Tatoeba](https://tatoeba.org) and [LinguaLibre](https://lingualibre.org), ensuring natural and culturally accurate pronunciation.
+  Audio is sourced from contributors, ensuring natural and culturally accurate pronunciation.
 
 * **Tag-Based Filtering**
   Stories are tagged with grammar topics, themes, and difficulty levels, enabling learners to navigate and focus their learning effectively.

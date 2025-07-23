@@ -36,4 +36,12 @@ export const authOptions: AuthOptions = {
     signIn: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user?.email) {
+        token.email = user.email
+      }
+      return token
+    },
+  }
 }
