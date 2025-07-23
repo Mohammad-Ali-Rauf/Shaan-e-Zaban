@@ -15,6 +15,7 @@ async function seed() {
 
   // Clear existing data
   await prisma.userProgress.deleteMany();
+  await prisma.word.deleteMany();
   await prisma.sentence.deleteMany();
   await prisma.story.deleteMany();
 
