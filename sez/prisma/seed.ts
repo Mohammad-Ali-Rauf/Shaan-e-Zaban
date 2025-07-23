@@ -5,9 +5,9 @@ import path from 'path';
 const prisma = new PrismaClient();
 
 const LEVEL_MAP: Record<string, StoryLevel> = {
-  beginner: 'BEGINNER',
-  intermediate: 'INTERMEDIATE',
-  advanced: 'ADVANCED',
+  beginner: StoryLevel.BEGINNER,
+  intermediate: StoryLevel.INTERMEDIATE,
+  advanced: StoryLevel.ADVANCED,
 };
 
 async function seed() {

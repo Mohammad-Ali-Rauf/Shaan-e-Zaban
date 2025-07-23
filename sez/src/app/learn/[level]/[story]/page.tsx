@@ -60,7 +60,7 @@ export default async function StoryPage({ params, searchParams }: Props) {
         <div className="italic text-gray-600">{sentence.english}</div>
         {sentence.audioUrl && (
           <audio controls className="mt-2">
-            <source src={`/${sentence.audioUrl}`} type="audio/mpeg" />
+            <source src={`${sentence.audioUrl}`} type="audio/mpeg" />
             Your browser does not support the audio tag.
           </audio>
         )}
