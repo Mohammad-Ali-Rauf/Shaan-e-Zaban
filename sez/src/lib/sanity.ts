@@ -1,4 +1,5 @@
 import { client } from "../../sanity/lib/client"
+import { v4 as uuidv4 } from "uuid"
 
 export type Word = {
   text: string
@@ -20,53 +21,69 @@ export type Story = {
   level: 'beginner' | 'intermediate' | 'advanced'
   sentences: Sentence[]
   tags?: string[]
-  userEmail: string
+  author?: {
+    _id: string
+    name?: string
+    email?: string
+  }
 }
 
 export async function getAllStories() {
   const query = `*[_type == "story"] | order(_createdAt desc){
+  _id,
+  title,
+  slug,
+  level,
+  tags,
+  author->{
     _id,
-    title,
-    slug,
-    level,
-    "authorEmail": userEmail,
-    tags
-  }`
+    name,
+    email
+  }
+}`
 
   return await client.fetch(query)
 }
 
 export async function getStoryBySlug(slug: string) {
   const query = `*[_type == "story" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  level,
+  tags,
+  author->{
     _id,
-    title,
-    slug,
-    level,
-    sentences[]{
-      urdu,
-      english,
-      audioUrl,
-      words[]{
-        text,
-        transliteration,
-        meaning
-      }
-    },
-    "authorEmail": userEmail,
-    tags
-  }`
+    name,
+    email
+  },
+  sentences[]{
+    urdu,
+    english,
+    audioUrl,
+    words[]{
+      text,
+      transliteration,
+      meaning
+    }
+  }
+}`
 
   return await client.fetch(query, { slug })
 }
 
 export async function getUserStories(email: string) {
-  const query = `*[_type == "story" && userEmail == $email] | order(_createdAt desc){
-    _id,
-    title,
-    slug,
-    level,
-    tags
-  }`
+  const query = `*[_type == "story" && author.email == $email] | order(_createdAt desc){
+  _id,
+  title,
+  slug,
+  level,
+  tags,
+  author->{
+    name,
+    email
+  }
+}`
 
   return await client.fetch(query, { email })
 }
@@ -81,14 +98,19 @@ export async function createStory(data: Story) {
     },
     level: data.level,
     tags: data.tags || [],
-    userEmail: data.userEmail,
+    author: {
+      name: data.author?.name,
+      email: data.author?.email,
+    },
     sentences: data.sentences.map((s) => ({
       _type: 'sentence',
       urdu: s.urdu,
+      _key: uuidv4(),
       english: s.english,
       audioUrl: s.audioUrl ?? '',
-      words: s.words.map((w) => ({
+      words: (s.words ?? []).map((w) => ({
         _type: 'word',
+        _key: uuidv4(),
         text: w.text,
         transliteration: w.transliteration,
         meaning: w.meaning,
@@ -96,7 +118,7 @@ export async function createStory(data: Story) {
     })),
   }
 
-  return await client.create(story)
+return await client.create(story)
 }
 
 export async function updateStory(id: string, data: Partial<Story>) {
@@ -111,10 +133,12 @@ export async function updateStory(id: string, data: Partial<Story>) {
     patch.sentences = data.sentences.map((s) => ({
       _type: 'sentence',
       urdu: s.urdu,
+      _key: uuidv4(),
       english: s.english,
       audioUrl: s.audioUrl ?? '',
       words: s.words.map((w) => ({
         _type: 'word',
+        _key: uuidv4(),
         text: w.text,
         transliteration: w.transliteration,
         meaning: w.meaning,

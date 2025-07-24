@@ -1,9 +1,8 @@
-import { getServerSession } from "next-auth"
 import { notFound, redirect } from "next/navigation"
 import Link from "next/link"
 
 import { getStoryBySlug } from "@/lib/sanity"
-import { authOptions } from "@/lib/auth"
+import { getServerSession } from "@/lib/getServerSession"
 
 interface Props {
   params: { level: string; slug: string }
@@ -12,10 +11,10 @@ interface Props {
 
 export default async function StoryPage({ params, searchParams }: Props) {
   const { level, slug } = params
-  const rawIndex = parseInt(searchParams?.sentence || "0", 10)
+  const rawIndex = parseInt(await searchParams?.sentence || "0", 10)
   const sentenceIndex = Number.isNaN(rawIndex) ? 0 : rawIndex
 
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession()
   if (!session) redirect("/auth/signin")
 
   const story = await getStoryBySlug(slug)

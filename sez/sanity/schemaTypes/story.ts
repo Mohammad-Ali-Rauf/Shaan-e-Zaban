@@ -1,4 +1,4 @@
-import { UserEmailInput } from '../components/UserEmailInput'
+
 
 export default {
     name: 'story',
@@ -42,8 +42,12 @@ export default {
         {
             name: 'author',
             title: 'Author',
-            type: 'reference',
-            to: [{ type: 'user' }],
+            type: 'object',
+            readOnly: true,
+            fields: [
+                { name: 'name', title: 'Name', type: 'string' },
+                { name: 'email', title: 'Email', type: 'string' },
+            ]
         },
         {
             name: 'createdAt',
@@ -51,15 +55,6 @@ export default {
             type: 'datetime',
             readOnly: true,
             initialValue: () => new Date().toISOString(),
-        },
-        {
-            name: 'userEmail',
-            title: 'User Email',
-            type: 'string',
-            readOnly: true,
-            components: {
-                input: UserEmailInput,
-            },
-        },
+        }
     ],
 }

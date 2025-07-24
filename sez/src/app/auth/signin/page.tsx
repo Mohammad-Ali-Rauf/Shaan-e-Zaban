@@ -1,8 +1,7 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
@@ -10,27 +9,35 @@ export default function SignInPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const router = useRouter()
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    const res = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-      callbackUrl,
-    })
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
 
-    setLoading(false)
+      if (!res.ok) {
+        const { error } = await res.json()
+        setError(error || 'Invalid email or password')
+        setLoading(false)
+        return
+      }
 
-    if (res?.error) {
-      setError('Invalid email or password')
-    } else if (res?.ok) {
-      window.location.href = res.url || '/'
+      // success — redirect
+      router.push(callbackUrl)
+    } catch (err) {
+      setError('Something went wrong')
+    } finally {
+      setLoading(false)
     }
   }
 

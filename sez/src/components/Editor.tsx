@@ -1,18 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useSession } from '@/hooks/useSession'
 
 export default function Editor() {
-  const { data: session } = useSession()
+  const { user, loading, error } = useSession()
   const router = useRouter()
 
   const [title, setTitle] = useState('')
   const [level, setLevel] = useState('beginner')
   const [tags, setTags] = useState('')
   const [sentences, setSentences] = useState([{ urdu: '', english: '' }])
-  const [loading, setLoading] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const handleAddSentence = () => {
     setSentences([...sentences, { urdu: '', english: '' }])
@@ -26,27 +26,43 @@ export default function Editor() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!session?.user?.email) return alert('You must be signed in to contribute.')
 
-    setLoading(true)
+    if (!user) {
+      alert('You must be signed in to submit a story.')
+      return
+    }
+
+    setSubmitting(true)
 
     const res = await fetch('/api/stories/create', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         title,
         level,
-        tags: tags.split(',').map(t => t.trim()),
+        tags: tags.split(',').map((t) => t.trim()),
         sentences,
-        userEmail: session.user.email,
+        author: {
+          name: user.name,
+          email: user.email,
+        }
       }),
     })
 
-    setLoading(false)
+    setSubmitting(false)
 
-    if (!res.ok) return alert('Failed to submit story')
+    if (!res.ok) {
+      alert('Failed to submit story.')
+      return
+    }
 
     router.push('/dashboard')
   }
+
+  if (loading) return <p className="text-center mt-10">🔄 Loading session...</p>
+  if (error) return <p className="text-center mt-10 text-red-600">{error}</p>
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-4 max-w-3xl mx-auto">
@@ -54,12 +70,21 @@ export default function Editor() {
 
       <div>
         <label className="block font-semibold">Title</label>
-        <input value={title} onChange={e => setTitle(e.target.value)} className="input" required />
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="input"
+          required
+        />
       </div>
 
       <div>
         <label className="block font-semibold">Level</label>
-        <select value={level} onChange={e => setLevel(e.target.value)} className="input">
+        <select
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          className="input"
+        >
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
           <option value="advanced">Advanced</option>
@@ -68,7 +93,11 @@ export default function Editor() {
 
       <div>
         <label className="block font-semibold">Tags (comma-separated)</label>
-        <input value={tags} onChange={e => setTags(e.target.value)} className="input" />
+        <input
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+          className="input"
+        />
       </div>
 
       <div className="space-y-4">
@@ -91,6 +120,7 @@ export default function Editor() {
             />
           </div>
         ))}
+
         <button
           type="button"
           onClick={handleAddSentence}
@@ -102,10 +132,10 @@ export default function Editor() {
 
       <button
         type="submit"
-        disabled={loading}
+        disabled={submitting}
         className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
       >
-        {loading ? 'Submitting...' : '🚀 Submit Story'}
+        {submitting ? 'Submitting...' : 'Submit Story'}
       </button>
     </form>
   )
