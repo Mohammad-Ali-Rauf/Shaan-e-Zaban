@@ -4,13 +4,14 @@
 ![Next.js](https://img.shields.io/badge/frontend-Next.js-blue)
 ![Status](https://img.shields.io/badge/status-Active-lightgrey)
 
-**Shaan-e-Zaban** is the world’s first open-source, community-driven Urdu language learning platform. It empowers learners and native speakers to contribute immersive short stories — complete with native **Nastaliq script**, **human audio**, and **contextual translations** — all through an elegant, scalable, and modular web app.
+**Shaan-e-Zaban** is among the world’s first — and the only open-source, community-powered Urdu learning platform centered on immersive storytelling, human audio, and Nastaliq script.
 
 ---
 
 ## 📚 Table of Contents
 
 - [Overview](#overview)
+- [Preview](#preview)
 - [Key Features](#key-features)
 - [Technology Stack](#technology-stack)
 - [Directory Structure](#directory-structure)
@@ -33,6 +34,14 @@ they can optionally add **word-by-word translations**, upload **custom pronuncia
 - ✍️ **Story content is managed in Sanity CMS**
 - 🧑‍💼 **Users are managed in PostgreSQL**
 - 📂 **Legacy stories in `/curriculum/` are used to seed Sanity at setup time**
+
+---
+
+## 🖼️ Preview
+
+Here's what **Shaan-e-Zaban** looks like in action:
+
+![Story Reader](./screenshots/story-reader.png)
 
 ---
 
