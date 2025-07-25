@@ -10,30 +10,31 @@
 
 ## 📚 Table of Contents
 
-- [Overview](#overview)
-- [Preview](#preview)
-- [Key Features](#key-features)
-- [Technology Stack](#technology-stack)
-- [Directory Structure](#directory-structure)
-- [Installation](#installation)
-- [License](#license)
-- [Contribution](#contribution)
+* [Overview](#overview)
+* [Preview](#preview)
+* [Key Features](#key-features)
+* [Technology Stack](#technology-stack)
+* [Directory Structure](#directory-structure)
+* [Installation](#installation)
+* [License](#license)
+* [Contribution](#contribution)
 
 ---
 
 ## 🔍 Overview
 
-**Shaan-e-Zaban** is more than just an app — it’s a cultural movement.  
+**Shaan-e-Zaban** is more than just an app — it’s a cultural movement.
 Instead of vocab drills or robotic gamification, learners explore Urdu through **community-written stories** presented in authentic Urdu script.
 
-Authors control their content:  
+Authors control their content:
 they can optionally add **word-by-word translations**, upload **custom pronunciation audio**, and tag their stories for thematic or grammatical relevance.
 
 ### 🧠 Architecture Breakdown
 
-- ✍️ **Story content is managed in Sanity CMS**
-- 🧑‍💼 **Users are managed in PostgreSQL**
-- 📂 **Legacy stories in `/curriculum/` are used to seed Sanity at setup time**
+* ✍️ **Story content is managed in Sanity CMS**
+* 🧑‍💼 **Users and progress are stored in MongoDB via Prisma**
+* 🧠 **UserProgress and StoryProgress are embedded Mongo-style**
+* 📂 **Legacy stories in `/curriculum/` are used to seed Sanity at setup time**
 
 ---
 
@@ -47,44 +48,47 @@ Here's what **Shaan-e-Zaban** looks like in action:
 
 ## ✨ Key Features
 
-* **📝 Community-Contributed Stories**  
+* **📝 Community-Contributed Stories**
   Any signed-in user can create, edit, and delete their own stories via a full CRUD interface.
 
-* **📚 Progressive Learning Flow**  
+* **📚 Progressive Learning Flow**
   Stories are categorized into Beginner, Intermediate, and Advanced levels — building vocabulary and grammar naturally through context.
 
-* **🖋 Nastaliq Script**  
+* **🖋 Nastaliq Script**
   Learners read in beautiful, calligraphic **Nastaliq**.
 
-* **🔊 Optional Audio Support**  
+* **🔊 Optional Audio Support**
   Authors can attach `.mp3` or `.wav` recordings of their own voice or public sources for pronunciation guidance.
 
-* **📘 Optional Word-Level Translations**  
+* **📘 Optional Word-Level Translations**
   Sentence-level English translations are required, but authors can also break down vocabulary per word.
 
-* **🏷️ Tags for Grammar & Topics**  
+* **🏷️ Tags for Grammar & Topics**
   Helps learners filter by themes, sentence structures, or even tenses.
 
-* **🔐 JWT Auth System**  
+* **📈 Personalized Progress Tracking**
+  MongoDB-based `UserProgress` tracks favorited, completed, queued, and in-progress stories — with per-sentence resume support.
+
+* **🔐 JWT Auth System**
   User auth and story ownership is secured via a simple custom JWT-based system.
 
-* **🌍 Open Source & Built to Scale**  
+* **🌍 Open Source & Built to Scale**
   Released under the MIT License. Scalable with Sanity, extendable with React components, and deployable anywhere.
 
 ---
 
 ## ⚙️ Technology Stack
 
-| Layer           | Tech                                           |
-|----------------|------------------------------------------------|
-| Frontend        | **Next.js** (App Router, React 19)             |
-| Styling         | **Tailwind CSS**                               |
-| Backend API     | **Next.js API Routes**                         |
-| Content Layer   | **Sanity CMS** (for stories, tags, media, etc.)|
-| Database        | **PostgreSQL via Prisma** (for user auth only) |
-| Auth            | **JWT (Custom Implementation)**                |
-| Audio Storage   | **Static MP3/WAV** served via `/public/audio`  |
-| Deployment      | Not deployed yet — local only for now          |
+| Layer         | Tech                                            |
+| ------------- | ----------------------------------------------- |
+| Frontend      | **Next.js** (App Router, React 19)              |
+| Styling       | **Tailwind CSS**                                |
+| Backend API   | **Next.js API Routes**                          |
+| Content Layer | **Sanity CMS** (for stories, tags, media, etc.) |
+| Database      | **MongoDB Atlas via Prisma** (User + Progress)  |
+| Auth          | **JWT (Custom Implementation)**                 |
+| Audio Storage | **Static MP3/WAV** served via `/public/audio`   |
+| Deployment    | Not deployed yet — local only for now           |
 
 ---
 
@@ -92,7 +96,7 @@ Here's what **Shaan-e-Zaban** looks like in action:
 
 ```bash
 shaan-e-zaban/
-├── compose.yml                   # Docker Compose (for local Postgres setup)
+├── compose.yml                   # Docker Compose (for optional Postgres legacy use)
 ├── .env.example                  # Template for setting up your .env
 ├── .gitignore                    # Ignore unnecessary files from Git
 ├── LICENSE                       # MIT License file
@@ -100,84 +104,76 @@ shaan-e-zaban/
 ├── CONTRIBUTING.md               # Guidelines for community contributions
 
 ├── curriculum/                   # 🔹 Legacy story data used for seeding Sanity
-│   ├── beginner/stories.json     # Beginner-level stories
-│   ├── intermediate/stories.json # Intermediate-level stories
-│   └── advanced/stories.json     # Advanced-level stories
+│   ├── beginner/stories.json
+│   ├── intermediate/stories.json
+│   └── advanced/stories.json
 
-└── sez/                          # 🔥 Main web app source
-    ├── .env.example              # Frontend .env template
-    ├── next.config.ts            # Next.js config
-    ├── middleware.ts             # JWT auth check for protected routes
-    ├── postcss.config.mjs        # Tailwind/PostCSS setup
-    ├── eslint.config.mjs         # Custom ESLint rules
-    ├── tsconfig.json             # TypeScript config
-    ├── yarn.lock                 # Yarn dependency lockfile
-    ├── sanity.config.ts          # Sanity studio config (schema, plugins)
-    ├── sanity.cli.ts             # Sanity CLI bootstrap
+└── sez/
+    ├── .env.example
+    ├── next.config.ts
+    ├── middleware.ts
+    ├── postcss.config.mjs
+    ├── eslint.config.mjs
+    ├── tsconfig.json
+    ├── yarn.lock
 
-    ├── prisma/                   # 🔐 User auth model only (via PostgreSQL)
-    │   └── schema.prisma         # Only defines user & session schema
+    ├── prisma/                   # 🔐 MongoDB models via Prisma
+    │   └── schema.prisma         # Models: User, UserProgress, StoryProgress
 
     ├── public/
-    │   └── audio/                # Initial audio files for seeding into sanity with /curriculum (MP3/WAV)
+    │   └── audio/
     │       ├── 001.mp3
     │       └── 001.wav
 
-    ├── sanity/                   # 📦 Sanity schema & CMS logic
-    │   ├── env.ts                # Env var loading for Sanity scripts
+    ├── sanity/                   # 📦 Sanity studio
+    │   ├── env.ts
     │   ├── lib/
-    │   │   ├── client.ts         # Sanity client instance for queries
-    │   │   ├── image.ts          # Image optimization helpers
-    │   │   └── live.ts           # Preview/live content hooks (future use?)
-    │   ├── schemaTypes/          # 🧠 Sanity content schemas
+    │   │   ├── client.ts
+    │   │   ├── image.ts
+    │   │   └── live.ts
+    │   ├── schemaTypes/
     │   │   ├── index.ts
-    │   │   ├── sentence.ts       # Sentence model for stories
-    │   │   ├── story.ts          # Main story schema
-    │   │   └── word.ts           # Word-by-word translation model
-    │   ├── structure.ts          
+    │   │   ├── sentence.ts
+    │   │   ├── story.ts
+    │   │   └── word.ts
+    │   ├── structure.ts
     │   └── scripts/
-    │       └── seed.ts           # Seeds Sanity with curriculum JSON
+    │       └── seed.ts
 
-    ├── src/                      # 🚀 Main application code (Next.js)
-    │   ├── app/                  # App Router layout
-    │   │   ├── layout.tsx        # Root layout (shared nav, fonts, etc)
-    │   │   ├── globals.css       # Tailwind + custom global styles
-    │   │   ├── page.tsx          # Homepage
-    │   │   ├── about/page.tsx    # About page
-    │   │   ├── contribute/page.tsx # Story submission info
-
-    │   │   ├── dashboard/page.tsx  # User dashboard
-    │   │   ├── learn/[level]/[slug]/page.tsx  # Dynamic story reader
-    │   │
-    │   │   ├── auth/              # Auth UI pages
+    ├── src/
+    │   ├── app/
+    │   │   ├── layout.tsx
+    │   │   ├── globals.css
+    │   │   ├── page.tsx
+    │   │   ├── about/page.tsx
+    │   │   ├── contribute/page.tsx
+    │   │   ├── dashboard/page.tsx
+    │   │   ├── learn/[level]/[slug]/page.tsx
+    │   │   ├── auth/
     │   │   │   ├── signin/page.tsx
     │   │   │   └── signup/page.tsx
-
-    │   │   ├── api/               # 🔐 API routes for auth + stories
+    │   │   ├── api/
     │   │   │   ├── auth/
     │   │   │   │   ├── login/route.ts
     │   │   │   │   ├── logout/route.ts
     │   │   │   │   ├── me/route.ts
     │   │   │   │   └── signup/route.ts
-    │   │   │   └── stories/        # Story CRUD API
+    │   │   │   └── stories/
     │   │   │       ├── create/route.ts
     │   │   │       ├── delete/route.ts
     │   │   │       ├── getAll/route.ts
     │   │   │       ├── getById/route.ts
     │   │   │       └── update/route.ts
-
-    │   ├── components/            # UI components
-    │   │   ├── Editor.tsx         # Story editor component
-    │   │   └── StoryCard.tsx      # Reusable story display card
-
+    │   ├── components/
+    │   │   ├── Editor.tsx
+    │   │   └── StoryCard.tsx
     │   ├── hooks/
-    │   │   └── useSession.ts      # Hook for managing auth session in UI
-
-    │   └── lib/                   # Shared logic libs
-    │       ├── db.ts              # DB connection
-    │       ├── prisma.ts          # Prisma client instance
-    │       ├── sanity.ts          # Sanity query functions
-    │       └── getServerSession.ts # getting logged in user for server components
+    │   │   └── useSession.ts
+    │   └── lib/
+    │       ├── db.ts
+    │       ├── prisma.ts
+    │       ├── sanity.ts
+    │       └── getServerSession.ts
 ```
 
 ---
@@ -188,7 +184,7 @@ shaan-e-zaban/
 
 * Node.js 20+
 * Yarn (or npm / bun)
-* PostgreSQL (for users only)
+* MongoDB Atlas connection string (MONGO\_URI)
 * Sanity CLI + project setup
 
 ### Setup

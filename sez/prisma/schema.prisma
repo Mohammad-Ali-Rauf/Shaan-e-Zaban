@@ -4,14 +4,29 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String         @id @default(uuid())
-  email     String         @unique
-  name      String?
-  password  String
-  createdAt DateTime       @default(now())
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  email        String         @unique
+  name         String?
+  password     String
+  createdAt    DateTime       @default(now())
+  progress     Progress?
+
+  @@map("users")
+}
+
+type Progress {
+  favorited   String[]         @db.ObjectId
+  inQueue     String[]         @db.ObjectId
+  completed   String[]         @db.ObjectId
+  inProgress  StoryProgress[]  // Nested array of embedded documents
+}
+
+type StoryProgress {
+  storyId     String   @db.ObjectId
+  sentenceId  String   @db.ObjectId
 }
