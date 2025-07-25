@@ -16,13 +16,6 @@ services:
     networks:
       - shaan-e-zaban
 
-  libretranslate:
-    image: libretranslate/libretranslate
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOCALES=en,ur
-
   db:
     image: postgres:17
     env_file:

@@ -1,0 +1,188 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Title (Urdu - Nastaliq)"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Beginner",
+              "value": "beginner"
+            },
+            {
+              "title": "Intermediate",
+              "value": "intermediate"
+            },
+            {
+              "title": "Advanced",
+              "value": "advanced"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "level",
+        "type": "string",
+        "title": "Difficulty Level"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error",
+            "message": "At least one sentence is required."
+          }
+        ],
+        "of": [
+          {
+            "type": "sentence"
+          }
+        ],
+        "name": "sentences",
+        "type": "array"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          }
+        ],
+        "readOnly": true,
+        "name": "author",
+        "type": "object"
+      },
+      {
+        "readOnly": true,
+        "name": "createdAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "story",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "urdu",
+        "type": "string",
+        "title": "Urdu Sentence"
+      },
+      {
+        "name": "english",
+        "type": "string",
+        "title": "English Translation"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "audioUrl",
+        "type": "url",
+        "title": "Audio URL"
+      },
+      {
+        "of": [
+          {
+            "type": "word"
+          }
+        ],
+        "name": "words",
+        "type": "array",
+        "title": "Words in Sentence"
+      }
+    ],
+    "name": "sentence",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "text",
+        "type": "string",
+        "title": "Urdu Word"
+      },
+      {
+        "name": "transliteration",
+        "type": "string"
+      },
+      {
+        "name": "meaning",
+        "type": "string",
+        "title": "Meaning (English)"
+      }
+    ],
+    "name": "word",
+    "type": "object"
+  }
+]
