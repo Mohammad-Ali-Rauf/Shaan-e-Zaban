@@ -9,22 +9,21 @@ export default async function StoryPage({
   searchParams,
 }: {
   params: { level: string; slug: string }
-  searchParams?: { sentence?: string | string[] }
+  searchParams?: Record<string, string | string[] | undefined>
 }) {
   const { level, slug } = params
 
-  const raw = Array.isArray(searchParams?.sentence)
-    ? searchParams?.sentence[0]
-    : searchParams?.sentence
-
-  const rawIndex = parseInt(raw || "0", 10)
+  const rawSentenceParam = searchParams?.sentence
+  const rawIndex = parseInt(
+    Array.isArray(rawSentenceParam) ? rawSentenceParam[0] : rawSentenceParam ?? "0",
+    10
+  )
   const sentenceIndex = Number.isNaN(rawIndex) ? 0 : rawIndex
 
   const session = await getServerSession()
   if (!session) redirect("/auth/signin")
 
   const story = await getStoryBySlug(slug)
-
   if (!story || story.level.toLowerCase() !== level.toLowerCase()) {
     return notFound()
   }
@@ -34,7 +33,7 @@ export default async function StoryPage({
 
   if (!sentence) {
     redirect(`/learn/${level}/${slug}?sentence=0`)
-    return // prevent "unreachable code" warning
+    return
   }
 
   return (
@@ -42,27 +41,19 @@ export default async function StoryPage({
       <h1 className="text-3xl font-bold mb-4">{story.title}</h1>
 
       <div className="border p-4 rounded shadow space-y-4 bg-white">
-        {/* 🔡 Urdu Sentence */}
         <p className="text-right text-2xl font-nastaliq">{sentence.urdu}</p>
 
-        {/* 🔍 Word Breakdown */}
         <div className="space-y-2">
-          {sentence.words?.map(
-            (
-              word: { text: string; transliteration: string; meaning: string },
-              idx: number
-            ) => (
-              <div key={idx} className="border p-2 rounded bg-gray-50">
-                <p className="text-xl">{word.text}</p>
-                <p className="text-sm text-gray-600 italic">
-                  {word.transliteration} — {word.meaning}
-                </p>
-              </div>
-            )
-          )}
+          {sentence.words?.map((word: { text: string, transliteration: string, meaning: string }, idx: number) => (
+            <div key={idx} className="border p-2 rounded bg-gray-50">
+              <p className="text-xl">{word.text}</p>
+              <p className="text-sm text-gray-600 italic">
+                {word.transliteration} — {word.meaning}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* 🔊 Audio */}
         {sentence.audioUrl && (
           <audio controls className="mt-4 w-full">
             <source src={sentence.audioUrl} type="audio/mpeg" />
@@ -70,7 +61,6 @@ export default async function StoryPage({
           </audio>
         )}
 
-        {/* 💬 English Translation */}
         <div className="italic text-gray-600 mt-2">{sentence.english}</div>
       </div>
 
