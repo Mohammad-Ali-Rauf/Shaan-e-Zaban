@@ -122,10 +122,10 @@ return await client.create(story)
 }
 
 export async function updateStory(id: string, data: Partial<Story>) {
-  const patch: any = {}
+  const patch: Partial<Story> = {}
 
   if (data.title) patch.title = data.title
-  if (data.slug) patch.slug = { _type: 'slug', current: data.slug }
+  if (data.slug) patch.slug = data.slug
   if (data.level) patch.level = data.level
   if (data.tags) patch.tags = data.tags
 

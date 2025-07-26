@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getServerSession } from "@/lib/getServerSession"
-import { getUserStories } from "@/lib/sanity"
+import { getUserStories, Story } from "@/lib/sanity"
 import StoryCard from "@/components/StoryCard"
 
 export default async function DashboardPage() {
@@ -20,7 +20,7 @@ export default async function DashboardPage() {
         </p>
       ) : (
         <div className="space-y-4">
-          {stories.map((story: any) => (
+          {stories.map((story: Story) => (
             <StoryCard key={story._id} story={story} showActions />
           ))}
         </div>

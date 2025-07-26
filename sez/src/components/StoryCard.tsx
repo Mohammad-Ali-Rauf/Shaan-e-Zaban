@@ -1,9 +1,10 @@
 'use client'
 
+import { Story } from '@/lib/sanity'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-export default function StoryCard({ story, showActions = false }: any) {
+export default function StoryCard({ story, showActions = false }: { story: Story, showActions: boolean }) {
   const router = useRouter()
 
   const handleDelete = async () => {

@@ -6,14 +6,14 @@ import { getServerSession } from "@/lib/getServerSession"
 
 export default async function StoryPage({
   params,
-  searchParams,
+  searchParams
 }: {
-  params: { level: string; slug: string }
-  searchParams?: Record<string, string | string[] | undefined>
+  params: Promise<{ level: string; slug: string }>
+  searchParams?: Promise<{ sentence?: string | string[] }>
 }) {
-  const { level, slug } = params
+  const { level, slug } = await  params
 
-  const rawSentenceParam = searchParams?.sentence
+  const rawSentenceParam = (await searchParams)?.sentence
   const rawIndex = parseInt(
     Array.isArray(rawSentenceParam) ? rawSentenceParam[0] : rawSentenceParam ?? "0",
     10

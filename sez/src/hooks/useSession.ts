@@ -30,9 +30,10 @@ export function useSession(): UseSessionResult {
 
       const data = await res.json()
       setUser(data.user)
-    } catch (err: any) {
+    } catch (err: unknown) {
       setUser(null)
-      setError(err.message || "Something went wrong")
+      setError("Something went wrong")
+      console.log(err)
     } finally {
       setLoading(false)
     }

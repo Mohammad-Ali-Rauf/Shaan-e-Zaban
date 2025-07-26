@@ -16,6 +16,7 @@ export async function getServerSession(): Promise<UserPayload | null> {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as UserPayload
     return decoded
   } catch (err) {
+    console.error(err)
     return null
   }
 }

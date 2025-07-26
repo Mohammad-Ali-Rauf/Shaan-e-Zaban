@@ -36,6 +36,7 @@ export default function SignInPage() {
       router.push(callbackUrl)
     } catch (err) {
       setError('Something went wrong')
+      console.error(err)
     } finally {
       setLoading(false)
     }

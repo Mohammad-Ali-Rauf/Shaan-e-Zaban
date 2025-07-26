@@ -36,6 +36,7 @@ export default function SignUpPage() {
       router.push('/dashboard')
     } catch (err) {
       setError('Server error.')
+      console.error(err)
     } finally {
       setLoading(false)
     }
