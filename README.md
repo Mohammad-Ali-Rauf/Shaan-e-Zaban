@@ -43,7 +43,7 @@ they can optionally add **word-by-word translations**, upload **custom pronuncia
 Here's what **Shaan-e-Zaban** looks like in action:
 
 ![Story Reader](./screenshots/story-reader.png)
-![Live](shaan-e-zaban.vercel.app)
+🌐 **Live:** [Shaan-e-Zaban](https://shaan-e-zaban.vercel.app)
 
 ---
 
