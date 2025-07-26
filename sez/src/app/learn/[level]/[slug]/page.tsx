@@ -4,17 +4,20 @@ import Link from "next/link"
 import { getStoryBySlug } from "@/lib/sanity"
 import { getServerSession } from "@/lib/getServerSession"
 
-interface Props {
+export default async function StoryPage({
+  params,
+  searchParams,
+}: {
   params: { level: string; slug: string }
-  searchParams?: { sentence?: string }
-}
-
-export default async function StoryPage({ params, searchParams }: {
-  params: { level: string; slug: string }
-  searchParams?: { sentence?: string }
+  searchParams?: { sentence?: string | string[] }
 }) {
   const { level, slug } = params
-  const rawIndex = parseInt(searchParams?.sentence || "0", 10)
+
+  const raw = Array.isArray(searchParams?.sentence)
+    ? searchParams?.sentence[0]
+    : searchParams?.sentence
+
+  const rawIndex = parseInt(raw || "0", 10)
   const sentenceIndex = Number.isNaN(rawIndex) ? 0 : rawIndex
 
   const session = await getServerSession()
@@ -30,7 +33,8 @@ export default async function StoryPage({ params, searchParams }: {
   const sentence = sentences[sentenceIndex]
 
   if (!sentence) {
-    return redirect(`/learn/${level}/${slug}?sentence=0`)
+    redirect(`/learn/${level}/${slug}?sentence=0`)
+    return // prevent "unreachable code" warning
   }
 
   return (
@@ -43,14 +47,19 @@ export default async function StoryPage({ params, searchParams }: {
 
         {/* 🔍 Word Breakdown */}
         <div className="space-y-2">
-          {sentence.words?.map((word: { text: string, transliteration: string, meaning: string }, idx: number) => (
-            <div key={idx} className="border p-2 rounded bg-gray-50">
-              <p className="text-xl">{word.text}</p>
-              <p className="text-sm text-gray-600 italic">
-                {word.transliteration} — {word.meaning}
-              </p>
-            </div>
-          ))}
+          {sentence.words?.map(
+            (
+              word: { text: string; transliteration: string; meaning: string },
+              idx: number
+            ) => (
+              <div key={idx} className="border p-2 rounded bg-gray-50">
+                <p className="text-xl">{word.text}</p>
+                <p className="text-sm text-gray-600 italic">
+                  {word.transliteration} — {word.meaning}
+                </p>
+              </div>
+            )
+          )}
         </div>
 
         {/* 🔊 Audio */}
