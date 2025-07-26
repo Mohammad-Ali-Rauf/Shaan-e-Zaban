@@ -9,9 +9,12 @@ interface Props {
   searchParams?: { sentence?: string }
 }
 
-export default async function StoryPage({ params, searchParams }: Props) {
+export default async function StoryPage({ params, searchParams }: {
+  params: { level: string; slug: string }
+  searchParams?: { sentence?: string }
+}) {
   const { level, slug } = params
-  const rawIndex = parseInt(await searchParams?.sentence || "0", 10)
+  const rawIndex = parseInt(searchParams?.sentence || "0", 10)
   const sentenceIndex = Number.isNaN(rawIndex) ? 0 : rawIndex
 
   const session = await getServerSession()
@@ -40,7 +43,7 @@ export default async function StoryPage({ params, searchParams }: Props) {
 
         {/* 🔍 Word Breakdown */}
         <div className="space-y-2">
-          {sentence.words?.map((word, idx) => (
+          {sentence.words?.map((word: { text: string, transliteration: string, meaning: string }, idx: number) => (
             <div key={idx} className="border p-2 rounded bg-gray-50">
               <p className="text-xl">{word.text}</p>
               <p className="text-sm text-gray-600 italic">
