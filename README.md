@@ -89,7 +89,7 @@ Here's what **Shaan-e-Zaban** looks like in action:
 | Database      | **MongoDB Atlas via Prisma** (User + Progress)  |
 | Auth          | **JWT (Custom Implementation)**                 |
 | Audio Storage | **Static MP3/WAV** served via `/public/audio`   |
-| Deployment    | Not deployed yet — local only for now           |
+| Deployment    | **Vercel**                                      |
 
 ---
 
