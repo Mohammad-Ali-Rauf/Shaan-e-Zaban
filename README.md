@@ -2,6 +2,8 @@
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 ![Next.js](https://img.shields.io/badge/frontend-Next.js-blue)
+![MongoDB](https://img.shields.io/badge/frontend-mongo)
+![Sanity](https://img.shields.io/badge/frontend-sanity)
 ![Status](https://img.shields.io/badge/status-Active-lightgrey)
 
 **Shaan-e-Zaban** is among the world’s first — and the only open-source, community-powered Urdu learning platform centered on immersive storytelling, human audio, and Nastaliq script.
