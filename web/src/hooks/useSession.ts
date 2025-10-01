@@ -1,10 +1,9 @@
-import { useAtom } from 'jotai'
-import { userAtom, loadingAtom, errorAtom } from '@/lib/sessionAtoms'
+import { useState } from 'react'
 
 export function useSession() {
-  const [user, setUser] = useAtom(userAtom)
-  const [loading, setLoading] = useAtom(loadingAtom)
-  const [error, setError] = useAtom(errorAtom)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<null | string>(null)
 
   const refresh = async () => {
     setLoading(true)
@@ -23,6 +22,7 @@ export function useSession() {
       setUser(data.user)
     } catch (err) {
       setUser(null)
+      console.error(err)
       setError('Something went wrong')
     } finally {
       setLoading(false)

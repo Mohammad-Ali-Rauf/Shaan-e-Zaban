@@ -7,7 +7,7 @@ type UserPayload = {
   name?: string
 }
 
-export async function getServerSession(): Promise<UserPayload | null> {
+export default async function getServerSession(): Promise<UserPayload | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
   if (!token) return null

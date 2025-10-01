@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 .urdu {
-  font-family: 'Gulzar', serif;
+  font-family: 'Gulzar', 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
   direction: rtl;
   text-align: right;
-}
-
-.input {
-  @apply w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring focus:border-blue-500;
+  line-height: 1.8;          /* gives breathing space for Nastaliq */
+  letter-spacing: 0.5px;     /* optional: improves readability at small sizes */
+  font-feature-settings: "calt" 1, "rlig" 1; /* ligatures & contextual forms */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;     /* ensures long words don't overflow */
 }
 
 @layer utilities {

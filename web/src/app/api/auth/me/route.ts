@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib";
 
 export async function GET(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
@@ -31,8 +31,8 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({ user });
-  } catch (err: any) {
-  if (err.name === "TokenExpiredError") {
+  } catch (err: unknown) {
+  if (err === "TokenExpiredError") {
     return NextResponse.json({ error: "Token expired" }, { status: 401 });
   }
   return NextResponse.json({ error: "Invalid token" }, { status: 401 });
