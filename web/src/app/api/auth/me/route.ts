@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
 
-    if (!decoded || typeof decoded !== "object" || !decoded.id) {
+    if (!decoded || !decoded?.id) {
       return NextResponse.json({ error: "Invalid token structure" }, { status: 401 });
     }
 
@@ -31,8 +31,11 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({ user });
-  } catch (err) {
-    console.error("JWT Error:", err);
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+  } catch (err: any) {
+  if (err.name === "TokenExpiredError") {
+    return NextResponse.json({ error: "Token expired" }, { status: 401 });
   }
+  return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+}
+
 }

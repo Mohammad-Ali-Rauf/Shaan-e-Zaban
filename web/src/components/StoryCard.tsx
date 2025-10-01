@@ -11,7 +11,7 @@ export default function StoryCard({ story, showActions = false }: { story: Story
     if (!confirm('Are you sure you want to delete this story?')) return
 
     const res = await fetch(`/api/stories/delete`, {
-      method: 'POST',
+      method: 'DELETE',
       body: JSON.stringify({ id: story._id }),
     })
 

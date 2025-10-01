@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
 
   const user = await prisma.user.findUnique({ where: { email } });
@@ -21,9 +22,7 @@ export async function POST(req: Request) {
     { expiresIn: "7d" }
   );
 
-  const response = new Response(JSON.stringify({ success: true }), {
-    status: 200,
-  });
+  const response = NextResponse.json({  success: true, status: 200, });
 
   response.headers.set(
     "Set-Cookie",

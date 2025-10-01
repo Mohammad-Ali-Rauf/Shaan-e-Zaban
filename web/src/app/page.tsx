@@ -11,14 +11,14 @@ export default async function HomePage() {
       </h1>
 
       <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mb-8">
-        A culturally authentic platform to learn standard Urdu — in Urdu. No Roman script, no shortcuts.
+        A culturally authentic platform to learn standard Urdu.
       </p>
 
       <Link
         href="/contribute"
         className="px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition"
       >
-        ✍️ Contribute Your Own Story
+        ✍️ Start Writing
       </Link>
 
       <h2 className="text-3xl font-bold mt-16 mb-4">📚 Available Stories</h2>
@@ -27,7 +27,7 @@ export default async function HomePage() {
         {stories.map((story: Story) => (
           <Link
             key={story._id}
-            href={`/learn/${story.level}/${story.slug}`}
+            href={`/learn/${story.level}/${story.slug.current}`}
             className="border p-4 rounded-lg shadow hover:shadow-md transition text-left bg-white"
           >
             <h3 className="text-xl font-semibold mb-1">{story.title}</h3>

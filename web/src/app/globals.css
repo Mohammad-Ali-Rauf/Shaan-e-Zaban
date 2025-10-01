@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+.urdu {
+  font-family: 'Gulzar', serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.input {
+  @apply w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring focus:border-blue-500;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

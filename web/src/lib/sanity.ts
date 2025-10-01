@@ -17,7 +17,10 @@ export type Sentence = {
 export type Story = {
   _id?: string
   title: string
-  slug: string
+  slug: {
+    _type: "slug"
+    current: string
+  }
   level: 'beginner' | 'intermediate' | 'advanced'
   sentences: Sentence[]
   tags?: string[]
