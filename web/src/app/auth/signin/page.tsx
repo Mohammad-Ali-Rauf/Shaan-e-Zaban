@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useAuthStore } from '@/stores/authStore'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
@@ -13,6 +14,8 @@ export default function SignInPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
+
+  const setUser = useAuthStore(state => state.setUser)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,6 +35,10 @@ export default function SignInPage() {
         setLoading(false)
         return
       }
+
+      const data = await res.json() 
+
+      setUser(data.user)
 
       // success — redirect
       router.push(callbackUrl)

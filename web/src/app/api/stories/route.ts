@@ -4,20 +4,16 @@ import { createStory, getAllStories, Story } from '@/lib';
 /**
  * GET /api/stories
  * Retrieves all stories with optional filtering
- * Replaces: /api/stories/getAll
  */
 export async function GET(request: NextRequest) {
   try {
-    // Extract query parameters for potential filtering
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(request.url, process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000');
     const level = searchParams.get('level'); // Optional level filter
     
     console.log('📚 Fetching stories', level ? `for level: ${level}` : '');
     
-    // Fetch stories from Sanity
     const stories = await getAllStories();
-    
-    // Optional: Filter by level if provided
+
     const filteredStories = level 
       ? stories.filter((story: Story) => story.level === level)
       : stories;
@@ -28,7 +24,6 @@ export async function GET(request: NextRequest) {
     
   } catch (error) {
     console.error('❌ Error fetching stories:', error);
-    
     return NextResponse.json(
       { 
         error: 'Failed to fetch stories',
@@ -42,26 +37,31 @@ export async function GET(request: NextRequest) {
 /**
  * POST /api/stories
  * Creates a new story
- * Replaces: /api/stories/create
  */
 export async function POST(request: NextRequest) {
   try {
-    // Parse and validate request body
     const body = await request.json();
     
     console.log('📝 Creating new story:', { 
       title: body.title,
       level: body.level 
     });
-    
-    // Validate required fields
-    if (!body.title || !body.content || !body.level) {
+
+    // Validate required fields according to schema
+    if (!body.title || !body.level || !body.sentences) {
       return NextResponse.json(
-        { error: 'Missing required fields: title, content, level' },
+        { error: 'Missing required fields: title, level, sentences' },
         { status: 400 }
       );
     }
-    
+
+    if (!Array.isArray(body.sentences) || body.sentences.length === 0) {
+      return NextResponse.json(
+        { error: 'Sentences must be a non-empty array' },
+        { status: 400 }
+      );
+    }
+
     // Create story in Sanity
     const story = await createStory(body);
     
@@ -71,7 +71,6 @@ export async function POST(request: NextRequest) {
     
   } catch (error) {
     console.error('❌ Error creating story:', error);
-    
     return NextResponse.json(
       { 
         error: 'Failed to create story',

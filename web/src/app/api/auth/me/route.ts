@@ -3,17 +3,20 @@ import jwt from "jsonwebtoken";
 import { prisma } from "@/lib";
 
 export async function GET(req: NextRequest) {
-  const token = req.cookies.get("token")?.value;
-
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
+    const token = req.cookies.get("token")?.value;
+
+    if (!token) {
+      return NextResponse.json({ user: null });
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
 
     if (!decoded || !decoded?.id) {
-      return NextResponse.json({ error: "Invalid token structure" }, { status: 401 });
+      // Clear invalid token and return null user
+      const response = NextResponse.json({ user: null });
+      response.cookies.delete('token');
+      return response;
     }
 
     const user = await prisma.user.findUnique({
@@ -27,15 +30,21 @@ export async function GET(req: NextRequest) {
     });
 
     if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      // Clear invalid token and return null user
+      const response = NextResponse.json({ user: null });
+      response.cookies.delete('token');
+      return response;
     }
 
     return NextResponse.json({ user });
-  } catch (err: unknown) {
-  if (err === "TokenExpiredError") {
-    return NextResponse.json({ error: "Token expired" }, { status: 401 });
+    
+  } catch (err: any) {
+    console.error('ME route error:', err);
+    
+    // Clear invalid token on any error
+    const response = NextResponse.json({ user: null });
+    response.cookies.delete('token');
+    
+    return response;
   }
-  return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-}
-
 }

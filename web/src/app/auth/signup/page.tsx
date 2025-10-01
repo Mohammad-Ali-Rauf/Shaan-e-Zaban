@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
+import { useAuthStore } from '@/stores/authStore'
+
 export default function SignUpPage() {
   const router = useRouter()
 
@@ -12,6 +14,8 @@ export default function SignUpPage() {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const setUser = useAuthStore(state => state.setUser)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,7 +37,8 @@ export default function SignUpPage() {
         return
       }
 
-      // ✅ success: user is now auto-logged in by server setting token cookie
+      setUser(data.user)
+      
       router.push('/dashboard')
     } catch (err) {
       setError('Server error.')

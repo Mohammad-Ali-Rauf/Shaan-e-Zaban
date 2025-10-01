@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
     SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
     SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
   },
-  swcMinify: true,
   experimental: {
     optimizePackageImports: ['lucide-react', '@sanity/client'],
   }

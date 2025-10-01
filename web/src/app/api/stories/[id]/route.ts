@@ -57,58 +57,33 @@ export async function GET(request: NextRequest) {
  * Updates an existing story
  * Replaces: /api/stories/update
  */
-export async function PUT(request: NextRequest) {
+export async function PUT(req: NextRequest) {
   try {
-    const {pathname} = request.nextUrl
-    const id = pathname.split('/').pop();
+    const body = await req.json()
     
-    console.log('✏️ Updating story:', { id });
-    
-    if (!id) {
+    if (!body._id) {
       return NextResponse.json(
-        { error: 'Story ID is required' },
+        { error: 'Story ID is required for updates' },
         { status: 400 }
-      );
+      )
     }
-    
-    // Parse request body
-    const updateData = await request.json();
-    
-    // Validate that we have data to update
-    if (!updateData || Object.keys(updateData).length === 0) {
-      return NextResponse.json(
-        { error: 'No update data provided' },
-        { status: 400 }
-      );
+
+    const updateData = {
+      title: body.title,
+      level: body.level,
+      tags: body.tags,
+      sentences: body.sentences
     }
-    
-    console.log('📋 Update data:', Object.keys(updateData));
-    
-    // Update story in Sanity
-    const updatedStory = await updateStory(id, updateData);
-    
-    if (!updatedStory) {
-      console.log('❌ Story not found for update:', id);
-      return NextResponse.json(
-        { error: 'Story not found' },
-        { status: 404 }
-      );
-    }
-    
-    console.log('✅ Story updated successfully:', { id });
-    
-    return NextResponse.json(updatedStory);
-    
+
+    const updatedStory = await updateStory(body._id, updateData)
+
+    return NextResponse.json(updatedStory)
   } catch (error) {
-    console.error('❌ Error updating story:', error);
-    
+    console.error('Error updating story:', error)
     return NextResponse.json(
-      { 
-        error: 'Failed to update story',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
+      { error: 'Failed to update story' },
       { status: 500 }
-    );
+    )
   }
 }
 

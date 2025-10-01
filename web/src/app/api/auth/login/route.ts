@@ -4,30 +4,68 @@ import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { email, password } = await req.json();
+  try {
+    const { email, password } = await req.json();
 
-  const user = await prisma.user.findUnique({ where: { email } });
+    // Input validation
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: "Email and password are required" },
+        { status: 400 }
+      );
+    }
 
-  if (!user || !user.password)
-    return new Response("Invalid credentials", { status: 401 });
+    const user = await prisma.user.findUnique({ 
+      where: { email: email.toLowerCase() } 
+    });
 
-  const isValid = await bcrypt.compare(password, user.password);
+    if (!user || !user.password) {
+      return NextResponse.json(
+        { error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
 
-  if (!isValid)
-    return new Response("Invalid credentials", { status: 401 });
+    const isValid = await bcrypt.compare(password, user.password);
 
-  const token = jwt.sign(
-    { id: user.id, email: user.email },
-    process.env.JWT_SECRET!,
-    { expiresIn: "7d" }
-  );
+    if (!isValid) {
+      return NextResponse.json(
+        { error: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
 
-  const response = NextResponse.json({  success: true, status: 200, });
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
 
-  response.headers.set(
-    "Set-Cookie",
-    `token=${token}; HttpOnly; Path=/; Max-Age=${7 * 24 * 60 * 60}`
-  );
+    const response = NextResponse.json({
+      success: true,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name
+      }
+    });
 
-  return response;
+    // Better cookie setup
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+      path: '/'
+    });
+
+    return response;
+
+  } catch (error) {
+    console.error('Login error:', error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
 }
