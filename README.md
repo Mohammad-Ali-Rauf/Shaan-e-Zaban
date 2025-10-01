@@ -1,251 +1,250 @@
-# **Shaan-e-Zaban (شانِ زبان)**
+# **Shaan-e-Zaban (شانِ زبان)** 🌟
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
-![Next.js](https://img.shields.io/badge/frontend-Next.js-blue)
+![Next.js 15](https://img.shields.io/badge/frontend-Next.js_15-black)
 ![MongoDB](https://img.shields.io/badge/database-MongoDB-brightgreen)
-![Sanity](https://img.shields.io/badge/content-Sanity-orange)
-![Status](https://img.shields.io/badge/status-Active-lightgrey)
+![Sanity](https://img.shields.io/badge/cms-Sanity-orange)
+![TypeScript](https://img.shields.io/badge/lang-TypeScript-blue)
+![Prisma](https://img.shields.io/badge/orm-Prisma-purple)
 
-**Shaan-e-Zaban** is the world’s **first open-source Urdu learning platform that teaches through immersive stories**.
-Forget boring drills and robotic translation exercises — here, learners **experience the language**, read in **beautiful Nastaliq script**, and listen to **human audio narration**.
+**Shaan-e-Zaban** is the world's **first open-source Urdu learning platform that teaches through immersive stories** 📚. Forget boring drills and robotic translation exercises — here, learners **experience the language**, read in **beautiful Nastaliq script**, and listen to **human audio narration**.
 
-> **USP:** Learning Urdu through stories makes language intuitive, emotional, and memorable. Every word is learned in context, not in isolation.
+> **🎯 Unique Value:** Learning Urdu through stories makes language intuitive, emotional, and memorable. Every word is learned in context, not in isolation.
 
 ---
 
-## 📚 Table of Contents
+## 📋 Table of Contents
 
-* [Overview](#overview)
-* [Sample Story](#sample-story)
-* [Key Features](#key-features)
-* [Technology Stack](#technology-stack)
-* [Directory Structure](#directory-structure)
-* [Installation](#installation)
-* [License](#license)
-* [Contribution](#contribution)
+* [Overview](#-overview)
+* [Sample Story](#-sample-story)
+* [Key Features](#-key-features)
+* [Technology Stack](#-technology-stack)
+* [Project Structure](#-project-structure)
+* [License](#-license)
+* [Contribution](#-contribution)
 
 ---
 
 ## 🔍 Overview
 
-**Shaan-e-Zaban** is not just a language app — it is a **cultural and educational movement**.
+**Shaan-e-Zaban** is not just a language app — it is a **cultural and educational movement** 🌍.
 
 Traditional language apps focus on:
-
-* Vocab lists
-* Repetitive exercises
-* Robotic translation
+* 📝 Vocab lists
+* 🔁 Repetitive exercises  
+* 🤖 Robotic translation
 
 These approaches teach words, but not understanding, feeling, or context.
 
-**Shaan-e-Zaban flips this approach**: learners explore Urdu **through community-written stories**, narrated in **authentic Nastaliq script** with **optional audio**.
-
-Authors can:
-
-* Add word-by-word translations
-* Upload custom audio recordings
-* Tag stories by topic, grammar, or difficulty
+**Shaan-e-Zaban flips this approach**: learners explore Urdu **through community-written stories**, narrated in **authentic Nastaliq script** with **optional audio** 🎧.
 
 ---
 
 ## 🧠 Architecture Breakdown
 
-* ✍️ **Stories** are managed in **Sanity CMS**
-* 🧑‍💼 **Users and progress** stored in **MongoDB via Prisma**
-* 🧠 **UserProgress and StoryProgress** are embedded for quick access
-* 📂 **Legacy stories** in `/curriculum/` can be seeded into Sanity
+* ✍️ **Stories & Content** managed in **Sanity CMS**
+* 🗄️ **Users & Authentication** stored in **MongoDB via Prisma**
+* 🎨 **Modern Frontend** built with **Next.js 15 App Router**
+* 🔐 **Secure Middleware** with JWT authentication
+* 🔊 **Audio Support** with static MP3/WAV files
 
 ---
 
-## 📖 Sample Story: “خاموشی کا راز” / “The Secret of Silence”
+## 📖 Sample Story
 
-### Urdu Version
+### اردو کہانی: "پہلی بس سواری" 🚌
 
-کراچی کی ایک پرانی گلی میں واقع ایک خستہ حال مکان میں ایک بوڑھی عورت رہتی تھی جس کا نام زینب تھا۔ زینب کی عمر ستر سال سے تجاوز کر چکی تھی، اور وہ اکثر اپنی چھت پر بیٹھ کر آسمان کو تکتے ہوئے گھنٹوں خاموش رہتی۔ محلے والے اسے "خاموش زینب" کہتے تھے کیونکہ وہ بہت کم بولتی تھی۔
+عمران ایک طالب علم ہے۔ وہ لاہور میں رہتا ہے۔ آج وہ پہلی بار اکیلا بس کا سفر کر رہا ہے۔ اس کی امی نے کہا: "خبردار رہنا۔"
 
-زینب کی زندگی ایک معمہ تھی۔ کوئی نہیں جانتا تھا کہ وہ کس کے ساتھ رہتی تھی، اس کا کوئی رشتہ دار ہے یا نہیں، اور وہ کس طرح اپنے اخراجات پورے کرتی ہے۔ کچھ لوگ کہتے تھے کہ وہ کسی زمانے میں ایک مشہور مصنفہ تھی، لیکن کسی نے اس کی کوئی کتاب نہیں دیکھی۔
+عمران بس اسٹاپ پر کھڑا ہے۔ اس کے ہاتھ میں ایک کتاب ہے۔ وہ گھبرایا ہوا ہے لیکن خوش بھی ہے۔
 
-ایک دن محلے میں ایک نوجوان لڑکی، مریم، اپنے والدین کے ساتھ رہنے آئی۔ مریم کو کتابیں پڑھنے کا شوق تھا اور وہ زینب کے بارے میں جاننے کے لیے بے چین تھی۔ ایک شام وہ زینب کے دروازے پر گئی اور سلام کیا۔ زینب نے دروازہ کھولا، اس کی آنکھوں میں حیرت تھی لیکن چہرے پر نرمی۔
+بس آتی ہے۔ عمران بس میں چڑھتا ہے۔ کنڈکٹر پوچھتا ہے: "کہاں جانا ہے؟"
 
-"کیا میں آپ سے کچھ دیر بات کر سکتی ہوں؟" مریم نے پوچھا۔
+عمران جواب دیتا ہے: "مجھے یونیورسٹی جانا ہے۔"
 
-زینب نے سر ہلایا اور اسے اندر آنے کا اشارہ دیا۔ گھر کے اندر ہر چیز صاف ستھری تھی، لیکن دیواروں پر پرانی تصاویر اور کتابوں کی قطاریں تھیں۔ مریم نے ایک تصویر کی طرف اشارہ کیا جس میں ایک جوان عورت کسی تقریب میں تقریر کر رہی تھی۔
+وہ اپنا کرایہ دیتا ہے۔ ایک سیٹ خالی ہے۔ وہ بیٹھ جاتا ہے۔
 
-"یہ آپ ہیں؟" مریم نے پوچھا۔
+بس چلتی ہے۔ عمران کھڑکی سے باہر دیکھتا ہے۔ دکانیں، درخت، لوگ... سب کچھ نیا لگ رہا ہے۔
 
-زینب نے مسکرا کر کہا، "ہاں، بہت پرانی بات ہے۔"
+ایک بوڑھا آدمی بس میں چڑھتا ہے۔ تمام سیٹیں بھری ہوئی ہیں۔ عمران کھڑا ہوتا ہے اور کہتا ہے: "برائے مہربانی، آپ یہاں بیٹھیں۔"
 
-مریم نے ہمت کر کے پوچھا، "آپ نے لکھنا کیوں چھوڑ دیا؟"
+بوڑھا آدمی مسکراتا ہے: "بہت شکریہ، بیٹا۔ تم بہت اچھے ہو۔"
 
-زینب نے ایک طویل سانس لی اور کہا، "زندگی نے کچھ ایسے موڑ لیے کہ قلم تھم گیا۔"
+عمران خوش ہوتا ہے۔ وہ پہلی بار اکیلا سفر کر رہا ہے لیکن سب کچھ ٹھیک ہے۔
 
-پھر زینب نے ایک پرانی الماری کھولی اور ایک ڈائری نکالی۔ "یہ میری آخری تحریر ہے، جو کبھی مکمل نہ ہو سکی۔"
+### 📚 Vocabulary (لفظوں کا ذخیرہ)
 
-مریم نے ڈائری کھولی اور پڑھنا شروع کیا۔ اس میں ایک کہانی تھی جو ایک لڑکی کے خوابوں اور جدوجہد پر مبنی تھی۔ مریم نے کہا، "یہ تو بہت خوبصورت ہے، آپ کو اسے مکمل کرنا چاہیے۔"
+| English | Urdu | Example Sentence |
+|---------|------|-----------------|
+| Student | طالب علم | عمران ایک طالب علم ہے |
+| Alone | اکیلا | وہ اکیلا سفر کر رہا ہے |
+| Bus | بس | بس آتی ہے |
+| Journey | سفر | بس کا سفر |
+| Caution | خبردار | خبردار رہنا |
+| Conductor | کنڈکٹر | کنڈکٹر نے پوچھا |
+| Fare | کرایہ | اس نے کرایہ دیا |
+| Seat | سیٹ | سیٹ خالی ہے |
+| University | یونیورسٹی | یونیورسٹی جانا ہے |
+| Old man | بوڑھا آدمی | بوڑھا آدمی مسکراتا ہے |
+| Please | برائے مہربانی | برائے مہربانی بیٹھیں |
+| Thank you | شکریہ | آپ کا شکریہ |
+| Happy | خوش | وہ خوش ہوتا ہے |
 
-زینب نے کہا، "اگر تم چاہو تو ہم مل کر اسے مکمل کر سکتے ہیں۔"
-
-یوں زینب کی خاموشی ٹوٹ گئی۔ وہ روز مریم کے ساتھ بیٹھتی، اپنی کہانی سناتی، اور مریم اسے لکھتی۔ محلے والے حیران تھے کہ زینب اب باتیں کرتی ہے، ہنستی ہے، اور اس کی آنکھوں میں زندگی کی چمک ہے۔
-
-چند ماہ بعد، زینب کی اور مریم کی مشترکہ کتاب شائع ہوئی۔ اس کا نام تھا "خاموشی کا راز"۔ کتاب نے بہت شہرت حاصل کی، اور زینب کو دوبارہ پہچان ملی۔
-
-زینب نے مریم سے کہا، "تم نے مجھے میری آواز واپس دی۔"
-
-مریم نے مسکرا کر کہا، "اور آپ نے مجھے خواب دیکھنا سکھایا۔"
-
----
-
-### English Translation
-
-In an old alley of Karachi, there lived an elderly woman named Zainab in a dilapidated house. Zainab was over seventy years old and often sat on her rooftop, staring at the sky in silence for hours. The neighbors called her “Silent Zainab” because she spoke very little.
-
-Zainab’s life was a mystery. No one knew who she lived with, whether she had any relatives, or how she managed her expenses. Some said she was once a famous writer, but no one had ever seen her books.
-
-One day, a young girl named Maryam moved into the neighborhood with her parents. Maryam loved reading and was curious about Zainab. One evening, she went to Zainab’s door and greeted her. Zainab opened the door, her eyes filled with surprise but her face was gentle.
-
-“May I talk to you for a while?” Maryam asked.
-
-Zainab nodded and invited her in. Inside, everything was neat, but the walls were lined with old photographs and shelves of books. Maryam pointed to a picture of a young woman giving a speech at an event.
-
-“Is this you?” Maryam asked.
-
-Zainab smiled and said, “Yes, a long time ago.”
-
-Maryam gathered courage and asked, “Why did you stop writing?”
-
-Zainab took a deep breath and said, “Life took turns that silenced my pen.”
-
-Then Zainab opened an old cupboard and took out a diary. “This is my last piece of writing, never completed.”
-
-Maryam opened the diary and began reading. It was a story about a girl’s dreams and struggles. Maryam said, “This is beautiful. You should finish it.”
-
-Zainab replied, “If you want, we can finish it together.”
-
-And so, Zainab’s silence broke. She would sit with Maryam every day, narrating her story while Maryam wrote. The neighbors were amazed that Zainab now talked, laughed, and her eyes sparkled with life.
-
-A few months later, Zainab and Maryam’s joint book was published. Its title was “The Secret of Silence.” The book gained fame, and Zainab was recognized once again.
-
-Zainab told Maryam, “You gave me back my voice.”
-
-Maryam smiled and said, “And you taught me how to dream.”
-
----
-
-### 📚 Vocabulary (مشکل الفاظ)
-
-| Urdu        | English     |
-| ----------- | ----------- |
-| خستہ حال    | Dilapidated |
-| معمہ        | Mystery     |
-| تقریر       | Speech      |
-| تحریر       | Writing     |
-| الماری      | Cupboard    |
-| جدوجہد      | Struggle    |
-| پہچان       | Recognition |
-| چمک         | Sparkle     |
-| خاموشی      | Silence     |
-| خواب دیکھنا | To dream    |
-
-> This sample demonstrates **how stories make learning natural, memorable, and fun**.
+> *This sample demonstrates **how stories make learning natural, memorable, and fun**.*
 
 ---
 
 ## ✨ Key Features
 
 * **📝 Community-Contributed Stories** – Full CRUD for signed-in users
-* **📚 Progressive Learning Flow** – Beginner → Advanced stories for natural progression
-* **🖋 Nastaliq Script** – Elegant calligraphy for reading Urdu
-* **🔊 Optional Audio Support** – MP3/WAV for pronunciation guidance
-* **📘 Optional Word-Level Translations** – Sentence-level translations required, word-level optional
-* **🏷️ Grammar & Topic Tags** – Filter stories by theme, grammar, or tense
-* **📈 Personalized Progress Tracking** – MongoDB-based, per-sentence resume support
+* **📚 Progressive Learning Flow** – Beginner → Intermediate → Advanced stories
+* **🖋 Nastaliq Script** – Elegant calligraphy for authentic reading experience
+* **🔊 Audio Support** – MP3/WAV for pronunciation guidance
+* **📘 Word & Sentence Translations** – Comprehensive learning support
+* **🏷️ Grammar & Topic Tags** – Filter stories by theme and difficulty
+* **📈 Progress Tracking** – MongoDB-based progress tracking
 * **🔐 JWT Auth System** – Secure authentication & story ownership
-* **🌍 Open Source & Scalable** – MIT license, Sanity backend, React extensible
+* **🌍 Open Source** – MIT licensed and community driven
 
 ---
 
 ## ⚙️ Technology Stack
 
-| Layer         | Tech                               |
-| ------------- | ---------------------------------- |
-| Frontend      | Next.js (App Router, React 19)     |
-| Styling       | Tailwind CSS                       |
-| Backend API   | Next.js API Routes                 |
-| Content Layer | Sanity CMS                         |
-| Database      | MongoDB Atlas via Prisma           |
-| Auth          | Custom JWT Implementation          |
-| Audio Storage | Static MP3/WAV via `/public/audio` |
-| Deployment    | Vercel                             |
+| Layer | Technology |
+|-------|------------|
+| 🎨 Frontend | Next.js 15, React 19, TypeScript |
+| 🎨 Styling | Tailwind CSS |
+| 🔧 Backend | Next.js API Routes |
+| 📝 Content | Sanity CMS |
+| 🗄️ Database | MongoDB with Prisma ORM |
+| 🔐 Authentication | JWT with custom middleware |
+| 🔊 Audio | Static MP3/WAV files |
+| 🛠️ Development | ESLint, PostCSS |
 
 ---
 
-## 📁 Directory Structure
+## 📁 Project Structure
 
-```bash
-shaan-e-zaban/
-├── compose.yml
-├── .env.example
-├── .gitignore
-├── LICENSE
-├── README.md
-├── CONTRIBUTING.md
-├── curriculum/
+```
+Shaan-e-Zaban/
+├── 📚 curriculum/                 # Legacy story data
 │   ├── beginner/stories.json
 │   ├── intermediate/stories.json
 │   └── advanced/stories.json
-└── sez/
-    ├── .env.example
-    ├── next.config.ts
-    ├── middleware.ts
-    ├── postcss.config.mjs
-    ├── eslint.config.mjs
-    ├── tsconfig.json
-    ├── yarn.lock
-    ├── prisma/schema.prisma
-    ├── public/audio/
-    ├── sanity/
-    └── src/
+├── 📄 LICENSE
+├── 📖 README.md
+├── 🤝 CONTRIBUTING.md
+├── 🖼️ screenshots/
+└── 🌐 web/                        # Next.js application
+    ├── 🛠️ next.config.ts          # Next.js configuration
+    ├── 🛡️ middleware.ts           # Authentication & security
+    ├── ⚙️ package.json
+    ├── 🗄️ prisma/schema.prisma    # MongoDB schema
+    ├── 🔊 public/audio/           # Audio assets (001.mp3, 001.wav)
+    ├── 📝 sanity/                 # Sanity CMS configuration
+    │   ├── schemaTypes/           # Story, Sentence, Word schemas
+    │   ├── lib/client.ts          # Sanity client
+    │   └── scripts/seed.ts        # Data seeding
+    └── 🎯 src/
+        ├── 🏠 app/                # Next.js 15 App Router
+        │   ├── 🎯 api/            # API routes
+        │   │   ├── 🔐 auth/       # Authentication endpoints
+        │   │   ├── 📚 stories/    # Story management (RESTful)
+        │   │   └── 🩺 health/     # Health check endpoint
+        │   ├── 🔐 auth/           # Login/Signup pages
+        │   ├── 📚 learn/          # Learning interface
+        │   ├── 🛠️ contribute/     # Story contribution
+        │   ├── 📊 dashboard/      # User dashboard
+        │   └── ℹ️ about/          # About page
+        ├── 🧩 components/         # React components
+        │   ├── 🏗️ layout/        # Layout components (Navbar)
+        │   ├── ⚡ features/       # Feature components (stories/)
+        │   └── index.ts           # Barrel exports
+        ├── 🎣 hooks/              # Custom React hooks (useSession)
+        └── 🛠️ lib/               # Utilities & configurations
+            ├── 🔐 auth/           # Authentication utilities
+            ├── 🗄️ database/      # MongoDB with Prisma
+            ├── 📝 cms/           # Sanity CMS client
+            ├── 📁 types/         # TypeScript definitions
+            ├── 🛠️ utils/         # Helper functions (logger)
+            └── index.ts           # Centralized exports
 ```
 
 ---
 
-## 🚀 Installation
-
 ### Prerequisites
 
-* Node.js 20+
-* Yarn (or npm / bun)
-* MongoDB Atlas connection string (`MONGO_URI`)
-* Sanity CLI + project setup
+* Node.js LTS
+* MongoDB database (local or Atlas)
+* Sanity.io account
 
-### Setup
+### Quick Start
 
 ```bash
-cd sez
+# Clone the repository
+git clone https://github.com/Mohammad-Ali-Rauf/shaan-e-zaban.git
+cd shaan-e-zaban/web
+
+# Install dependencies
 yarn install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env.local with your credentials:
+
+# DATABASE_URL="mongodb://localhost:27017/shaan-e-zaban"
+# JWT_SECRET="your-jwt-secret"
+# SANITY_PROJECT_ID="your-sanity-project-id"
+# SANITY_DATASET="production"
+
+# Set up database
+npx prisma generate
+npx prisma db push
+
+# Start development server
 yarn dev
 ```
 
-Runs at: `http://localhost:3000`
+App runs at: `http://localhost:3000`
 
-Seed stories into Sanity from `curriculum/`:
+---
+
+### Available Scripts
 
 ```bash
-yarn sanity exec sanity/scripts/seed.ts
+yarn dev          # Start development server
+yarn build        # Build for production
+yarn start        # Start production server
+yarn lint         # Run ESLint
+```
+
+### Environment Variables
+
+```bash
+# Database
+DATABASE_URL="mongodb://username:password@host:port/database"
+
+# Authentication
+JWT_SECRET="your-super-secret-jwt-token"
+
+# Sanity CMS
+SANITY_PROJECT_ID="your-project-id"
+SANITY_DATASET="production"
+SANITY_API_WRITE_TOKEN="your-write-token"
 ```
 
 ---
 
 ## 📜 License
 
-**MIT License** © 2025 Mohammad Ali
+**MIT License** © 2025 Mohammad Ali  
 See [`LICENSE`](./LICENSE) for full terms.
 
 ---
 
 ## 🤝 Contribution
 
-This is your platform too — help shape its future.
+This is your platform too — help shape its future! 🚀
 
 Check [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
@@ -258,4 +257,12 @@ Check [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 * 🌐 Translate interface (coming soon)
 * 🛠 Propose and build new features
 
-> **Your stories can make learning Urdu alive for thousands of learners.**
+> **🌟 Your stories can make learning Urdu alive for thousands of learners.**
+
+---
+
+<div align="center">
+
+**Made with ❤️ for the Urdu language and its learners worldwide**
+
+</div>
