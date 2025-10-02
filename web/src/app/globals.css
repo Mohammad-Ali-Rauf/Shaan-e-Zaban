@@ -13,6 +13,11 @@
   word-break: break-word;     /* ensures long words don't overflow */
 }
 
+.urdu-heading {
+  @apply text-center; /* centers horizontally */
+  direction: rtl;     /* preserves ligatures & RTL shaping */
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.5s ease-in-out;

@@ -46,7 +46,7 @@ export default async function StoryPage({
             story.level === 'intermediate' ? 'bg-yellow-900/50 text-yellow-300 border border-yellow-700/50' :
               'bg-red-900/50 text-red-300 border border-red-700/50'
             }`}>
-            {story.level} Level
+            {story.level}
           </span>
 
           {/* Progress Actions Component */}
@@ -60,7 +60,7 @@ export default async function StoryPage({
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+        <h1 className="urdu urdu-heading text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
           {story.title}
         </h1>
         <div className="w-32 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto rounded-full mb-6"></div>

@@ -13,6 +13,13 @@
 
 ---
 
+## 🖼️ Screenshots
+
+![Story Reader Interface](./screenshots/story-reader.png)
+*Immersive story reader with Nastaliq script, audio controls, and vocabulary support*
+
+---
+
 ## 📋 Table of Contents
 
 * [Overview](#-overview)
@@ -20,6 +27,8 @@
 * [Key Features](#-key-features)
 * [Technology Stack](#-technology-stack)
 * [Project Structure](#-project-structure)
+* [Quick Start](#-quick-start)
+* [API Routes](#-api-routes)
 * [License](#-license)
 * [Contribution](#-contribution)
 
@@ -40,13 +49,13 @@ These approaches teach words, but not understanding, feeling, or context.
 
 ---
 
-## 🧠 Architecture Breakdown
+## 🏗️ Architecture
 
-* ✍️ **Stories & Content** managed in **Sanity CMS**
-* 🗄️ **Users & Authentication** stored in **MongoDB via Prisma**
-* 🎨 **Modern Frontend** built with **Next.js 15 App Router**
-* 🔐 **Secure Middleware** with JWT authentication
-* 🔊 **Audio Support** with static MP3/WAV files
+* **🎨 Frontend Layer:** Next.js 15 with App Router, React 19, TypeScript
+* **📝 Content Layer:** Sanity CMS for stories, sentences, and words
+* **💾 Data Layer:** MongoDB with Prisma ORM for users and progress tracking
+* **🔐 Security Layer:** Custom JWT authentication with middleware protection
+* **🎵 Media Layer:** Static audio files for pronunciation guidance
 
 ---
 
@@ -102,7 +111,7 @@ These approaches teach words, but not understanding, feeling, or context.
 * **🔊 Audio Support** – MP3/WAV for pronunciation guidance
 * **📘 Word & Sentence Translations** – Comprehensive learning support
 * **🏷️ Grammar & Topic Tags** – Filter stories by theme and difficulty
-* **📈 Progress Tracking** – MongoDB-based progress tracking
+* **📈 Progress Tracking** – MongoDB-based progress tracking with favorites and ratings
 * **🔐 JWT Auth System** – Secure authentication & story ownership
 * **🌍 Open Source** – MIT licensed and community driven
 
@@ -123,7 +132,7 @@ These approaches teach words, but not understanding, feeling, or context.
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure (Production Grade)
 
 ```
 Shaan-e-Zaban/
@@ -135,7 +144,7 @@ Shaan-e-Zaban/
 ├── 📖 README.md
 ├── 🤝 CONTRIBUTING.md
 ├── 🖼️ screenshots/
-└── 🌐 web/                        # Next.js application
+└── 🌐 web/                        # Next.js 15 Application
     ├── 🛠️ next.config.ts          # Next.js configuration
     ├── 🛡️ middleware.ts           # Authentication & security
     ├── ⚙️ package.json
@@ -149,36 +158,61 @@ Shaan-e-Zaban/
         ├── 🏠 app/                # Next.js 15 App Router
         │   ├── 🎯 api/            # API routes
         │   │   ├── 🔐 auth/       # Authentication endpoints
-        │   │   ├── 📚 stories/    # Story management (RESTful)
-        │   │   └── 🩺 health/     # Health check endpoint
-        │   ├── 🔐 auth/           # Login/Signup pages
-        │   ├── 📚 learn/          # Learning interface
-        │   ├── 🛠️ contribute/     # Story contribution
-        │   ├── 📊 dashboard/      # User dashboard
-        │   └── ℹ️ about/          # About page
+        │   │   │   ├── login/route.ts
+        │   │   │   ├── logout/route.ts
+        │   │   │   ├── me/route.ts
+        │   │   │   └── signup/route.ts
+        │   │   ├── 📊 progress/   # Progress tracking
+        │   │   │   ├── complete/route.ts
+        │   │   │   ├── favorite/route.ts
+        │   │   │   ├── preferences/route.ts
+        │   │   │   ├── rate/route.ts
+        │   │   │   ├── session/route.ts
+        │   │   │   └── stats/route.ts
+        │   │   ├── 📚 stories/    # Story management
+        │   │   │   ├── [id]/route.ts
+        │   │   │   └── route.ts
+        │   │   └── 🩺 health/route.ts
+        │   ├── 🔐 auth/           # Authentication pages
+        │   │   ├── signin/page.tsx
+        │   │   └── signup/page.tsx
+        │   ├── (pages)/           # Route groups for organization
+        │   │   ├── 📚 learn/[level]/[slug]/  # Learning interface
+        │   │   ├── ✍️ contribute/             # Story contribution
+        │   │   ├── 📊 dashboard/              # User dashboard
+        │   │   ├── 🛠️ edit/[slug]/           # Story editing
+        │   │   ├── 📖 stories/               # Story browsing
+        │   │   └── ℹ️ about/                 # About page
+        │   └── layout.tsx         # Root layout
         ├── 🧩 components/         # React components
         │   ├── 🏗️ layout/        # Layout components (Navbar)
-        │   ├── ⚡ features/       # Feature components (stories/)
+        │   ├── ⚡ features/       # Feature components
+        │   │   ├── 🔐 auth/AuthInitializer.tsx
+        │   │   ├── 📊 progress/   # Progress tracking components
+        │   │   └── 📚 stories/   # Story-related components
         │   └── index.ts           # Barrel exports
-        ├── 🎣 hooks/              # Custom React hooks (useSession)
-        └── 🛠️ lib/               # Utilities & configurations
-            ├── 🔐 auth/           # Authentication utilities
-            ├── 🗄️ database/      # MongoDB with Prisma
-            ├── 📝 cms/           # Sanity CMS client
-            ├── 📁 types/         # TypeScript definitions
-            ├── 🛠️ utils/         # Helper functions (logger)
-            └── index.ts           # Centralized exports
+        ├── 🎣 hooks/              # Custom React hooks
+        ├── 🛠️ lib/               # Utilities & configurations
+        │   ├── 🔐 auth/           # Authentication utilities
+        │   ├── 🗄️ database/      # MongoDB with Prisma
+        │   ├── 📝 cms/           # Sanity CMS client
+        │   ├── 📁 types/         # TypeScript definitions
+        │   ├── 🛠️ utils/         # Helper functions
+        │   └── index.ts           # Centralized exports
+        └── 🗂️ stores/            # State management (authStore.ts)
 ```
 
 ---
 
+## 🚀 Quick Start
+
 ### Prerequisites
 
-* Node.js LTS
+* Node.js LTS (18+)
 * MongoDB database (local or Atlas)
 * Sanity.io account
 
-### Quick Start
+### Installation
 
 ```bash
 # Clone the repository
@@ -190,13 +224,24 @@ yarn install
 
 # Set up environment variables
 cp .env.example .env
-# Edit .env.local with your credentials:
+```
 
-# DATABASE_URL="mongodb://localhost:27017/shaan-e-zaban"
-# JWT_SECRET="your-jwt-secret"
-# SANITY_PROJECT_ID="your-sanity-project-id"
-# SANITY_DATASET="production"
+Edit `.env` with your credentials:
 
+```env
+# Database
+DATABASE_URL="mongodb://localhost:27017/shaan-e-zaban"
+
+# Authentication
+JWT_SECRET="your-super-secret-jwt-token"
+
+# Sanity CMS
+SANITY_PROJECT_ID="your-project-id"
+SANITY_DATASET="production"
+SANITY_API_WRITE_TOKEN="your-write-token"
+```
+
+```bash
 # Set up database
 npx prisma generate
 npx prisma db push
@@ -207,8 +252,6 @@ yarn dev
 
 App runs at: `http://localhost:3000`
 
----
-
 ### Available Scripts
 
 ```bash
@@ -218,20 +261,22 @@ yarn start        # Start production server
 yarn lint         # Run ESLint
 ```
 
-### Environment Variables
+---
 
-```bash
-# Database
-DATABASE_URL="mongodb://username:password@host:port/database"
+## 🎯 API Routes
 
-# Authentication
-JWT_SECRET="your-super-secret-jwt-token"
-
-# Sanity CMS
-SANITY_PROJECT_ID="your-project-id"
-SANITY_DATASET="production"
-SANITY_API_WRITE_TOKEN="your-write-token"
-```
+| Endpoint | Method | Description | Auth Required |
+|----------|--------|-------------|---------------|
+| `/api/auth/login` | POST | User login | No |
+| `/api/auth/signup` | POST | User registration | No |
+| `/api/auth/me` | GET | Get current user | Yes |
+| `/api/auth/logout` | POST | User logout | Yes |
+| `/api/stories` | GET | List stories | No |
+| `/api/stories/[id]` | GET | Get story details | No |
+| `/api/progress/complete` | POST | Mark story as complete | Yes |
+| `/api/progress/favorite` | POST | Toggle story favorite | Yes |
+| `/api/progress/rate` | POST | Rate a story | Yes |
+| `/api/progress/stats` | GET | Get user progress stats | Yes |
 
 ---
 
@@ -266,3 +311,5 @@ Check [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 **Made with ❤️ for the Urdu language and its learners worldwide**
 
 </div>
+
+---
