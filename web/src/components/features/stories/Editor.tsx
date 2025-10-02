@@ -137,8 +137,12 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
     }
 
     try {
-      const url = '/api/stories'
-      const method = mode === 'edit' ? 'PUT' : 'POST'
+      const url = mode === 'edit'
+        ? `/api/stories/${story?.slug?.current}`  // PATCH to specific story
+        : '/api/stories'                // POST to base URL
+
+      const method = mode === 'edit' ? 'PATCH' : 'POST'
+
 
       const res = await fetch(url, {
         method,
@@ -184,8 +188,8 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
               {headerText}
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
-              {isEditMode 
-                ? 'Update your Urdu story with new content or corrections.' 
+              {isEditMode
+                ? 'Update your Urdu story with new content or corrections.'
                 : 'Share your Urdu story with the community. Add sentences in both Urdu and English to help learners.'
               }
             </p>
@@ -249,7 +253,7 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
                 {sentences.length} {sentences.length === 1 ? 'sentence' : 'sentences'}
               </span>
             </div>
-            
+
             {sentences.map((s, idx) => (
               <div key={idx} className="relative bg-gray-900/30 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-gray-600 space-y-3 sm:space-y-4 group hover:border-gray-500 transition-all duration-300">
                 <div className="flex items-center gap-3">
@@ -258,7 +262,7 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
                   </div>
                   <p className="text-sm font-medium text-gray-400">Sentence {idx + 1}</p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 gap-3 sm:gap-4">
                   <div className="space-y-2">
                     <label className="block text-xs font-medium text-gray-400">Urdu Text *</label>
@@ -283,7 +287,7 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
                     />
                   </div>
                 </div>
-                
+
                 {sentences.length > 1 && (
                   <button
                     type="button"
@@ -322,7 +326,7 @@ export default function Editor({ mode = 'create', story }: EditorProps) {
             >
               Cancel
             </button>
-            
+
             <button
               type="submit"
               disabled={submitting}

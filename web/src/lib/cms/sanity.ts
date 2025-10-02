@@ -38,7 +38,7 @@ export async function getAllStories() {
   slug,
   level,
   tags,
-  author->{
+  author {
     _id,
     name,
     email
@@ -55,7 +55,7 @@ export async function getStoryBySlug(slug: string) {
   slug,
   level,
   tags,
-  author->{
+  author {
     _id,
     name,
     email
@@ -82,7 +82,8 @@ export async function getUserStories(email: string) {
   slug,
   level,
   tags,
-  author->{
+  author {
+    _id,
     name,
     email
   }

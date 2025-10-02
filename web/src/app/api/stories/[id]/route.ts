@@ -57,14 +57,29 @@ export async function GET(request: NextRequest) {
  * Updates an existing story
  * Replaces: /api/stories/update
  */
-export async function PUT(req: NextRequest) {
+export async function PATCH(request: NextRequest) {
   try {
-    const body = await req.json()
+    const { pathname } = request.nextUrl
+    const slug = pathname.split('/').pop()
     
-    if (!body._id) {
+    console.log('✏️ Updating story with slug:', slug)
+    
+    if (!slug) {
       return NextResponse.json(
-        { error: 'Story ID is required for updates' },
+        { error: 'Story slug is required for updates' },
         { status: 400 }
+      )
+    }
+
+    const body = await request.json()
+    
+    // First, get the story by slug to get its actual ID
+    const existingStory = await getStoryBySlug(slug)
+    
+    if (!existingStory) {
+      return NextResponse.json(
+        { error: 'Story not found' },
+        { status: 404 }
       )
     }
 
@@ -75,7 +90,8 @@ export async function PUT(req: NextRequest) {
       sentences: body.sentences
     }
 
-    const updatedStory = await updateStory(body._id, updateData)
+    // Use the actual document _id for update
+    const updatedStory = await updateStory(existingStory._id, updateData)
 
     return NextResponse.json(updatedStory)
   } catch (error) {
@@ -86,7 +102,6 @@ export async function PUT(req: NextRequest) {
     )
   }
 }
-
 /**
  * DELETE /api/stories/[id]
  * Deletes a story by ID
