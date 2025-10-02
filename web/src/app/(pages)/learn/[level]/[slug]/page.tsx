@@ -1,6 +1,9 @@
 import { notFound, redirect } from "next/navigation"
 import Link from "next/link"
-import { getServerSession, getStoryBySlug } from "@/lib"
+import { getStoryBySlug, getServerSession } from "@/lib"
+import { ProgressActions } from "@/components/features/progress/ProgressActions"
+import { PaginationNav } from "@/components/features/stories/PaginationNav"
+import { AudioPlayer } from "@/components/features/stories/AudioPlayer"
 
 export default async function StoryPage({
   params,
@@ -38,15 +41,25 @@ export default async function StoryPage({
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header Section */}
       <div className="text-center mb-8">
-        <div className="flex justify-center mb-4">
-          <span className={`px-4 py-2 rounded-full text-sm font-semibold capitalize ${
-            story.level === 'beginner' ? 'bg-green-900/50 text-green-300 border border-green-700/50' :
+        <div className="flex justify-center items-center gap-4 mb-4">
+          <span className={`px-4 py-2 rounded-full text-sm font-semibold capitalize ${story.level === 'beginner' ? 'bg-green-900/50 text-green-300 border border-green-700/50' :
             story.level === 'intermediate' ? 'bg-yellow-900/50 text-yellow-300 border border-yellow-700/50' :
-            'bg-red-900/50 text-red-300 border border-red-700/50'
-          }`}>
+              'bg-red-900/50 text-red-300 border border-red-700/50'
+            }`}>
             {story.level} Level
           </span>
+
+          {/* Progress Actions Component */}
+          <ProgressActions
+            storySlug={slug}
+            storyId={story._id}
+            storyLevel={story.level}
+            currentSentence={sentenceIndex + 1}
+            totalSentences={sentences.length}
+            isLastSentence={sentenceIndex === sentences.length - 1}
+          />
         </div>
+
         <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
           {story.title}
         </h1>
@@ -60,17 +73,10 @@ export default async function StoryPage({
           <p className="text-3xl md:text-4xl font-nastaliq text-gray-100 leading-relaxed mb-6">
             {sentence.urdu}
           </p>
-          
+
           {/* Audio Player */}
           {sentence.audioUrl && (
-            <div className="flex justify-center mb-6">
-              <div className="bg-gray-900/50 rounded-2xl p-4 border border-gray-600 max-w-md w-full">
-                <audio controls className="w-full">
-                  <source src={sentence.audioUrl} type="audio/mpeg" />
-                  Your browser does not support the audio tag.
-                </audio>
-              </div>
-            </div>
+            <AudioPlayer audioUrl={sentence.audioUrl} storySlug={slug} />
           )}
 
           {/* English Translation */}
@@ -90,8 +96,8 @@ export default async function StoryPage({
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sentence.words?.map((word: { text: string, transliteration: string, meaning: string }, idx: number) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className="bg-gray-900/30 border border-gray-600 rounded-xl p-4 hover:border-gray-500 transition-all duration-300 group"
                 >
                   <div className="flex items-start justify-between mb-2">
@@ -122,13 +128,14 @@ export default async function StoryPage({
             currentIndex={sentenceIndex}
             total={sentences.length}
             baseUrl={`/learn/${level}/${slug}`}
+            storySlug={slug}
           />
         </div>
       </div>
 
       {/* Story Info Footer */}
       <div className="mt-8 text-center">
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors duration-200 text-sm font-medium"
         >
@@ -138,75 +145,6 @@ export default async function StoryPage({
           Back to Stories
         </Link>
       </div>
-    </div>
-  )
-}
-
-function PaginationNav({
-  currentIndex,
-  total,
-  baseUrl,
-}: {
-  currentIndex: number
-  total: number
-  baseUrl: string
-}) {
-  const prev = currentIndex > 0 ? `${baseUrl}?sentence=${currentIndex - 1}` : null
-  const next = currentIndex < total - 1 ? `${baseUrl}?sentence=${currentIndex + 1}` : null
-
-  return (
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-      {/* Previous Button */}
-      {prev ? (
-        <Link 
-          href={prev} 
-          className="flex items-center gap-3 px-6 py-3 bg-gray-700/50 text-gray-300 rounded-xl hover:bg-gray-600/50 hover:text-white transition-all duration-300 transform hover:scale-105 border border-gray-600 group"
-        >
-          <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Previous Sentence
-        </Link>
-      ) : (
-        <div className="px-6 py-3 opacity-50 cursor-not-allowed">
-          <span className="text-gray-500">Previous</span>
-        </div>
-      )}
-
-      {/* Progress Indicator */}
-      <div className="flex items-center gap-4">
-        <div className="bg-gray-700/50 rounded-full px-4 py-2 border border-gray-600">
-          <span className="text-gray-300 font-semibold text-sm">
-            Sentence <span className="text-red-400">{currentIndex + 1}</span> of {total}
-          </span>
-        </div>
-        <div className="hidden sm:block w-32 bg-gray-600 rounded-full h-2">
-          <div 
-            className="bg-gradient-to-r from-red-600 to-red-800 h-2 rounded-full transition-all duration-500"
-            style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Next Button */}
-      {next ? (
-        <Link 
-          href={next} 
-          className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-700 to-red-800 text-white rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 border border-red-600/30 group"
-        >
-          Next Sentence
-          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-      ) : (
-        <div className="flex items-center gap-3 px-6 py-3 bg-gray-700/50 text-gray-500 rounded-xl border border-gray-600">
-          Complete
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-      )}
     </div>
   )
 }
