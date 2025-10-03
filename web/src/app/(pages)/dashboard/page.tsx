@@ -34,7 +34,7 @@ export default async function DashboardPage() {
           <div>
             <h2 className="text-2xl font-bold text-gray-300 mb-2">📚 Your Stories</h2>
             <p className="text-gray-500">
-              Manage and track all the stories you've contributed to our Urdu learning community
+              Manage and track all the stories you&apos;ve contributed to our Urdu learning community
             </p>
           </div>
           <Link

@@ -1,4 +1,5 @@
 import { prisma } from '.'
+import { Story } from '..'
 
 export async function getUserProgress(email: string) {
   const user = await prisma.user.findUnique({
@@ -15,7 +16,7 @@ export async function getUserProgress(email: string) {
   return user || null
 }
 
-export async function updateStoryProgress(email: string, storyId: string, data: any) {
+export async function updateStoryProgress(email: string, storyId: string, data: Story) {
   const user = await prisma.user.findUnique({
     where: { email }
   })

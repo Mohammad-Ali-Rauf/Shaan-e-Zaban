@@ -2,9 +2,7 @@ import { redirect } from "next/navigation"
 import { getServerSession, getStoryBySlug } from "@/lib"
 
 interface EditPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>
 }
 
 export default async function EditPage({ params }: EditPageProps) {

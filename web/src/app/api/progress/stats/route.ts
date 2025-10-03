@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma, getAllStories, getServerSession } from '@/lib'
+import { prisma, getAllStories, getServerSession, Story } from '@/lib'
 
 export async function GET(request: NextRequest) {
   try {
@@ -38,15 +38,15 @@ export async function GET(request: NextRequest) {
     const levelStats = {
       beginner: { 
         completed: completedProgress.filter(p => p.level === 'beginner').length,
-        total: allStories.filter(s => s.level === 'beginner').length
+        total: allStories.filter((s: Story) => s.level === 'beginner').length
       },
       intermediate: { 
         completed: completedProgress.filter(p => p.level === 'intermediate').length,
-        total: allStories.filter(s => s.level === 'intermediate').length
+        total: allStories.filter((s: Story) => s.level === 'intermediate').length
       },
       advanced: { 
         completed: completedProgress.filter(p => p.level === 'advanced').length,
-        total: allStories.filter(s => s.level === 'advanced').length
+        total: allStories.filter((s: Story) => s.level === 'advanced').length
       }
     }
 

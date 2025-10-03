@@ -157,7 +157,7 @@ export default function StoryCard({ story, showActions = false, onDelete }: Stor
           <div className="bg-gray-800 border border-gray-600 rounded-xl p-6 max-w-sm mx-4">
             <h3 className="text-lg font-bold text-white mb-2">Delete Story?</h3>
             <p className="text-gray-300 mb-4">
-              Are you sure you want to delete "{story.title}"? This action cannot be undone.
+              Are you sure you want to delete &quot;{story.title}&quot;? This action cannot be undone.
             </p>
             <div className="flex gap-3 justify-end">
               <button

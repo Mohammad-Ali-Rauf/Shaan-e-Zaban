@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ user });
     
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('ME route error:', err);
     
     // Clear invalid token on any error

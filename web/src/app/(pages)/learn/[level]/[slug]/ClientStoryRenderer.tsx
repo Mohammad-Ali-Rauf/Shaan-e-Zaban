@@ -6,12 +6,13 @@ import { PaginationNav } from '@/components/features/stories/PaginationNav'
 import { AudioPlayer } from '@/components/features/stories/AudioPlayer'
 import { VocabularyHover } from '@/components/features/stories/VocabularyHover'
 import { ReaderModeView } from '@/components/features/stories/ReaderModeView'
+import { Sentence, Story } from '@/lib'
 
 interface ClientStoryRendererProps {
-  story: any
-  sentence: any
+  story: Story
+  sentence: Sentence
   sentenceIndex: number
-  sentences: any[]
+  sentences: Sentence[]
   level: string
   slug: string
 }

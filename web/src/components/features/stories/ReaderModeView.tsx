@@ -4,9 +4,10 @@ import { useState } from 'react'
 import { CompleteStoryButton } from './CompleteStoryButton'
 import { AudioPlayer } from './AudioPlayer'
 import { VocabularyHover } from './VocabularyHover'
+import { Sentence, Story } from '@/lib'
 
 interface ReaderModeViewProps {
-  story: any
+  story: Story
   level: string
   slug: string
 }
@@ -15,11 +16,11 @@ export function ReaderModeView({ story, level, slug }: ReaderModeViewProps) {
   const [showVocabulary, setShowVocabulary] = useState(false)
 
   // Combine all sentences into full story content
-  const fullStoryUrdu = story.sentences?.map((s: any) => s.urdu).join(' ') || ''
-  const fullStoryEnglish = story.sentences?.map((s: any) => s.english).join(' ') || ''
+  const fullStoryUrdu = story.sentences?.map((s: Sentence) => s.urdu).join(' ') || ''
+  const fullStoryEnglish = story.sentences?.map((s: Sentence) => s.english).join(' ') || ''
   
   // Combine all words from all sentences for vocabulary
-  const allWords = story.sentences?.flatMap((s: any) => s.words || []) || []
+  const allWords = story.sentences?.flatMap((s: Sentence) => s.words || []) || []
 
   return (
     <div className="space-y-8">
