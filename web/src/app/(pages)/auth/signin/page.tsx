@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useAuthStore } from '@/stores/authStore'
+import { useTranslations } from '@/hooks/useLanguage'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
@@ -16,6 +17,7 @@ export default function SignInPage() {
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
 
   const setUser = useAuthStore(state => state.setUser)
+  const t = useTranslations()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -63,11 +65,11 @@ export default function SignInPage() {
         >
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent mb-2">
-              Welcome Back
+            <h1 className="text-3xl urdu urdu-heading font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent mb-2">
+              {t.auth.welcomeBack}
             </h1>
             <p className="text-gray-400 text-sm">
-              Sign in to continue your Urdu learning journey
+              {t.auth.signInDescription}
             </p>
           </div>
 
@@ -83,7 +85,7 @@ export default function SignInPage() {
             <div>
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder={t.auth.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-4 bg-gray-900/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all duration-300"
@@ -95,7 +97,7 @@ export default function SignInPage() {
             <div>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={t.auth.passwordPlaceholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-4 bg-gray-900/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all duration-300"
@@ -116,29 +118,29 @@ export default function SignInPage() {
               {loading ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Signing In...
+                  {t.auth.signingIn}
                 </div>
               ) : (
-                'Sign In'
+                t.auth.signIn
               )}
             </span>
           </button>
 
           {/* Sign Up Link */}
           <p className="text-center text-gray-400 text-sm">
-            Don&apos;t have an account?{' '}
+            {t.auth.dontHaveAccount}{' '}
             <Link 
               href="/auth/signup" 
               className="text-red-400 hover:text-red-300 font-semibold transition-colors duration-200 hover:underline"
             >
-              Sign up
+              {t.auth.signUp}
             </Link>
           </p>
 
           {/* Divider */}
           <div className="relative flex items-center py-4">
             <div className="flex-grow border-t border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-gray-500 text-sm">or</span>
+            <span className="flex-shrink mx-4 text-gray-500 text-sm">{t.auth.or}</span>
             <div className="flex-grow border-t border-gray-600"></div>
           </div>
 
@@ -148,7 +150,7 @@ export default function SignInPage() {
               href="/"
               className="inline-block text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium"
             >
-              Continue as guest →
+              {t.auth.continueGuest}
             </Link>
           </div>
         </form>

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-
 import { useAuthStore } from '@/stores/authStore'
+import { useTranslations } from '@/hooks/useLanguage'
 
 export default function SignUpPage() {
   const router = useRouter()
@@ -16,6 +16,7 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false)
 
   const setUser = useAuthStore(state => state.setUser)
+  const t = useTranslations()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -62,10 +63,10 @@ export default function SignUpPage() {
           {/* Header */}
           <div className="text-center">
             <h1 className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent mb-2">
-              Join Shaan-e-Zaban
+              {t.auth.joinPlatform}
             </h1>
             <p className="text-gray-400 text-sm">
-              Start your Urdu learning journey today
+              {t.auth.signUpDescription}
             </p>
           </div>
 
@@ -81,7 +82,7 @@ export default function SignUpPage() {
             <div>
               <input
                 type="text"
-                placeholder="Full name"
+                placeholder={t.auth.namePlaceholder}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full p-4 bg-gray-900/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all duration-300"
@@ -93,7 +94,7 @@ export default function SignUpPage() {
             <div>
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder={t.auth.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-4 bg-gray-900/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all duration-300"
@@ -105,7 +106,7 @@ export default function SignUpPage() {
             <div>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={t.auth.passwordPlaceholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-4 bg-gray-900/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all duration-300"
@@ -126,29 +127,29 @@ export default function SignUpPage() {
               {loading ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Creating Account...
+                  {t.auth.creatingAccount}
                 </div>
               ) : (
-                'Create Account'
+                t.auth.signUp
               )}
             </span>
           </button>
 
           {/* Sign In Link */}
           <p className="text-center text-gray-400 text-sm">
-            Already have an account?{' '}
+            {t.auth.alreadyHaveAccount}{' '}
             <Link 
               href="/auth/signin" 
               className="text-red-400 hover:text-red-300 font-semibold transition-colors duration-200 hover:underline"
             >
-              Sign in
+              {t.auth.signIn}
             </Link>
           </p>
 
           {/* Divider */}
           <div className="relative flex items-center py-4">
             <div className="flex-grow border-t border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-gray-500 text-sm">or</span>
+            <span className="flex-shrink mx-4 text-gray-500 text-sm">{t.auth.or}</span>
             <div className="flex-grow border-t border-gray-600"></div>
           </div>
 
@@ -158,18 +159,17 @@ export default function SignUpPage() {
               href="/"
               className="inline-block text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium"
             >
-              Continue as guest →
+              {t.auth.continueGuest}
             </Link>
           </div>
 
           {/* Benefits */}
           <div className="bg-gray-900/30 rounded-xl p-4 border border-gray-700/50">
-            <h3 className="text-red-400 text-sm font-semibold mb-2">Create an account to:</h3>
+            <h3 className="text-red-400 text-sm font-semibold mb-2">{t.auth.accountBenefitsTitle}</h3>
             <ul className="text-gray-400 text-sm space-y-1">
-              <li>• Save your progress and stories</li>
-              <li>• Contribute your own stories</li>
-              <li>• Track your learning journey</li>
-              <li>• Join the Urdu learning community</li>
+              {t.auth.accountBenefits.map((benefit: string, index: number) => (
+                <li key={index}>• {benefit}</li>
+              ))}
             </ul>
           </div>
         </form>

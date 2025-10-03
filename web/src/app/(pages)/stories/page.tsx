@@ -56,7 +56,7 @@ export default async function StoriesPage() {
       </div>
 
       {/* Stories Grid Section */}
-      <div className="px-4 pb-20 max-w-7xl mx-auto">
+      <div className="px-4 pt-6 pb-20 max-w-7xl mx-auto">
         {/* Level Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {['beginner', 'intermediate', 'advanced'].map((level) => (

@@ -3,9 +3,12 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { useAuthStore } from '@/stores/authStore'
 import { useState, useRef, useEffect } from 'react'
+import { useLanguageActions, useTranslations } from '@/hooks/useLanguage'
 
 export default function Navbar() {
   const { user, isLoading, logout } = useAuthStore()
+  const { language, toggleLanguage } = useLanguageActions()
+  const t = useTranslations()
   const router = useRouter()
   const pathname = usePathname()
   const [isLoggingOut, setIsLoggingOut] = useState(false)
@@ -58,30 +61,41 @@ export default function Navbar() {
 
   // Navigation links configuration for reusability
   const navLinks = [
-    { href: '/', label: '🏠 Home', icon: '🏠' },
-    { href: '/stories', label: '📚 Stories', icon: '📚' },
-    { href: '/about', label: 'ℹ️ About', icon: 'ℹ️' },
+    { href: '/', label: t.navbar.home, icon: '🏠' },
+    { href: '/stories', label: t.navbar.stories, icon: '📚' },
+    { href: '/about', label: t.navbar.about, icon: 'ℹ️' },
   ]
 
   const authLinks = user ? [
-    { href: '/dashboard', label: '📊 Dashboard', icon: '📊' },
-    { href: '/contribute', label: '✍️ Write Story', icon: '✍️' },
+    { href: '/dashboard', label: t.navbar.dashboard, icon: '📊' },
+    { href: '/contribute', label: t.navbar.writeStory, icon: '✍️' },
   ] : []
 
   return (
     <>
       <nav className="flex justify-between items-center p-4 border-b border-gray-800 bg-gradient-to-r from-gray-900 via-gray-900 to-black backdrop-blur-sm sticky top-0 z-50">
-        {/* Logo */}
-        <Link 
-          prefetch 
-          href="/" 
-          className="urdu font-bold text-2xl bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200 group"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          <span className="transition-all duration-300">
-            شانِ زبان
-          </span>
-        </Link>
+        {/* Logo and Language Toggle */}
+        <div className="flex items-center gap-4">
+          <Link 
+            prefetch 
+            href="/" 
+            className="urdu font-bold text-2xl bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200 group"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <span className="transition-all duration-300">
+              شانِ زبان
+            </span>
+          </Link>
+
+          {/* Simple Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="px-3 py-1 text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg border border-gray-600 transition-all duration-200 font-medium"
+            title={language === 'en' ? 'Switch to Urdu' : 'Switch to English'}
+          >
+            {language === 'en' ? 'اردو' : 'English'}
+          </button>
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-2 items-center">
@@ -124,7 +138,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setShowUserPopup(!showUserPopup)}
                   className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-red-400 hover:bg-gray-800/50 transition-all duration-200 rounded-lg border border-transparent hover:border-gray-600 text-sm font-medium group"
-                  title="View profile"
+                  title={t.navbar.viewProfile}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="max-w-24 truncate">
@@ -138,7 +152,7 @@ export default function Navbar() {
                   onClick={handleLogout}
                   disabled={isLoggingOut}
                   className="px-3 py-2 text-gray-400 hover:text-red-500 hover:bg-red-900/20 transition-all duration-200 rounded-lg border border-gray-700 hover:border-red-700 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  title="Sign out"
+                  title={t.common.logout}
                 >
                   {isLoggingOut ? (
                     <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
@@ -157,7 +171,7 @@ export default function Navbar() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
               <span className="relative flex items-center gap-2">
                 <span className="text-sm">🔐</span>
-                Sign In
+                {t.common.signIn}
               </span>
             </Link>
           )}
@@ -184,29 +198,29 @@ export default function Navbar() {
           className="fixed top-20 right-4 md:right-6 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl shadow-black/50 z-50 min-w-64 max-w-80 backdrop-blur-sm"
         >
           <div className="p-4 border-b border-gray-700">
-            <h3 className="font-semibold text-white mb-1">User Profile</h3>
-            <p className="text-sm text-gray-400">Your account information</p>
+            <h3 className="font-semibold text-white mb-1">{t.navbar.userProfile}</h3>
+            <p className="text-sm text-gray-400">{t.auth.accountInfo}</p>
           </div>
           
           <div className="p-4 space-y-3">
             <div>
-              <label className="text-xs text-gray-500 uppercase tracking-wide">Name</label>
-              <p className="text-white font-medium truncate">{user.name || 'Not set'}</p>
+              <label className="text-xs text-gray-500 uppercase tracking-wide">{t.auth.name}</label>
+              <p className="text-white font-medium truncate">{user.name || t.auth.notSet}</p>
             </div>
             
             <div>
-              <label className="text-xs text-gray-500 uppercase tracking-wide">Email</label>
+              <label className="text-xs text-gray-500 uppercase tracking-wide">{t.auth.email}</label>
               <p className="text-white font-medium truncate">{user.email}</p>
             </div>
             
             <div>
-              <label className="text-xs text-gray-500 uppercase tracking-wide">User ID</label>
+              <label className="text-xs text-gray-500 uppercase tracking-wide">{t.auth.userId}</label>
               <p className="text-gray-400 text-xs font-mono truncate">{user.id}</p>
             </div>
             
             <div className="pt-2 border-t border-gray-700">
               <p className="text-xs text-gray-500">
-                Member since {new Date().toLocaleDateString()}
+                {t.navbar.memberSince} {new Date().toLocaleDateString()}
               </p>
             </div>
           </div>
@@ -216,7 +230,7 @@ export default function Navbar() {
               onClick={() => setShowUserPopup(false)}
               className="w-full py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
             >
-              Close
+              {t.common.close}
             </button>
           </div>
         </div>
@@ -229,6 +243,15 @@ export default function Navbar() {
           className="md:hidden fixed top-16 inset-x-0 bg-gray-900 border-b border-gray-800 shadow-2xl z-40 backdrop-blur-sm"
         >
           <div className="p-4 space-y-2">
+            {/* Language Toggle in Mobile */}
+            <button
+              onClick={toggleLanguage}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-all duration-200 font-medium mb-2"
+            >
+              <span>🌐</span>
+              {language === 'en' ? 'Switch to Urdu' : 'Switch to English'}
+            </button>
+
             {/* Navigation Links */}
             {navLinks.map((link) => (
               <Link
@@ -242,7 +265,7 @@ export default function Navbar() {
                 }`}
               >
                 <span className="text-lg">{link.icon}</span>
-                {link.label.replace(/[^\w\s]/g, '')}
+                {link.label}
               </Link>
             ))}
 
@@ -261,7 +284,7 @@ export default function Navbar() {
                     }`}
                   >
                     <span className="text-lg">{link.icon}</span>
-                    {link.label.replace(/[^\w\s]/g, '')}
+                    {link.label}
                   </Link>
                 ))}
 
@@ -285,14 +308,14 @@ export default function Navbar() {
                       }}
                       className="flex-1 py-2 text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm"
                     >
-                      👤 Profile
+                      👤 {t.common.profile}
                     </button>
                     <button 
                       onClick={handleLogout}
                       disabled={isLoggingOut}
                       className="flex-1 py-2 text-gray-400 hover:text-red-500 transition-colors duration-200 text-sm disabled:opacity-50"
                     >
-                      {isLoggingOut ? '...' : '🚪 Logout'}
+                      {isLoggingOut ? '...' : `🚪 ${t.common.logout}`}
                     </button>
                   </div>
                 </div>
@@ -304,7 +327,7 @@ export default function Navbar() {
                 className="flex items-center gap-3 w-full px-4 py-3 bg-gradient-to-r from-red-700 to-red-800 text-white rounded-lg text-base font-semibold transition-all duration-200 transform hover:scale-105 border border-red-600/30"
               >
                 <span className="text-lg">🔐</span>
-                Sign In
+                {t.common.signIn}
               </Link>
             )}
           </div>
