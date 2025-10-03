@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {prisma, getAllStories, getServerSession} from '@/lib'
+import { prisma, getAllStories, getServerSession } from '@/lib'
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,73 +10,74 @@ export async function GET(request: NextRequest) {
 
     const userData = await prisma.user.findUnique({
       where: { email: user.email },
-      select: { progress: true }
+      include: { 
+        progress: true,
+        sessions: {
+          orderBy: { date: 'desc' },
+          take: 5
+        }
+      }
     })
 
-    // Get all stories from Sanity for accurate counts
-    const allStories = await getAllStories()
-
-    // Handle null progress with proper default structure
-    const progress = userData?.progress || {
-      completedStories: [],
-      currentStreak: 0,
-      longestStreak: 0,
-      totalLearningTime: 0,
-      storiesStarted: [],
-      favoriteStories: [],
-      levelProgress: [],
-      recentSessions: []
+    if (!userData) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    // Calculate real stats using Sanity data
-    const totalStoriesCompleted = progress.completedStories?.length || 0
-    const totalLearningHours = Math.floor((progress.totalLearningTime || 0) / 60)
-    const favoriteCount = progress.favoriteStories?.length || 0
+    // Get all stories for level counts
+    const allStories = await getAllStories()
 
-    // Calculate accurate level breakdown from Sanity
+    // Calculate stats from relational data
+    const completedProgress = userData.progress.filter(p => p.completed)
+    const favoriteProgress = userData.progress.filter(p => p.favorite)
+    
+    const totalStoriesCompleted = completedProgress.length
+    const totalLearningTime = userData.sessions.reduce((sum, session) => sum + session.duration, 0)
+    const favoriteCount = favoriteProgress.length
+
+    // Calculate level stats
     const levelStats = {
       beginner: { 
-        completed: (progress.completedStories || []).filter((id: string) => {
-          const story = allStories.find((s: any) => s._id === id)
-          return story?.level === 'beginner'
-        }).length,
-        total: allStories.filter((s: any) => s.level === 'beginner').length
+        completed: completedProgress.filter(p => p.level === 'beginner').length,
+        total: allStories.filter(s => s.level === 'beginner').length
       },
       intermediate: { 
-        completed: (progress.completedStories || []).filter((id: string) => {
-          const story = allStories.find((s: any) => s._id === id)
-          return story?.level === 'intermediate'
-        }).length,
-        total: allStories.filter((s: any) => s.level === 'intermediate').length
+        completed: completedProgress.filter(p => p.level === 'intermediate').length,
+        total: allStories.filter(s => s.level === 'intermediate').length
       },
       advanced: { 
-        completed: (progress.completedStories || []).filter((id: string) => {
-          const story = allStories.find((s: any) => s._id === id)
-          return story?.level === 'advanced'
-        }).length,
-        total: allStories.filter((s: any) => s.level === 'advanced').length
+        completed: completedProgress.filter(p => p.level === 'advanced').length,
+        total: allStories.filter(s => s.level === 'advanced').length
       }
     }
 
-    // Calculate overall completion percentage
+    // Simple streak calculation (you can enhance this later)
+    const today = new Date().toDateString()
+    const yesterday = new Date(Date.now() - 86400000).toDateString()
+    const hasActivityToday = userData.sessions.some(s => new Date(s.date).toDateString() === today)
+    const hasActivityYesterday = userData.sessions.some(s => new Date(s.date).toDateString() === yesterday)
+    
+    const currentStreak = hasActivityToday ? (hasActivityYesterday ? 2 : 1) : 0
+
     const totalCompletion = allStories.length > 0 
       ? (totalStoriesCompleted / allStories.length) * 100 
       : 0
 
     return NextResponse.json({
       progress: {
-        ...progress,
         totalStoriesCompleted,
-        totalLearningHours,
+        totalLearningHours: Math.floor(totalLearningTime / 60),
         favoriteCount,
-        levelStats,
+        currentStreak,
+        longestStreak: currentStreak, // Simple for now
         totalCompletion: Math.round(totalCompletion),
-        totalStoriesAvailable: allStories.length
+        totalStoriesAvailable: allStories.length,
+        levelStats
       },
-      // Include recent activity
-      recentActivity: (progress.recentSessions || [])
-        .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 5)
+      recentActivity: userData.sessions.map(session => ({
+        date: session.date,
+        stories: session.stories,
+        duration: session.duration
+      }))
     })
 
   } catch (error) {

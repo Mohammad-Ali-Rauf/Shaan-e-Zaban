@@ -1,26 +1,44 @@
-import {prisma} from '.'
+import { prisma } from '.'
 
 export async function getUserProgress(email: string) {
   const user = await prisma.user.findUnique({
     where: { email },
-    select: { progress: true }
+    include: { 
+      progress: true,
+      sessions: {
+        orderBy: { date: 'desc' },
+        take: 10
+      }
+    }
   })
   
-  return user?.progress || {
-    completedStories: [],
-    currentStreak: 0,
-    longestStreak: 0,
-    totalLearningTime: 0,
-    storiesStarted: [],
-    favoriteStories: [],
-    levelProgress: [],
-    recentSessions: []
-  }
+  return user || null
 }
 
-export async function updateUserProgress(email: string, progressData: any) {
-  return await prisma.user.update({
-    where: { email },
-    data: { progress: progressData }
+export async function updateStoryProgress(email: string, storyId: string, data: any) {
+  const user = await prisma.user.findUnique({
+    where: { email }
   })
+
+  if (!user) throw new Error('User not found')
+
+  // Find existing progress or create new
+  const existing = await prisma.userProgress.findFirst({
+    where: { userId: user.id, storyId }
+  })
+
+  if (existing) {
+    return await prisma.userProgress.update({
+      where: { id: existing.id },
+      data
+    })
+  } else {
+    return await prisma.userProgress.create({
+      data: {
+        userId: user.id,
+        storyId,
+        ...data
+      }
+    })
+  }
 }

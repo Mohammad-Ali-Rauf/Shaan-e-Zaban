@@ -78,7 +78,7 @@ export default function Navbar() {
           className="urdu font-bold text-2xl bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200 group"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          <span className="group-hover:drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-300">
+          <span className="transition-all duration-300">
             شانِ زبان
           </span>
         </Link>

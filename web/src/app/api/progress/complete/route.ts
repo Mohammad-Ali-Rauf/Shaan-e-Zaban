@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {prisma, getStoryBySlug, getAllStories, getServerSession} from '@/lib'
+import { prisma, getStoryBySlug, getServerSession } from '@/lib'
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,82 +8,73 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { storySlug } = await request.json()
+    const {storySlug} = await request.json()
     
     if (!storySlug) {
       return NextResponse.json({ error: 'Story slug is required' }, { status: 400 })
     }
 
-    // Get story from Sanity to get actual ID and level
+    // Get story from Sanity
     const story = await getStoryBySlug(storySlug)
     if (!story) {
       return NextResponse.json({ error: 'Story not found' }, { status: 404 })
     }
 
+    // Get user with progress
     const userData = await prisma.user.findUnique({
       where: { email: user.email },
-      select: { id: true, progress: true }
+      include: { 
+        progress: {
+          where: { storyId: story._id }
+        }
+      }
     })
 
     if (!userData) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    // Handle null progress with proper default structure
-    const currentProgress = userData.progress || {
-      completedStories: [],
-      currentStreak: 0,
-      longestStreak: 0,
-      totalLearningTime: 0,
-      storiesStarted: [],
-      favoriteStories: [],
-      levelProgress: [],
-      recentSessions: []
-    }
+    const existingProgress = userData.progress[0]
 
-    // Add to completed stories if not already there
-    const updatedCompletedStories = currentProgress.completedStories.includes(story._id)
-      ? currentProgress.completedStories
-      : [...currentProgress.completedStories, story._id]
-
-    // Update level progress with actual story level
-    const storyLevel = story.level
-    const existingLevelProgress = currentProgress.levelProgress?.find(
-      (lp: any) => lp.level === storyLevel
-    ) || { level: storyLevel, completed: 0, total: 0 }
-
-    // Get total stories count for this level from Sanity
-    const allStories = await getAllStories()
-    const levelStoriesCount = allStories.filter((s: any) => s.level === storyLevel).length
-
-    const updatedLevelProgress = (currentProgress.levelProgress || [])
-      .filter((lp: any) => lp.level !== storyLevel)
-      .concat({
-        ...existingLevelProgress,
-        completed: updatedCompletedStories.filter(id => {
-          const completedStory = allStories.find((s: any) => s._id === id)
-          return completedStory?.level === storyLevel
-        }).length,
-        total: levelStoriesCount
+    if (existingProgress?.completed) {
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Story already completed',
+        progress: existingProgress
       })
-
-    const updatedProgress = {
-      ...currentProgress,
-      completedStories: updatedCompletedStories,
-      levelProgress: updatedLevelProgress,
-      lastActive: new Date()
     }
 
-    // Update user progress
-    await prisma.user.update({
-      where: { id: userData.id },
-      data: { progress: updatedProgress }
+    // Create or update progress record
+    const progress = existingProgress 
+      ? await prisma.userProgress.update({
+          where: { id: existingProgress.id },
+          data: { 
+            completed: true,
+            updatedAt: new Date()
+          }
+        })
+      : await prisma.userProgress.create({
+          data: {
+            userId: userData.id,
+            storyId: story._id,
+            level: story.level,
+            completed: true
+          }
+        })
+
+    // Update learning session
+    await prisma.learningSession.create({
+      data: {
+        userId: userData.id,
+        stories: [story._id],
+        duration: 5 // Default 5 minutes per story
+      }
     })
 
     return NextResponse.json({ 
       success: true, 
       message: 'Story marked as completed',
-      progress: updatedProgress
+      progress
     })
 
   } catch (error) {

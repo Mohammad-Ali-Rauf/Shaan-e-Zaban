@@ -24,7 +24,8 @@
 
 * [Overview](#-overview)
 * [Sample Story](#-sample-story)
-* [Key Features](#-key-features)
+* [Key Features](#-key-features) 
+* [Dual Learning Modes](#-dual-learning-modes-)
 * [Technology Stack](#-technology-stack)
 * [Project Structure](#-project-structure)
 * [Quick Start](#-quick-start)
@@ -49,13 +50,23 @@ These approaches teach words, but not understanding, feeling, or context.
 
 ---
 
-## 🏗️ Architecture
+## 🎮 Dual Learning Modes 🆕
 
-* **🎨 Frontend Layer:** Next.js 15 with App Router, React 19, TypeScript
-* **📝 Content Layer:** Sanity CMS for stories, sentences, and words
-* **💾 Data Layer:** MongoDB with Prisma ORM for users and progress tracking
-* **🔐 Security Layer:** Custom JWT authentication with middleware protection
-* **🎵 Media Layer:** Static audio files for pronunciation guidance
+### **📚 Learner Mode** 
+*Perfect for beginners and intermediate learners*
+- Sentence-by-sentence progression
+- Individual word hover translations
+- Focused vocabulary building
+- Step-by-step comprehension
+
+### **📖 Reader Mode** 
+*Perfect for advanced learners and heritage speakers*
+- Full story immersion at once
+- Natural reading flow
+- Quick vocabulary reference
+- Fluency maintenance
+
+**Switch seamlessly between modes** based on your comfort level and learning goals!
 
 ---
 
@@ -105,6 +116,7 @@ These approaches teach words, but not understanding, feeling, or context.
 
 ## ✨ Key Features
 
+* **🎮 Dual Learning Modes** – Learner Mode (sentence-by-sentence) & Reader Mode (full immersion) 🆕
 * **📝 Community-Contributed Stories** – Full CRUD for signed-in users
 * **📚 Progressive Learning Flow** – Beginner → Intermediate → Advanced stories
 * **🖋 Nastaliq Script** – Elegant calligraphy for authentic reading experience
@@ -128,6 +140,7 @@ These approaches teach words, but not understanding, feeling, or context.
 | 🗄️ Database | MongoDB with Prisma ORM |
 | 🔐 Authentication | JWT with custom middleware |
 | 🔊 Audio | Static MP3/WAV files |
+| 💾 State Management | Zustand with persistence |
 | 🛠️ Development | ESLint, PostCSS |
 
 ---
@@ -178,6 +191,8 @@ Shaan-e-Zaban/
         │   │   └── signup/page.tsx
         │   ├── (pages)/           # Route groups for organization
         │   │   ├── 📚 learn/[level]/[slug]/  # Learning interface
+        │   │   │   ├── page.tsx
+        │   │   │   └── ClientStoryRenderer.tsx 🆕
         │   │   ├── ✍️ contribute/             # Story contribution
         │   │   ├── 📊 dashboard/              # User dashboard
         │   │   ├── 🛠️ edit/[slug]/           # Story editing
@@ -190,6 +205,13 @@ Shaan-e-Zaban/
         │   │   ├── 🔐 auth/AuthInitializer.tsx
         │   │   ├── 📊 progress/   # Progress tracking components
         │   │   └── 📚 stories/   # Story-related components
+        │   │       ├── AudioPlayer.tsx
+        │   │       ├── CompleteStoryButton.tsx
+        │   │       ├── ModeToggle.tsx 🆕
+        │   │       ├── PaginationNav.tsx
+        │   │       ├── ReaderModeView.tsx 🆕
+        │   │       ├── StoryCard.tsx
+        │   │       └── VocabularyHover.tsx
         │   └── index.ts           # Barrel exports
         ├── 🎣 hooks/              # Custom React hooks
         ├── 🛠️ lib/               # Utilities & configurations

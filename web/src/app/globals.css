@@ -4,7 +4,7 @@
   font-family: 'Gulzar', 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
   direction: rtl;
   text-align: right;
-  line-height: 1.8;          /* gives breathing space for Nastaliq */
+  line-height: 2.0;          /* gives breathing space for Nastaliq */
   letter-spacing: 0.5px;     /* optional: improves readability at small sizes */
   font-feature-settings: "calt" 1, "rlig" 1; /* ligatures & contextual forms */
   -webkit-font-smoothing: antialiased;
@@ -27,4 +27,17 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+
+.animate-wave {
+  animation: wave 1s ease-in-out infinite;
 }

@@ -15,76 +15,68 @@ model User {
   password  String
   createdAt DateTime @default(now())
 
-  // Progress tracking - embedded document
-  progress Progress?
-
-  // User ratings/reviews for stories
-  ratings Rating[]
-
-  // User learning preferences
-  preferences UserPreferences?
+  // Relations
+  progress     UserProgress[]
+  ratings      Rating[]
+  preferences  UserPreferences?
+  sessions     LearningSession[]
 
   @@map("users")
 }
 
-// Embedded progress document
-type Progress {
-  // Core completion tracking
-  completedStories String[]  @db.ObjectId // Story IDs user has finished
-  currentStreak    Int       @default(0) // Consecutive days with activity
-  longestStreak    Int       @default(0) // Best streak ever
-  lastActive       DateTime? // Last learning session
+model UserProgress {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  storyId   String   @db.ObjectId
+  completed Boolean  @default(false)
+  favorite  Boolean  @default(false)
+  rating    Int?     // 1-5 stars
+  timeSpent Int      @default(0) // minutes
+  level     String   // 'beginner' | 'intermediate' | 'advanced'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  // Learning metrics
-  totalLearningTime Int      @default(0) // Total minutes spent
-  storiesStarted    String[] @db.ObjectId // Stories user has opened
-  favoriteStories   String[] @db.ObjectId // Stories user favorited
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Level progression
-  levelProgress LevelProgress[] // Progress per difficulty level
-
-  // Vocabulary tracking (future feature)
-  wordsLearned String[] // Word IDs mastered (future)
-
-  // Session history (last 30 days)
-  recentSessions LearningSession[]
+  @@unique([userId, storyId])
+  @@map("user_progress")
 }
 
-// Progress per difficulty level
-type LevelProgress {
-  level     String // 'beginner' | 'intermediate' | 'advanced'
-  completed Int    @default(0) // Stories completed in this level
-  total     Int    @default(0) // Total stories available in this level
-  accuracy  Float? // Future: reading comprehension score
+model LearningSession {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  date      DateTime @default(now())
+  duration  Int      // minutes
+  stories   String[] @db.ObjectId // Story IDs accessed
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("learning_sessions")
 }
 
-// Learning session record
-type LearningSession {
-  date     DateTime @default(now())
-  stories  String[] @db.ObjectId // Stories read in this session
-  duration Int // Minutes spent
-}
-
-// User ratings for stories
 model Rating {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId    String   @db.ObjectId
-  storyId   String   @db.ObjectId // Reference to Sanity story
-  rating    Int // 1-5 stars
-  review    String? // Optional text review
+  storyId   String   @db.ObjectId
+  rating    Int      // 1-5 stars
+  review    String?
   createdAt DateTime @default(now())
-  User      User     @relation(fields: [userId], references: [id])
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Ensure one rating per user per story
   @@unique([userId, storyId])
   @@map("ratings")
 }
 
-// User learning preferences
-type UserPreferences {
-  defaultLevel    String? // Preferred starting level
-  audioEnabled    Boolean @default(true)
+model UserPreferences {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @db.ObjectId @unique
+  defaultLevel   String?  @default("beginner")
+  audioEnabled   Boolean  @default(true)
   transliteration Boolean @default(true)
-  dailyGoal       Int     @default(15) // Minutes per day
-  notifications   Boolean @default(true)
+  dailyGoal      Int      @default(15) // minutes
+  notifications  Boolean  @default(true)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
 }
